@@ -46,18 +46,18 @@
             --primary-dark: #0033cc;
             --primary-light: #e8f0ff;
             --accent: #00bfff;
-            --success: #28a745;
-            --warning: #ff6b35;
-            --danger: #ff3b30;
-            --text-dark: #1a1a1a;
-            --text-gray: #555;
-            --text-light: #888;
-            --bg-light: #f5f7fa;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --text-dark: #0f172a;
+            --text-gray: #64748b;
+            --text-light: #94a3b8;
+            --bg-light: #f8fafc;
             --bg-white: #ffffff;
-            --border-color: #e0e4e8;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
         }
 
         * {
@@ -67,10 +67,12 @@
         }
 
         html, body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--bg-light);
             color: var(--text-dark);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
@@ -85,7 +87,7 @@
             width: 100%;
             max-width: 480px;
             background-color: var(--bg-white);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -95,11 +97,11 @@
         .header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--bg-white);
-            padding: 12px 20px;
+            padding: 14px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 4px 20px rgba(0, 85, 255, 0.15);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -223,9 +225,9 @@
 
         /* ==================== TRUST BANNER ==================== */
         .trust-banner {
-            background: linear-gradient(90deg, rgba(40, 167, 69, 0.1) 0%, rgba(0, 191, 255, 0.1) 100%);
-            border-bottom: 1px solid rgba(40, 167, 69, 0.2);
-            padding: 10px 20px;
+            background: linear-gradient(90deg, rgba(34, 197, 94, 0.08) 0%, rgba(0, 191, 255, 0.08) 100%);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 20px;
             display: flex;
             align-items: center;
             justify-content: space-around;
@@ -251,13 +253,13 @@
 
         /* ==================== PROMOTIONAL BANNERS ==================== */
         .promo-banner {
-            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
             color: white;
-            padding: 12px 20px;
+            padding: 14px 20px;
             text-align: center;
             font-weight: 700;
             font-size: 0.95rem;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -269,9 +271,9 @@
         }
 
         .delivery-banner {
-            background-color: var(--success);
+            background: linear-gradient(135deg, var(--success) 0%, #16a34a 100%);
             color: var(--bg-white);
-            padding: 12px 20px;
+            padding: 14px 20px;
             text-align: center;
             font-weight: 700;
             display: flex;
@@ -279,7 +281,7 @@
             justify-content: center;
             gap: 8px;
             font-size: 0.95rem;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.2);
         }
 
         .delivery-banner i {
@@ -309,12 +311,18 @@
         
         .form-input {
             border: 2px solid var(--border-color);
+            transition: all 0.2s ease;
         }
         
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 4px rgba(0, 85, 255, 0.15);
+            background-color: var(--bg-white);
+        }
+        
+        .form-input::placeholder {
+            color: var(--text-light);
         }
         
         .form-label {
@@ -335,14 +343,19 @@
         .order-btn {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
-            box-shadow: 0 8px 24px rgba(0, 85, 255, 0.35);
+            box-shadow: 0 10px 28px rgba(0, 85, 255, 0.3);
             letter-spacing: 0.5px;
+            font-size: 1rem;
         }
 
         .order-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 32px rgba(0, 85, 255, 0.45);
-            filter: brightness(1.08);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 36px rgba(0, 85, 255, 0.4);
+            filter: brightness(1.05);
+        }
+        
+        .order-btn:active {
+            transform: translateY(-1px);
         }
 
         .cart-panel {
@@ -488,7 +501,7 @@
             flex: 1;
             padding: 14px 10px;
             border: 2px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 14px;
             text-align: center;
             cursor: pointer;
             font-weight: 700;
@@ -499,6 +512,7 @@
             align-items: center;
             gap: 6px;
             background-color: var(--bg-white);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
         }
 
         .variant-pill i {
@@ -512,7 +526,7 @@
             background-color: var(--primary-light);
             color: var(--primary);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 85, 255, 0.15);
+            box-shadow: 0 8px 16px rgba(0, 85, 255, 0.2);
         }
 
         .variant-pill.active i {
@@ -521,12 +535,12 @@
 
         /* ==================== PRICING SECTION ==================== */
         .pricing-section {
-            background-color: var(--bg-white);
+            background: linear-gradient(135deg, rgba(0, 85, 255, 0.03) 0%, rgba(0, 191, 255, 0.03) 100%);
             padding: 24px 20px;
             border-radius: 16px;
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             margin-bottom: 24px;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
         }
 
         .pricing-container {
@@ -837,12 +851,13 @@
             width: 100%;
             max-width: 480px;
             background-color: var(--bg-white);
-            border-radius: 24px 24px 0 0;
+            border-radius: 28px 28px 0 0;
             max-height: 90vh;
             display: flex;
             flex-direction: column;
             transform: translateY(100%);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
         }
 
         .cart-modal.active .cart-panel {
@@ -851,10 +866,11 @@
 
         .cart-header {
             padding: 20px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 2px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: linear-gradient(135deg, rgba(0, 85, 255, 0.02) 0%, rgba(0, 191, 255, 0.02) 100%);
         }
 
         .cart-title {
@@ -921,8 +937,8 @@
 
         .cart-footer {
             padding: 20px;
-            background-color: var(--bg-light);
-            border-top: 1px solid var(--border-color);
+            background: linear-gradient(135deg, var(--bg-light) 0%, rgba(0, 85, 255, 0.02) 100%);
+            border-top: 2px solid var(--border-color);
         }
 
         .cart-summary {
@@ -2456,6 +2472,7 @@
 
             if (value.replace('-', '').length === 8) {
                 cepInput.classList.add('loading');
+                cepInput.blur();
                 try {
                     const res = await fetch(`https://viacep.com.br/ws/${value.replace('-', '')}/json/`);
                     const data = await res.json();
@@ -2551,8 +2568,20 @@
             const number = document.getElementById('addr-number').value;
             const complement = document.getElementById('addr-complement').value;
             
+            // Determine shipping deadline based on selected option
+            let deliveryDeadline = '30-40 minutos';
+            const shipScheduled = document.getElementById('ship-scheduled');
+            if (shipScheduled && shipScheduled.classList.contains('selected')) {
+                const deliveryDate = document.getElementById('delivery-date').value;
+                const deliveryTime = document.getElementById('delivery-time').value;
+                if (deliveryDate && deliveryTime) {
+                    deliveryDeadline = `${deliveryDate} às ${deliveryTime}`;
+                }
+            }
+            
             let fullAddress = `<strong>${addressText}</strong><br><i class="fas fa-home"></i> Número: <strong>${number}</strong>`;
             if (complement) fullAddress += `<br><i class="fas fa-info-circle"></i> Complemento: <strong>${complement}</strong>`;
+            fullAddress += `<br><i class="fas fa-clock"></i> Prazo: <strong>${deliveryDeadline}</strong>`;
             
             summaryAddress.innerHTML = fullAddress;
             
