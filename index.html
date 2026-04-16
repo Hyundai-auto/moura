@@ -2189,11 +2189,37 @@
                         </div>
                         <div class="error-text" id="cep-error">CEP inválido</div>
                     </div>
+                    
+                    <!-- TRUST ELEMENTS IN CART -->
+                    <div id="cart-trust-elements" style="margin-top: 15px; padding: 12px; background: #f8fafc; border-radius: 10px; border: 1px dashed var(--border-color);">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                            <i class="fas fa-shield-check" style="color: var(--success); font-size: 1rem;"></i>
+                            <span style="font-size: 0.75rem; font-weight: 700; color: var(--text-dark);">Compra 100% Segura</span>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); font-size: 0.7rem;"></i>
+                                <span style="font-size: 0.65rem; color: var(--text-gray); font-weight: 600;">Produto Original</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); font-size: 0.7rem;"></i>
+                                <span style="font-size: 0.65rem; color: var(--text-gray); font-weight: 600;">Garantia de Fábrica</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); font-size: 0.7rem;"></i>
+                                <span style="font-size: 0.65rem; color: var(--text-gray); font-weight: 600;">Instalação Grátis</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 6px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary); font-size: 0.7rem;"></i>
+                                <span style="font-size: 0.65rem; color: var(--text-gray); font-weight: 600;">Pagamento na Entrega</span>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="address-block" id="address-block">
                         <div class="address-text" id="address-display"></div>
                         <div class="form-row" style="margin-top: 10px;">
-                            <input type="text" class="form-input" id="addr-number" placeholder="Número">
+                            <input type="tel" inputmode="numeric" class="form-input" id="addr-number" placeholder="Número">
                             <input type="text" class="form-input" id="addr-complement" placeholder="Compl.">
                         </div>
                     </div>
@@ -2431,21 +2457,34 @@
             }
         });
 
-        // Cart Logic
-        document.getElementById('add-to-cart-btn').addEventListener('click', () => {
-            const existingItem = cart.find(item => item.variant === currentVariant);
-            if (existingItem) {
-                existingItem.quantity += mainQuantity;
-            } else {
-                cart.push({
-                    variant: currentVariant,
-                    price: currentPrice,
-                    quantity: mainQuantity,
-                    image: mainImage.src
-                });
-            }
-            updateCart();
-            openCart();
+        // Cart Logic with Loading Effect
+        document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+            const btn = this;
+            const originalContent = btn.innerHTML;
+            
+            // Add loading state
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+            
+            setTimeout(() => {
+                const existingItem = cart.find(item => item.variant === currentVariant);
+                if (existingItem) {
+                    existingItem.quantity += mainQuantity;
+                } else {
+                    cart.push({
+                        variant: currentVariant,
+                        price: currentPrice,
+                        quantity: mainQuantity,
+                        image: mainImage.src
+                    });
+                }
+                updateCart();
+                
+                // Restore button and open cart
+                btn.disabled = false;
+                btn.innerHTML = originalContent;
+                openCart();
+            }, 1000);
         });
 
         function updateCart() {
