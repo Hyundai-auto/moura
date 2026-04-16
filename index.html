@@ -259,6 +259,8 @@
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
         }
 
         .variant-item.active {
@@ -368,39 +370,35 @@
             gap: 10px;
         }
 
-        .section-title i {
-            color: var(--primary);
-        }
-
         .features-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
         }
 
         .feature-item {
-            background-color: var(--bg-light);
+            background: white;
             padding: 15px;
-            border-radius: var(--radius-sm);
-            text-align: left;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
         }
 
         .feature-icon {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .feature-title {
-            font-size: 0.85rem;
-            font-weight: 700;
             display: block;
-            margin-bottom: 4px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
         }
 
         .feature-text {
             font-size: 0.75rem;
-            color: var(--text-gray);
+            color: var(--text-light);
             line-height: 1.3;
         }
 
@@ -410,40 +408,42 @@
         }
 
         .review-card {
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
+            background: #F8F9FA;
             padding: 15px;
-            margin-bottom: 12px;
+            border-radius: var(--radius-md);
+            margin-bottom: 15px;
         }
 
         .review-header {
             display: flex;
             justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 10px;
         }
 
         .user-info {
             display: flex;
-            align-items: center;
             gap: 10px;
+            align-items: center;
         }
 
         .user-avatar {
             width: 35px;
             height: 35px;
-            background-color: var(--primary-light);
+            background: var(--primary-light);
             color: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 0.8rem;
         }
 
         .user-name {
-            font-size: 0.85rem;
+            display: block;
             font-weight: 700;
+            font-size: 0.85rem;
         }
 
         .stars {
@@ -459,23 +459,23 @@
 
         /* Footer */
         .footer {
-            background-color: #F8F9FA;
+            background: var(--text-dark);
+            color: white;
             padding: 40px 20px;
             text-align: center;
-            border-top: 1px solid var(--border-color);
         }
 
         .footer-logo {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 900;
-            color: var(--primary);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .footer-text {
-            font-size: 0.75rem;
-            color: var(--text-light);
+            font-size: 0.8rem;
+            opacity: 0.6;
             margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         .social-links {
@@ -483,10 +483,10 @@
             justify-content: center;
             gap: 20px;
             font-size: 1.2rem;
-            color: var(--text-light);
+            opacity: 0.8;
         }
 
-        /* Cart Modal */
+        /* Modal */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -494,6 +494,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
             z-index: 2000;
             display: none;
             justify-content: flex-end;
@@ -920,21 +921,26 @@
                             <label class="form-label">Número e Complemento</label>
                             <input type="text" class="form-input" id="addr-details" placeholder="Ex: 123, Apto 45">
                         </div>
+                        
+                        <!-- Opções de Envio -->
                         <div class="form-group">
-                            <label class="form-label">Seu Nome</label>
-                            <input type="text" class="form-input" id="cust-name" placeholder="Nome completo">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">WhatsApp</label>
-                            <input type="tel" class="form-input" id="cust-phone" placeholder="(00) 00000-0000">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Forma de Pagamento</label>
-                            <select class="form-input" id="payment-method">
-                                <option value="pix">PIX (na entrega)</option>
-                                <option value="card">Cartão de Crédito/Débito</option>
-                                <option value="money">Dinheiro</option>
+                            <label class="form-label">Opção de Envio</label>
+                            <select class="form-input" id="shipping-option">
+                                <option value="fast">Envio rápido (30-40 min) - Grátis</option>
+                                <option value="scheduled">Envio agendado - Grátis</option>
                             </select>
+                        </div>
+
+                        <!-- Campos de Agendamento (ocultos por padrão) -->
+                        <div id="schedule-fields" style="display: none;">
+                            <div class="form-group">
+                                <label class="form-label">Dia para Entrega</label>
+                                <input type="date" class="form-input" id="schedule-day">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Horário para Entrega</label>
+                                <input type="time" class="form-input" id="schedule-time">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -965,7 +971,7 @@
     <div class="success-overlay" id="success-modal">
         <div class="success-icon"><i class="fas fa-check"></i></div>
         <h2 style="font-weight: 900; margin-bottom: 10px;">Pedido Enviado!</h2>
-        <p style="color: var(--text-gray); margin-bottom: 30px;">Um técnico entrará em contato via WhatsApp em instantes para confirmar a localização.</p>
+        <p style="color: var(--text-gray); margin-bottom: 30px;">Seu pedido foi processado com sucesso. Entraremos em contato em breve.</p>
         <button class="btn-primary" onclick="location.reload()" style="background: var(--primary);">Voltar ao Início</button>
     </div>
 
@@ -996,6 +1002,8 @@
         const addressDisplay = document.getElementById('address-display');
         const checkoutFields = document.getElementById('checkout-fields');
         const loadingOverlay = document.getElementById('loading-overlay');
+        const shippingOption = document.getElementById('shipping-option');
+        const scheduleFields = document.getElementById('schedule-fields');
 
         // Variant Selection
         variantItems.forEach(item => {
@@ -1105,14 +1113,28 @@
             }
         });
 
+        // Shipping Option Toggle
+        shippingOption.addEventListener('change', () => {
+            if (shippingOption.value === 'scheduled') {
+                scheduleFields.style.display = 'block';
+            } else {
+                scheduleFields.style.display = 'none';
+            }
+        });
+
         // Finalize
         document.getElementById('finalize-btn').addEventListener('click', () => {
             if (cart.length === 0) return alert('Adicione um produto ao carrinho.');
             if (cepInput.value.length < 9) return alert('Informe um CEP válido.');
             
-            const name = document.getElementById('cust-name').value;
-            const phone = document.getElementById('cust-phone').value;
-            if (!name || !phone) return alert('Preencha seus dados de contato.');
+            const addrDetails = document.getElementById('addr-details').value;
+            if (!addrDetails) return alert('Informe o número e complemento.');
+
+            if (shippingOption.value === 'scheduled') {
+                const day = document.getElementById('schedule-day').value;
+                const time = document.getElementById('schedule-time').value;
+                if (!day || !time) return alert('Selecione o dia e horário para o agendamento.');
+            }
 
             showLoading();
             setTimeout(() => {
@@ -1127,7 +1149,8 @@
         function hideLoading() { loadingOverlay.style.display = 'none'; }
 
         window.addEventListener('scroll', () => {
-            document.getElementById('main-header').classList.toggle('sticky', window.scrollY > 50);
+            const header = document.getElementById('main-header');
+            if (header) header.classList.toggle('sticky', window.scrollY > 50);
         });
     </script>
 </body>
