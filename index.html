@@ -1259,8 +1259,8 @@
 
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<p style="text-align:center; color:var(--text-light); padding:20px;">Seu carrinho está vazio.</p>';
-                subtotalDisplay.textContent = 'R$ 0,00';
-                totalDisplay.textContent = 'R$ 0,00';
+                if (subtotalDisplay) subtotalDisplay.textContent = 'R$ 0,00';
+                if (totalDisplay) totalDisplay.textContent = 'R$ 0,00';
             } else {
                 let html = '';
                 let subtotal = 0;
@@ -1282,8 +1282,8 @@
                     `;
                 });
                 cartItemsContainer.innerHTML = html;
-                subtotalDisplay.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-                totalDisplay.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+                if (subtotalDisplay) subtotalDisplay.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+                if (totalDisplay) totalDisplay.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
             }
         }
 
