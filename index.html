@@ -743,6 +743,69 @@
             border-top: 1px dashed var(--border-color);
         }
 
+        /* Order Summary Styles */
+        .summary-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 420px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .summary-section-title {
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .summary-item-card {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .summary-item-img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .summary-info-box {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        .summary-info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .summary-info-label {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .summary-info-value {
+            color: var(--text-dark);
+            font-weight: 700;
+            text-align: right;
+        }
+
         /* Success Modal */
         .success-overlay {
             position: fixed;
@@ -983,7 +1046,7 @@
                 <button class="close-btn" id="close-cart"><i class="fas fa-times"></i></button>
             </div>
             
-            <div class="cart-content">
+            <div class="cart-content" id="cart-main-content">
                 <div id="cart-items-container">
                     <!-- Items injected by JS -->
                 </div>
@@ -1047,6 +1110,18 @@
                 </div>
             </div>
 
+            <!-- Resumo do Pedido (Oculto inicialmente) -->
+            <div class="cart-content" id="order-summary-content" style="display: none;">
+                <button class="close-btn mb-10" id="back-to-cart" style="font-size: 0.9rem; color: var(--primary); font-weight: 700;">
+                    <i class="fas fa-arrow-left"></i> Voltar e Editar
+                </button>
+                <h3 style="font-weight: 900; font-size: 1.2rem; margin-bottom: 20px;">Resumo do Pedido</h3>
+                
+                <div id="summary-details">
+                    <!-- Preenchido via JS -->
+                </div>
+            </div>
+
             <div class="cart-footer">
                 <div class="summary-row">
                     <span>Subtotal</span>
@@ -1063,6 +1138,9 @@
                 
                 <button class="btn-primary mt-20" id="finalize-btn" style="background: var(--primary);">
                     Finalizar Pedido
+                </button>
+                <button class="btn-primary mt-20" id="confirm-payment-btn" style="background: var(--success); display: none;">
+                    Confirmar e Pagar
                 </button>
             </div>
         </div>
@@ -1088,6 +1166,7 @@
         let currentPrice = 449.90;
         let currentImg = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png";
         let selectedShipping = "fast";
+        let addressData = null;
 
         // DOM
         const variantItems = document.querySelectorAll('.variant-item');
@@ -1106,6 +1185,14 @@
         const loadingOverlay = document.getElementById('loading-overlay');
         const shippingCards = document.querySelectorAll('.shipping-card');
         const scheduleFields = document.getElementById('schedule-fields');
+        
+        // New DOM for Summary
+        const cartMainContent = document.getElementById('cart-main-content');
+        const orderSummaryContent = document.getElementById('order-summary-content');
+        const finalizeBtn = document.getElementById('finalize-btn');
+        const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
+        const summaryDetails = document.getElementById('summary-details');
+        const backToCart = document.getElementById('back-to-cart');
 
         // Variant Selection
         variantItems.forEach(item => {
@@ -1187,7 +1274,18 @@
             updateCart();
         };
 
-        function openCart() { cartModal.classList.add('active'); }
+        function openCart() { 
+            cartModal.classList.add('active'); 
+            resetToCartView();
+        }
+
+        function resetToCartView() {
+            cartMainContent.style.display = 'block';
+            orderSummaryContent.style.display = 'none';
+            finalizeBtn.style.display = 'flex';
+            confirmPaymentBtn.style.display = 'none';
+        }
+
         document.getElementById('cart-trigger').addEventListener('click', openCart);
         document.getElementById('close-cart').addEventListener('click', () => cartModal.classList.remove('active'));
 
@@ -1203,6 +1301,7 @@
                     const res = await fetch(`https://viacep.com.br/ws/${val.replace('-', '')}/json/`);
                     const data = await res.json();
                     if (!data.erro) {
+                        addressData = data;
                         addressDisplay.textContent = `${data.logradouro}, ${data.bairro} - ${data.localidade}/${data.uf}`;
                         addressDisplay.classList.add('active');
                         checkoutFields.style.display = 'block';
@@ -1230,26 +1329,94 @@
             });
         });
 
-        // Finalize
-        document.getElementById('finalize-btn').addEventListener('click', () => {
+        // Finalize (Show Summary)
+        finalizeBtn.addEventListener('click', () => {
             if (cart.length === 0) return alert('Adicione um produto ao carrinho.');
             if (cepInput.value.length < 9) return alert('Informe um CEP válido.');
             
             const addrNumber = document.getElementById('addr-number').value;
             if (!addrNumber) return alert('Informe o número da residência.');
 
+            let scheduleText = '';
             if (selectedShipping === 'scheduled') {
                 const day = document.getElementById('schedule-day').value;
                 const time = document.getElementById('schedule-time').value;
                 if (!day || !time) return alert('Selecione o dia e horário para o agendamento.');
+                scheduleText = `Agendado para: ${day.split('-').reverse().join('/')} às ${time}`;
+            } else {
+                scheduleText = 'Prazo: 30-40 minutos';
             }
 
+            // Build Summary HTML
+            let subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            let itemsHtml = cart.map(item => `
+                <div class="summary-item-card">
+                    <img src="${item.img}" class="summary-item-img">
+                    <div>
+                        <div style="font-weight:800; font-size:0.9rem;">Bateria Moura ${item.variant}</div>
+                        <div style="font-size:0.8rem; color:var(--text-light);">Qtd: ${item.qty}</div>
+                        <div style="font-weight:700; color:var(--primary); font-size:0.9rem;">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            const addrComplement = document.getElementById('addr-complement').value;
+            const fullAddress = `${addressData.logradouro}, ${addrNumber} ${addrComplement ? '- ' + addrComplement : ''}<br>${addressData.bairro}, ${addressData.localidade}/${addressData.uf}`;
+
+            summaryDetails.innerHTML = `
+                <div class="summary-section">
+                    <div class="summary-section-title">Itens do Pedido</div>
+                    <div style="display:flex; flex-direction:column; gap:10px;">
+                        ${itemsHtml}
+                    </div>
+                </div>
+
+                <div class="summary-section mt-20">
+                    <div class="summary-section-title">Endereço de Entrega</div>
+                    <div class="summary-info-box">
+                        <i class="fas fa-map-marker-alt" style="color:var(--danger); margin-right:5px;"></i>
+                        <span>${fullAddress}</span>
+                    </div>
+                </div>
+
+                <div class="summary-section mt-20">
+                    <div class="summary-section-title">Envio Selecionado</div>
+                    <div class="summary-info-box">
+                        <div class="summary-info-row">
+                            <span class="summary-info-label">Tipo:</span>
+                            <span class="summary-info-value">${selectedShipping === 'fast' ? 'Envio Rápido' : 'Envio Agendado'}</span>
+                        </div>
+                        <div class="summary-info-row">
+                            <span class="summary-info-label">Prazo/Horário:</span>
+                            <span class="summary-info-value">${scheduleText}</span>
+                        </div>
+                        <div class="summary-info-row">
+                            <span class="summary-info-label">Frete:</span>
+                            <span class="summary-info-value text-success">GRÁTIS</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Toggle Views
+            cartMainContent.style.display = 'none';
+            orderSummaryContent.style.display = 'block';
+            finalizeBtn.style.display = 'none';
+            confirmPaymentBtn.style.display = 'flex';
+        });
+
+        // Back to Cart
+        backToCart.addEventListener('click', resetToCartView);
+
+        // Confirm and Redirect
+        confirmPaymentBtn.addEventListener('click', () => {
+            let total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
             showLoading();
+            
             setTimeout(() => {
-                hideLoading();
-                cartModal.classList.remove('active');
-                document.getElementById('success-modal').classList.add('active');
-            }, 1500);
+                // Redirect to external link with subtotal
+                window.location.href = `https://exemplo.com/?subtotal=${total.toFixed(2)}`;
+            }, 1000);
         });
 
         // Utils
