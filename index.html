@@ -2242,28 +2242,31 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- CART SUMMARY (MOVED INSIDE SHIPPING SECTION) -->
+                    <div class="cart-summary" id="cart-summary" style="display: none; margin-top: 20px; padding: 16px; background: var(--bg-light); border-radius: 12px; border: 1px solid var(--border-color);">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal-display">R$ 0,00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Entrega e Instalação</span>
+                            <span style="color: var(--success);">GRÁTIS</span>
+                        </div>
+                        <div class="summary-row summary-total">
+                            <span>Total</span>
+                            <span id="total-display">R$ 0,00</span>
+                        </div>
+                        
+                        <button class="cta-button order-btn" id="checkout-btn" style="margin-top: 16px; margin-bottom: 0; width: 100%;">
+                            Finalizar Pedido
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div class="cart-footer">
-                <div class="cart-summary" id="cart-summary" style="display: none;">
-                    <div class="summary-row">
-                        <span>Subtotal</span>
-                        <span id="subtotal-display">R$ 0,00</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Entrega e Instalação</span>
-                        <span style="color: var(--success);">GRÁTIS</span>
-                    </div>
-                    <div class="summary-row summary-total">
-                        <span>Total</span>
-                        <span id="total-display">R$ 0,00</span>
-                    </div>
-                </div>
-
-                <button class="cta-button order-btn" id="checkout-btn" style="margin-bottom: 0;">
-                    Finalizar Pedido
-                </button>
+            <div class="cart-footer" id="cart-footer-fixed">
+                <!-- Footer content will be managed by JS -->
             </div>
         </div>
     </div>
@@ -2454,6 +2457,7 @@
                 cartItemsContainer.innerHTML = '<div class="empty-cart"><i class="fas fa-shopping-cart"></i><p>Seu carrinho está vazio</p></div>';
                 document.getElementById('shipping-section').style.display = 'none';
                 document.getElementById('cart-summary').style.display = 'none';
+                document.getElementById('cart-footer-fixed').style.display = 'none';
             } else {
                 let html = '';
                 let subtotal = 0;
@@ -2482,7 +2486,20 @@
                 subtotalDisplay.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
                 totalDisplay.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
                 document.getElementById('shipping-section').style.display = 'block';
-                document.getElementById('cart-summary').style.display = 'block';
+                
+                // If CEP is already filled and valid, show summary, otherwise show fixed footer hint
+                if (cepInput.value.replace('-', '').length === 8 && addressBlock.classList.contains('active')) {
+                    document.getElementById('cart-summary').style.display = 'block';
+                    document.getElementById('cart-footer-fixed').style.display = 'none';
+                } else {
+                    document.getElementById('cart-summary').style.display = 'none';
+                    document.getElementById('cart-footer-fixed').style.display = 'block';
+                    document.getElementById('cart-footer-fixed').innerHTML = `
+                        <div style="text-align:center; color:var(--text-light); font-size:0.85rem; font-weight:600;">
+                            <i class="fas fa-info-circle"></i> Informe o CEP para finalizar o pedido
+                        </div>
+                    `;
+                }
             }
         }
 
@@ -2510,21 +2527,39 @@
             if (value.replace('-', '').length === 8) {
                 document.getElementById('cep-wrapper').classList.add('loading-cep');
                 cepInput.blur();
+                
+                // Minimum 1 second delay for the spinner
+                const startTime = Date.now();
+                
                 try {
                     const res = await fetch(`https://viacep.com.br/ws/${value.replace('-', '')}/json/`);
                     const data = await res.json();
-                    if (!data.erro) {
-                        addressDisplay.textContent = `${data.logradouro}, ${data.bairro} - ${data.localidade}/${data.uf}`;
-                        addressBlock.classList.add('active');
-                        document.getElementById('shipping-options').classList.add('active');
-                    }
+                    
+                    const elapsedTime = Date.now() - startTime;
+                    const remainingTime = Math.max(0, 1000 - elapsedTime);
+                    
+                    setTimeout(() => {
+                        document.getElementById('cep-wrapper').classList.remove('loading-cep');
+                        if (!data.erro) {
+                            addressDisplay.textContent = `${data.logradouro}, ${data.bairro} - ${data.localidade}/${data.uf}`;
+                            addressBlock.classList.add('active');
+                            document.getElementById('shipping-options').classList.add('active');
+                            
+                            // Show summary and hide fixed footer
+                            document.getElementById('cart-summary').style.display = 'block';
+                            document.getElementById('cart-footer-fixed').style.display = 'none';
+                        }
+                    }, remainingTime);
+                    
                 } catch (err) {
                     console.error('Erro ao buscar CEP:', err);
+                    document.getElementById('cep-wrapper').classList.remove('loading-cep');
                 }
-                document.getElementById('cep-wrapper').classList.remove('loading-cep');
             } else {
                 addressBlock.classList.remove('active');
                 document.getElementById('shipping-options').classList.remove('active');
+                document.getElementById('cart-summary').style.display = 'none';
+                document.getElementById('cart-footer-fixed').style.display = 'block';
             }
         });
 
