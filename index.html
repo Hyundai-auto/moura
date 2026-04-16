@@ -603,6 +603,17 @@
             margin-bottom: 15px;
         }
 
+        .form-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
         .form-label {
             display: block;
             font-size: 0.75rem;
@@ -625,6 +636,74 @@
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        /* Shipping Cards */
+        .shipping-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .shipping-card {
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .shipping-card:hover {
+            border-color: var(--primary-light);
+        }
+
+        .shipping-card.active {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .shipping-card i {
+            font-size: 1.4rem;
+            color: var(--text-light);
+            width: 24px;
+            text-align: center;
+        }
+
+        .shipping-card.active i {
+            color: var(--primary);
+        }
+
+        .shipping-info {
+            flex: 1;
+        }
+
+        .shipping-title {
+            display: block;
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .shipping-desc {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .shipping-card.active .shipping-desc {
+            color: var(--primary-dark);
+        }
+
+        .shipping-price {
+            font-weight: 800;
+            font-size: 0.8rem;
+            color: var(--success);
+            text-transform: uppercase;
         }
 
         .address-box {
@@ -917,29 +996,51 @@
                     </div>
 
                     <div id="checkout-fields" style="display: none;">
-                        <div class="form-group">
-                            <label class="form-label">Número e Complemento</label>
-                            <input type="text" class="form-input" id="addr-details" placeholder="Ex: 123, Apto 45">
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 0 0 80px;">
+                                <label class="form-label">Número</label>
+                                <input type="text" class="form-input" id="addr-number" placeholder="123">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Complemento</label>
+                                <input type="text" class="form-input" id="addr-complement" placeholder="Apto, Bloco...">
+                            </div>
                         </div>
                         
-                        <!-- Opções de Envio -->
+                        <!-- Opções de Envio Profissionais -->
                         <div class="form-group">
                             <label class="form-label">Opção de Envio</label>
-                            <select class="form-input" id="shipping-option">
-                                <option value="fast">Envio rápido (30-40 min) - Grátis</option>
-                                <option value="scheduled">Envio agendado - Grátis</option>
-                            </select>
+                            <div class="shipping-grid">
+                                <div class="shipping-card active" data-value="fast">
+                                    <i class="fas fa-bolt"></i>
+                                    <div class="shipping-info">
+                                        <span class="shipping-title">Envio Rápido</span>
+                                        <span class="shipping-desc">Entrega em 30-40 minutos</span>
+                                    </div>
+                                    <span class="shipping-price">Grátis</span>
+                                </div>
+                                <div class="shipping-card" data-value="scheduled">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <div class="shipping-info">
+                                        <span class="shipping-title">Envio Agendado</span>
+                                        <span class="shipping-desc">Escolha o melhor horário</span>
+                                    </div>
+                                    <span class="shipping-price">Grátis</span>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Campos de Agendamento (ocultos por padrão) -->
-                        <div id="schedule-fields" style="display: none;">
-                            <div class="form-group">
-                                <label class="form-label">Dia para Entrega</label>
-                                <input type="date" class="form-input" id="schedule-day">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Horário para Entrega</label>
-                                <input type="time" class="form-input" id="schedule-time">
+                        <div id="schedule-fields" style="display: none; background: #f1f5f9; padding: 15px; border-radius: 12px; margin-top: 10px;">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Dia</label>
+                                    <input type="date" class="form-input" id="schedule-day">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Horário</label>
+                                    <input type="time" class="form-input" id="schedule-time">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -986,6 +1087,7 @@
         let currentVariant = "60Ah";
         let currentPrice = 449.90;
         let currentImg = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png";
+        let selectedShipping = "fast";
 
         // DOM
         const variantItems = document.querySelectorAll('.variant-item');
@@ -1002,7 +1104,7 @@
         const addressDisplay = document.getElementById('address-display');
         const checkoutFields = document.getElementById('checkout-fields');
         const loadingOverlay = document.getElementById('loading-overlay');
-        const shippingOption = document.getElementById('shipping-option');
+        const shippingCards = document.querySelectorAll('.shipping-card');
         const scheduleFields = document.getElementById('schedule-fields');
 
         // Variant Selection
@@ -1113,13 +1215,19 @@
             }
         });
 
-        // Shipping Option Toggle
-        shippingOption.addEventListener('change', () => {
-            if (shippingOption.value === 'scheduled') {
-                scheduleFields.style.display = 'block';
-            } else {
-                scheduleFields.style.display = 'none';
-            }
+        // Shipping Card Selection
+        shippingCards.forEach(card => {
+            card.addEventListener('click', () => {
+                shippingCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                selectedShipping = card.dataset.value;
+                
+                if (selectedShipping === 'scheduled') {
+                    scheduleFields.style.display = 'block';
+                } else {
+                    scheduleFields.style.display = 'none';
+                }
+            });
         });
 
         // Finalize
@@ -1127,10 +1235,10 @@
             if (cart.length === 0) return alert('Adicione um produto ao carrinho.');
             if (cepInput.value.length < 9) return alert('Informe um CEP válido.');
             
-            const addrDetails = document.getElementById('addr-details').value;
-            if (!addrDetails) return alert('Informe o número e complemento.');
+            const addrNumber = document.getElementById('addr-number').value;
+            if (!addrNumber) return alert('Informe o número da residência.');
 
-            if (shippingOption.value === 'scheduled') {
+            if (selectedShipping === 'scheduled') {
                 const day = document.getElementById('schedule-day').value;
                 const time = document.getElementById('schedule-time').value;
                 if (!day || !time) return alert('Selecione o dia e horário para o agendamento.');
