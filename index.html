@@ -1223,23 +1223,33 @@
 
         // Cart Logic
         document.getElementById('add-to-cart-btn').addEventListener('click', () => {
-            showLoading();
-            setTimeout(() => {
-                const existing = cart.find(i => i.variant === currentVariant);
-                if (existing) {
-                    existing.qty++;
-                } else {
-                    cart.push({
-                        variant: currentVariant,
-                        price: currentPrice,
-                        img: currentImg,
-                        qty: 1
-                    });
-                }
-                updateCart();
+            try {
+                showLoading();
+                setTimeout(() => {
+                    try {
+                        const existing = cart.find(i => i.variant === currentVariant);
+                        if (existing) {
+                            existing.qty++;
+                        } else {
+                            cart.push({
+                                variant: currentVariant,
+                                price: currentPrice,
+                                img: currentImg,
+                                qty: 1
+                            });
+                        }
+                        updateCart();
+                        openCart();
+                    } catch (err) {
+                        console.error("Erro ao adicionar ao carrinho:", err);
+                    } finally {
+                        hideLoading();
+                    }
+                }, 600);
+            } catch (err) {
+                console.error("Erro no clique do botão:", err);
                 hideLoading();
-                openCart();
-            }, 600);
+            }
         });
 
         function updateCart() {
