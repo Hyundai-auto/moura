@@ -369,22 +369,31 @@
 
         /* CTA Button */
         .btn-primary {
-            width: 100%;
+            width: auto;
+            min-width: 200px;
+            margin: 0 auto;
             background: linear-gradient(135deg, #28A745 0%, #218838 100%);
             color: white;
             border: none;
-            padding: 16px;
-            border-radius: var(--radius-md);
-            font-size: 1.1rem;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 1rem;
             font-weight: 800;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3);
-            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.25);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+            filter: brightness(1.05);
         }
 
         .btn-primary:active {
@@ -760,9 +769,54 @@
         }
 
         .cart-footer {
-            padding: 20px;
+            padding: 24px 20px;
             border-top: 1px solid var(--border-color);
-            background: #f8f9fa;
+            background: white;
+            box-shadow: 0 -10px 25px rgba(0,0,0,0.03);
+        }
+
+        .payment-methods-mini {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            opacity: 0.6;
+            font-size: 1.2rem;
+        }
+
+        .secure-checkout-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .summary-total {
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .total-label-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .total-label-group .sub {
+            font-size: 0.7rem;
+            color: var(--text-light);
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
         .summary-row {
@@ -999,9 +1053,11 @@
             </div>
 
             <!-- CTA Button -->
-            <button class="btn-primary" id="add-to-cart-btn" style="background: linear-gradient(135deg, #28A745 0%, #218838 100%);">
-                <i class="fas fa-shopping-cart"></i> Pedir Agora
-            </button>
+            <div style="display: flex; justify-content: center; margin: 10px 0 20px 0;">
+                <button class="btn-primary" id="add-to-cart-btn">
+                    <i class="fas fa-shopping-cart"></i> Pedir Agora
+                </button>
+            </div>
         </div>
 
         <!-- Features Section -->
@@ -1186,19 +1242,34 @@
 
             <!-- Rodapé Fixo do Carrinho (Oculto no Resumo) -->
             <div class="cart-footer" id="cart-footer-main">
-                <div class="summary-row summary-total" style="border-top: none; margin-top: 0; padding-top: 0;">
-                    <span>Total</span>
+                <div class="secure-checkout-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Checkout 100% Seguro</span>
+                </div>
+
+                <div class="summary-total">
+                    <div class="total-label-group">
+                        <span class="sub">Valor Total</span>
+                        <span>Total</span>
+                    </div>
                     <span id="total-display">R$ 0,00</span>
                 </div>
                 
-                <button class="btn-primary mt-20" id="finalize-btn" style="background: var(--primary);">
-                    Prosseguir
+                <button class="btn-primary mt-20" id="finalize-btn" style="background: var(--primary); width: 100%;">
+                    Prosseguir para Entrega
                 </button>
+
+                <div class="payment-methods-mini">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-pix"></i>
+                    <i class="fas fa-barcode"></i>
+                </div>
             </div>
             
             <!-- Botão Fixo apenas para o Resumo -->
             <div class="cart-footer" id="cart-footer-summary" style="display: none;">
-                <button class="btn-primary" id="confirm-payment-btn" style="background: var(--success);">
+                <button class="btn-primary" id="confirm-payment-btn" style="background: var(--success); width: 100%;">
                     Concluir Pedido
                 </button>
             </div>
