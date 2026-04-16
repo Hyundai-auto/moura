@@ -806,6 +806,13 @@
             text-align: right;
         }
 
+        .summary-totals-block {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
         /* Success Modal */
         .success-overlay {
             position: fixed;
@@ -1074,7 +1081,7 @@
                         <div class="form-group">
                             <label class="form-label">Opção de Envio</label>
                             <div class="shipping-grid">
-                                <div class="shipping-card active" data-value="fast">
+                                <div class="shipping-card" data-value="fast">
                                     <i class="fas fa-bolt"></i>
                                     <div class="shipping-info">
                                         <span class="shipping-title">Envio Rápido</span>
@@ -1110,19 +1117,20 @@
                 </div>
             </div>
 
-            <!-- Resumo do Pedido (Oculto inicialmente) -->
+            <!-- Resumo do Pedido -->
             <div class="cart-content" id="order-summary-content" style="display: none;">
                 <button class="close-btn mb-10" id="back-to-cart" style="font-size: 0.9rem; color: var(--primary); font-weight: 700;">
                     <i class="fas fa-arrow-left"></i> Voltar e Editar
                 </button>
-                <h3 style="font-weight: 900; font-size: 1.2rem; margin-bottom: 20px;">Resumo do Pedido</h3>
+                <h3 style="font-weight: 900; font-size: 1.2rem; margin-bottom: 20px;">Confirmação do Pedido</h3>
                 
                 <div id="summary-details">
                     <!-- Preenchido via JS -->
                 </div>
             </div>
 
-            <div class="cart-footer">
+            <!-- Rodapé Fixo do Carrinho (Oculto no Resumo) -->
+            <div class="cart-footer" id="cart-footer-main">
                 <div class="summary-row">
                     <span>Subtotal</span>
                     <span id="subtotal-display">R$ 0,00</span>
@@ -1139,7 +1147,11 @@
                 <button class="btn-primary mt-20" id="finalize-btn" style="background: var(--primary);">
                     Finalizar Pedido
                 </button>
-                <button class="btn-primary mt-20" id="confirm-payment-btn" style="background: var(--success); display: none;">
+            </div>
+            
+            <!-- Botão Fixo apenas para o Resumo -->
+            <div class="cart-footer" id="cart-footer-summary" style="display: none;">
+                <button class="btn-primary" id="confirm-payment-btn" style="background: var(--success);">
                     Confirmar e Pagar
                 </button>
             </div>
@@ -1165,7 +1177,7 @@
         let currentVariant = "60Ah";
         let currentPrice = 449.90;
         let currentImg = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png";
-        let selectedShipping = "fast";
+        let selectedShipping = null;
         let addressData = null;
 
         // DOM
@@ -1186,9 +1198,11 @@
         const shippingCards = document.querySelectorAll('.shipping-card');
         const scheduleFields = document.getElementById('schedule-fields');
         
-        // New DOM for Summary
+        // Summary View DOM
         const cartMainContent = document.getElementById('cart-main-content');
         const orderSummaryContent = document.getElementById('order-summary-content');
+        const cartFooterMain = document.getElementById('cart-footer-main');
+        const cartFooterSummary = document.getElementById('cart-footer-summary');
         const finalizeBtn = document.getElementById('finalize-btn');
         const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
         const summaryDetails = document.getElementById('summary-details');
@@ -1282,8 +1296,8 @@
         function resetToCartView() {
             cartMainContent.style.display = 'block';
             orderSummaryContent.style.display = 'none';
-            finalizeBtn.style.display = 'flex';
-            confirmPaymentBtn.style.display = 'none';
+            cartFooterMain.style.display = 'block';
+            cartFooterSummary.style.display = 'none';
         }
 
         document.getElementById('cart-trigger').addEventListener('click', openCart);
@@ -1296,6 +1310,9 @@
             e.target.value = val;
 
             if (val.replace('-', '').length === 8) {
+                // Dimiss Keyboard
+                cepInput.blur();
+                
                 showLoading();
                 try {
                     const res = await fetch(`https://viacep.com.br/ws/${val.replace('-', '')}/json/`);
@@ -1305,6 +1322,8 @@
                         addressDisplay.textContent = `${data.logradouro}, ${data.bairro} - ${data.localidade}/${data.uf}`;
                         addressDisplay.classList.add('active');
                         checkoutFields.style.display = 'block';
+                    } else {
+                        alert('CEP não encontrado.');
                     }
                 } catch (err) { console.error(err); }
                 hideLoading();
@@ -1336,6 +1355,8 @@
             
             const addrNumber = document.getElementById('addr-number').value;
             if (!addrNumber) return alert('Informe o número da residência.');
+
+            if (!selectedShipping) return alert('Selecione uma opção de envio.');
 
             let scheduleText = '';
             if (selectedShipping === 'scheduled') {
@@ -1390,10 +1411,22 @@
                             <span class="summary-info-label">Prazo/Horário:</span>
                             <span class="summary-info-value">${scheduleText}</span>
                         </div>
-                        <div class="summary-info-row">
-                            <span class="summary-info-label">Frete:</span>
-                            <span class="summary-info-value text-success">GRÁTIS</span>
-                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumo de Valores Integrado -->
+                <div class="summary-totals-block">
+                    <div class="summary-info-row">
+                        <span class="summary-info-label">Subtotal:</span>
+                        <span class="summary-info-value">R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+                    </div>
+                    <div class="summary-info-row">
+                        <span class="summary-info-label">Entrega:</span>
+                        <span class="summary-info-value text-success">GRÁTIS</span>
+                    </div>
+                    <div class="summary-info-row" style="margin-top:10px; border-top:1px dashed #cbd5e1; padding-top:10px;">
+                        <span style="font-weight:900; font-size:1.1rem;">Total:</span>
+                        <span style="font-weight:900; font-size:1.1rem; color:var(--primary);">R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
                     </div>
                 </div>
             `;
@@ -1401,8 +1434,8 @@
             // Toggle Views
             cartMainContent.style.display = 'none';
             orderSummaryContent.style.display = 'block';
-            finalizeBtn.style.display = 'none';
-            confirmPaymentBtn.style.display = 'flex';
+            cartFooterMain.style.display = 'none';
+            cartFooterSummary.style.display = 'block';
         });
 
         // Back to Cart
