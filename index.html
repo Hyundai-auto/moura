@@ -800,9 +800,15 @@
             cursor: pointer;
         }
 
-        .cart-items {
+        .cart-body {
             flex: 1;
             overflow-y: auto;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-items {
             padding: 20px;
         }
 
@@ -2049,66 +2055,68 @@
                 <button class="close-cart" id="close-cart"><i class="fas fa-times"></i></button>
             </div>
 
-            <div class="cart-items" id="cart-items-container">
-                <!-- Items will be injected here -->
-            </div>
-
-            <!-- SHIPPING SECTION (CEP) -->
-            <div id="shipping-section" style="padding: 0 20px 20px 20px; display: none;">
-                <div class="form-group">
-                    <label class="form-label">CEP para Entrega e Instalação</label>
-                    <input type="text" class="form-input" id="cep-input" placeholder="00000-000" maxlength="9">
-                    <div class="error-text" id="cep-error">CEP inválido</div>
+            <div class="cart-body">
+                <div class="cart-items" id="cart-items-container">
+                    <!-- Items will be injected here -->
                 </div>
 
-                <div class="address-block" id="address-block">
-                    <div class="address-text" id="address-display"></div>
-                    <div class="form-row" style="margin-top: 10px;">
-                        <input type="text" class="form-input" id="addr-number" placeholder="Número">
-                        <input type="text" class="form-input" id="addr-complement" placeholder="Compl.">
-                    </div>
-                </div>
-
-                <!-- Shipping Options Section -->
-                <div class="shipping-options-container" id="shipping-options">
-                    <div class="shipping-title">
-                        <i class="fas fa-truck"></i>
-                        Opções de envio
-                    </div>
-                    
-                    <div class="shipping-card selected" id="ship-fast">
-                        <div class="shipping-card-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <div class="shipping-card-info">
-                            <span class="shipping-card-name">Entrega Expressa</span>
-                            <span class="shipping-card-time">30-40 minutos</span>
-                        </div>
-                        <div class="shipping-card-price">GRÁTIS</div>
-                        <div class="shipping-card-check"><i class="fas fa-check-circle"></i></div>
+                <!-- SHIPPING SECTION (CEP) -->
+                <div id="shipping-section" style="padding: 0 20px 20px 20px; display: none;">
+                    <div class="form-group">
+                        <label class="form-label">CEP para Entrega e Instalação</label>
+                        <input type="text" class="form-input" id="cep-input" placeholder="00000-000" maxlength="9">
+                        <div class="error-text" id="cep-error">CEP inválido</div>
                     </div>
 
-                    <div class="shipping-card" id="ship-scheduled">
-                        <div class="shipping-card-icon">
-                            <i class="fas fa-calendar-alt"></i>
+                    <div class="address-block" id="address-block">
+                        <div class="address-text" id="address-display"></div>
+                        <div class="form-row" style="margin-top: 10px;">
+                            <input type="text" class="form-input" id="addr-number" placeholder="Número">
+                            <input type="text" class="form-input" id="addr-complement" placeholder="Compl.">
                         </div>
-                        <div class="shipping-card-info">
-                            <span class="shipping-card-name">Entrega Agendada</span>
-                            <span class="shipping-card-time">Escolha o melhor horário</span>
-                        </div>
-                        <div class="shipping-card-price">GRÁTIS</div>
-                        <div class="shipping-card-check"><i class="fas fa-check-circle"></i></div>
                     </div>
 
-                    <div class="scheduled-fields" id="scheduled-fields">
-                        <div class="scheduled-grid">
-                            <div class="form-group" style="margin-bottom: 0;">
-                                <label class="form-label" style="font-size: 0.75rem;">Data</label>
-                                <input type="date" class="form-input" id="delivery-date">
+                    <!-- Shipping Options Section -->
+                    <div class="shipping-options-container" id="shipping-options">
+                        <div class="shipping-title">
+                            <i class="fas fa-truck"></i>
+                            Opções de envio
+                        </div>
+                        
+                        <div class="shipping-card selected" id="ship-fast">
+                            <div class="shipping-card-icon">
+                                <i class="fas fa-bolt"></i>
                             </div>
-                            <div class="form-group" style="margin-bottom: 0;">
-                                <label class="form-label" style="font-size: 0.75rem;">Hora</label>
-                                <input type="time" class="form-input" id="delivery-time">
+                            <div class="shipping-card-info">
+                                <span class="shipping-card-name">Entrega Expressa</span>
+                                <span class="shipping-card-time">30-40 minutos</span>
+                            </div>
+                            <div class="shipping-card-price">GRÁTIS</div>
+                            <div class="shipping-card-check"><i class="fas fa-check-circle"></i></div>
+                        </div>
+
+                        <div class="shipping-card" id="ship-scheduled">
+                            <div class="shipping-card-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="shipping-card-info">
+                                <span class="shipping-card-name">Entrega Agendada</span>
+                                <span class="shipping-card-time">Escolha o melhor horário</span>
+                            </div>
+                            <div class="shipping-card-price">GRÁTIS</div>
+                            <div class="shipping-card-check"><i class="fas fa-check-circle"></i></div>
+                        </div>
+
+                        <div class="scheduled-fields" id="scheduled-fields">
+                            <div class="scheduled-grid">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label class="form-label" style="font-size: 0.75rem;">Data</label>
+                                    <input type="date" class="form-input" id="delivery-date">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <label class="form-label" style="font-size: 0.75rem;">Hora</label>
+                                    <input type="time" class="form-input" id="delivery-time">
+                                </div>
                             </div>
                         </div>
                     </div>
