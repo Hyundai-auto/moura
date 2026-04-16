@@ -868,16 +868,7 @@
             margin-top: 5px;
         }
 
-        /* ==================== CHECKOUT FORM ==================== */
-        .checkout-section {
-            display: none;
-            padding: 20px;
-        }
-
-        .checkout-section.active {
-            display: block;
-        }
-
+        /* ==================== FORM STYLES ==================== */
         .form-group {
             margin-bottom: 16px;
         }
@@ -889,6 +880,7 @@
             color: var(--text-gray);
             margin-bottom: 6px;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .form-input {
@@ -898,277 +890,80 @@
             border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s ease;
+            background-color: var(--bg-white);
         }
 
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            background-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.1);
+        }
+
+        .form-input.loading {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 38 38" stroke="%230055ff"><g fill="none" fill-rule="evenodd"><g transform="translate(1 1)" stroke-width="3"><circle stroke-opacity=".2" cx="18" cy="18" r="18"/><path d="M36 18c0-9.94-8.06-18-18-18"><animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"/></path></g></g></svg>');
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 45px;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
-        }
-
-        /* ==================== SUCCESS MODAL ==================== */
-        .success-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-white);
-            z-index: 500;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            text-align: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s ease;
-        }
-
-        .success-modal.active {
+            max-height: 100px;
             opacity: 1;
-            visibility: visible;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
         }
 
-        .success-icon {
-            width: 100px;
-            height: 100px;
-            background-color: var(--success);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
-        }
-
-        .success-title {
-            font-size: 1.8rem;
-            font-weight: 900;
-            margin-bottom: 12px;
-        }
-
-        .success-msg {
-            color: var(--text-gray);
-            margin-bottom: 32px;
-        }
-
-        /* ==================== RESPONSIVE ==================== */
-        @media (max-width: 480px) {
-            .container {
-                box-shadow: none;
-            }
-        }
-
-        /* ==================== LOADING OVERLAY ==================== */
-        .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .form-row.hidden {
+            max-height: 0;
             opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            gap: 0;
         }
 
-        .loading-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--primary-light);
-            border-top: 5px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 16px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* CEP Loading state */
-        .form-input.loading {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 38 38" stroke="%230055ff"><g fill="none" fill-rule="evenodd"><g transform="translate(1 1)" stroke-width="3"><circle stroke-opacity=".2" cx="18" cy="18" r="18"/><path d="M36 18c0-9.94-8.06-18-18-18"><animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"/></path></g></g></svg>');
-            background-repeat: no-repeat;
-            background-position: right 14px center;
-        }
-
+        /* ==================== ADDRESS BLOCK - PROFISSIONAL ==================== */
         .address-block {
-            background-color: var(--primary-light);
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 16px;
-            display: none;
+            background-color: transparent;
+            padding: 0;
+            border-radius: 0;
+            border: none;
+            margin-bottom: 0;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .address-block.active {
-            display: block;
-        }
-
-        .address-text {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--primary-dark);
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* Sticky Header on Scroll */
-        .header.sticky {
-            padding: 8px 20px;
-        }
-
-        .header.sticky .brand-tagline {
-            display: none;
-        }
-
-        .header.sticky .brand-logo {
-            font-size: 1.1rem;
-        }
-
-        /* Improved Review Item Design */
-        .review-item-container {
-            background: var(--bg-light);
-            border-radius: 16px;
-            padding: 16px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(0, 85, 255, 0.03) 0%, rgba(0, 191, 255, 0.03) 100%);
+            border: 2px solid var(--primary-light);
+            border-radius: 12px;
             margin-bottom: 20px;
-            border: 1px solid var(--border-color);
-        }
-
-        .review-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px dashed var(--border-color);
-        }
-
-        .review-item-label {
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .review-item-detail {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .review-item-img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-
-        .review-item-info {
-            flex: 1;
-        }
-
-        .review-item-name {
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--text-dark);
-        }
-
-        .review-item-price {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-
-        .finish-now-btn {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            border: none;
-            border-radius: 14px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            cursor: pointer;
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 16px rgba(0, 85, 255, 0.25);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .finish-now-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 85, 255, 0.35);
-            filter: brightness(1.1);
-        }
-
-        /* ==================== ERROR MESSAGE MODAL ==================== */
-        .error-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 300;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .error-modal.active {
+            max-height: 600px;
             opacity: 1;
-            visibility: visible;
+            animation: slideUpFade 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0, 85, 255, 0.08);
+            position: relative;
+            overflow: visible;
         }
 
-        .error-modal-content {
-            background-color: var(--bg-white);
-            border-radius: 16px;
-            padding: 32px 24px;
-            max-width: 320px;
-            width: 90%;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            animation: slideUp 0.3s ease;
+        .address-block.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 12px 0 0 12px;
         }
 
-        @keyframes slideUp {
+        @keyframes slideUpFade {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(12px);
             }
             to {
                 opacity: 1;
@@ -1176,228 +971,41 @@
             }
         }
 
-        .error-modal-icon {
-            font-size: 3rem;
-            color: var(--danger);
-            margin-bottom: 16px;
-        }
-
-        .error-modal-title {
-            font-size: 1.2rem;
+        .address-block-title {
+            font-size: 0.8rem;
             font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 12px;
-        }
-
-        .error-modal-message {
-            font-size: 0.95rem;
-            color: var(--text-gray);
-            line-height: 1.5;
-            margin-bottom: 24px;
-        }
-
-        
-        /* ==================== IMPROVED PAYMENT DESIGN ==================== */
-        .payment-option-card {
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            padding: 24px;
-            margin-bottom: 20px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            background-color: var(--bg-white);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .payment-option-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 12px 24px rgba(0, 85, 255, 0.12);
-        }
-
-        .payment-option-card.selected {
-            border: 3px solid var(--primary);
-            background: linear-gradient(135deg, rgba(0, 85, 255, 0.05) 0%, rgba(0, 85, 255, 0.02) 100%);
-            box-shadow: 0 12px 32px rgba(0, 85, 255, 0.18), inset 0 1px 0 rgba(0, 85, 255, 0.1);
-            position: relative;
-        }
-
-        .payment-option-card.selected::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
-            border-radius: 20px 20px 0 0;
-        }
-
-        .payment-option-card.selected::after {
-            content: '✓';
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            width: 28px;
-            height: 28px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 12px rgba(0, 85, 255, 0.3);
-        }
-
-        .payment-option-card.pix-card {
-            background: linear-gradient(145deg, #f0fffe 0%, #e8fbf8 100%);
-            border: 2px solid #32bcad;
-            box-shadow: 0 8px 24px rgba(50, 188, 173, 0.15);
-            position: relative;
-        }
-
-        .payment-option-card.pix-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(50, 188, 173, 0.05) 0%, rgba(50, 188, 173, 0.02) 100%);
-            border-radius: 20px;
-            pointer-events: none;
-            animation: pixPulse 3s ease-in-out infinite;
-        }
-        
-        .payment-option-card.pix-card:hover {
-            border-color: #32bcad;
-            box-shadow: 0 16px 40px rgba(50, 188, 173, 0.25), inset 0 1px 0 rgba(50, 188, 173, 0.1);
-            transform: translateY(-3px);
-        }
-
-        @keyframes pixPulse {
-            0%, 100% { box-shadow: inset 0 0 0 0 rgba(50, 188, 173, 0.1); }
-            50% { box-shadow: inset 0 0 0 2px rgba(50, 188, 173, 0.15); }
-        }
-
-        .payment-option-card.pix-card.selected {
-            border: 3px solid #32bcad;
-            background: linear-gradient(135deg, #f0fffe 0%, #e0f7f5 100%);
-        }
-
-        .payment-option-card.pix-card.selected::before {
-            background: linear-gradient(90deg, #32bcad 0%, #4fd1c5 100%);
-        }
-
-        .payment-option-card.pix-card.selected::after {
-            background: #32bcad;
-            box-shadow: 0 4px 12px rgba(50, 188, 173, 0.3);
-        }
-
-        .payment-option-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .payment-option-icon {
-            width: 56px;
-            height: 56px;
-            background-color: var(--bg-white);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
             color: var(--primary);
-            box-shadow: var(--shadow-sm);
-            flex-shrink: 0;
-        }
-
-        .pix-card .payment-option-icon {
-            color: #32bcad;
-            background-color: white;
-        }
-
-        .payment-option-info {
-            flex: 1;
-        }
-
-        .payment-option-title {
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 4px;
-        }
-
-        .payment-option-desc {
-            font-size: 0.85rem;
-            color: var(--text-gray);
-            font-weight: 500;
-        }
-
-        .payment-option-badge {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: var(--danger);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 8px rgba(255, 59, 48, 0.2);
-        }
-
-        .pix-badge {
-            background: #32bcad;
-            box-shadow: 0 4px 8px rgba(50, 188, 173, 0.2);
-        }
-
-        .payment-option-footer {
-            margin-top: 4px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            letter-spacing: 0.8px;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--success);
+            padding-left: 12px;
         }
 
-        .pix-card .payment-option-footer {
-            color: #2a9d8f;
+        .address-block-title i {
+            font-size: 1rem;
+            color: var(--primary);
         }
 
-        /* ==================== ADDRESS INFO DESIGN ==================== */
-        .address-info-grid {
+        .address-info {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 16px;
-            background: rgba(0, 85, 255, 0.03);
-            padding: 16px;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 85, 255, 0.1);
+            gap: 16px;
+            font-size: 0.9rem;
+            padding-left: 12px;
+            margin-bottom: 20px;
         }
 
         .address-info-item {
             display: flex;
             flex-direction: column;
-            gap: 4px;
-            padding: 10px;
-            background: white;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
+            gap: 6px;
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 85, 255, 0.1);
             transition: all 0.3s ease;
         }
 
@@ -1429,12 +1037,7 @@
             grid-column: 1 / -1;
         }
 
-        .address-info-item.full .address-info-value {
-            padding-bottom: 0;
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-
+        /* ==================== DELIVERY OPTIONS ==================== */
         .delivery-options-group {
             margin-top: 0;
             margin-bottom: 0;
@@ -1458,6 +1061,7 @@
             letter-spacing: 0.6px;
             margin-bottom: 12px;
             display: block;
+            padding-left: 12px;
         }
 
         .delivery-option-card {
@@ -1470,6 +1074,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             margin-bottom: 10px;
+            margin-left: 12px;
+            margin-right: 12px;
         }
 
         .delivery-option-card:last-child {
@@ -1538,104 +1144,33 @@
             font-weight: 400;
         }
 
-        /* SCHEDULING SECTION */
-        .scheduling-section {
+        /* ==================== EXTRA FIELDS ROW ==================== */
+        .extra-fields-row {
+            max-height: 100px;
+            opacity: 1;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+            margin-top: 16px;
+            padding: 0 12px;
+        }
+
+        .extra-fields-row.hidden {
             max-height: 0;
             opacity: 0;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             margin-top: 0;
             padding: 0;
-            background-color: var(--bg-light);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
         }
 
-        .scheduling-section.active {
-            max-height: 200px;
-            opacity: 1;
-            margin-top: 15px;
-            padding: 15px;
-        }
-
-        /* CUSTOMER DATA SECTION */
-        .customer-data-section {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            margin-top: 0;
-            padding: 0;
-            background-color: var(--bg-white);
-            border-radius: 12px;
-            border: 2px solid var(--border-color);
-        }
-
-        .customer-data-section.active {
-            max-height: 300px;
-            opacity: 1;
-            margin-top: 20px;
-            padding: 20px;
-            border-color: var(--primary-light);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .customer-data-title {
-            font-size: 0.9rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .customer-data-title i {
-            color: var(--primary);
-        }
-
-        .scheduling-title {
-            font-size: 0.85rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .review-form-group {
-            margin-bottom: 10px;
-        }
-
-        .review-form-group .form-label {
-            font-size: 0.85rem;
+        .error-text {
+            color: var(--danger);
+            font-size: 0.75rem;
             font-weight: 700;
-            color: var(--text-gray);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .error-text.active {
             display: block;
-            margin-bottom: 8px;
-        }
-
-        .review-form-group .form-input {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-family: inherit;
-            transition: all 0.3s ease;
-            background-color: var(--bg-white);
-            color: var(--text-dark);
-        }
-
-        .review-form-group .form-input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(0, 85, 255, 0.1);
         }
 
         .empty-cart {
@@ -1673,23 +1208,31 @@
             text-align: center;
         }
 
-        .error-text {
-            color: var(--danger);
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-top: 4px;
-            display: none;
+        .finish-now-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 16px rgba(0, 85, 255, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .error-text.active {
-            display: block;
-        }
-
-        /* CEP Input Loading */
-        .form-input.loading {
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 38 38" stroke="%230055ff"><g fill="none" fill-rule="evenodd"><g transform="translate(1 1)" stroke-width="3"><circle stroke-opacity=".2" cx="18" cy="18" r="18"/><path d="M36 18c0-9.94-8.06-18-18-18"><animateTransform attributeName="transform" type="rotate" from="0 18 18" to="360 18 18" dur="1s" repeatCount="indefinite"/></path></g></g></svg>');
-            background-repeat: no-repeat;
-            background-position: right 14px center;
+        .finish-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 85, 255, 0.35);
+            filter: brightness(1.1);
         }
 
     </style>
@@ -1946,11 +1489,62 @@
                     <div class="error-text" id="cep-error">CEP inválido</div>
                 </div>
 
+                <!-- ADDRESS BLOCK -->
                 <div class="address-block" id="address-block">
-                    <div class="address-text" id="address-display"></div>
-                    <div class="form-row" style="margin-top: 10px;">
-                        <input type="text" class="form-input" id="addr-number" placeholder="Número">
-                        <input type="text" class="form-input" id="addr-complement" placeholder="Compl.">
+                    <div class="address-block-title">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Endereço Encontrado
+                    </div>
+                    <div class="address-info">
+                        <div class="address-info-item">
+                            <span class="address-info-label">Rua</span>
+                            <span class="address-info-value" id="addr-street">-</span>
+                        </div>
+                        <div class="address-info-item">
+                            <span class="address-info-label">Bairro</span>
+                            <span class="address-info-value" id="addr-neighborhood">-</span>
+                        </div>
+                        <div class="address-info-item">
+                            <span class="address-info-label">Cidade</span>
+                            <span class="address-info-value" id="addr-city">-</span>
+                        </div>
+                        <div class="address-info-item">
+                            <span class="address-info-label">Estado</span>
+                            <span class="address-info-value" id="addr-state">-</span>
+                        </div>
+                    </div>
+
+                    <!-- DELIVERY OPTIONS -->
+                    <div class="delivery-options-group" id="delivery-group">
+                        <span class="delivery-options-title">Selecione a Opção de Entrega:</span>
+                        <div class="delivery-option-card" data-delivery="free">
+                            <div class="delivery-option-radio"></div>
+                            <div class="delivery-option-text">
+                                <div class="delivery-option-main"><i class="fas fa-truck"></i> Entrega Grátis</div>
+                                <div class="delivery-option-sub">Receba em até 2 dias úteis</div>
+                            </div>
+                        </div>
+                        <div class="delivery-option-card" data-delivery="scheduled">
+                            <div class="delivery-option-radio"></div>
+                            <div class="delivery-option-text">
+                                <div class="delivery-option-main"><i class="fas fa-calendar-alt"></i> Entrega Agendada</div>
+                                <div class="delivery-option-sub">Escolha data e hora que preferir</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- EXTRA FIELDS (Number and Complement) -->
+                    <div class="extra-fields-row hidden" id="extra-fields-row">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Número</label>
+                                <input type="text" class="form-input" id="addr-number" placeholder="Número">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Complemento</label>
+                                <input type="text" class="form-input" id="addr-complement" placeholder="Apt, sala, etc">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1971,71 +1565,11 @@
                     </div>
                 </div>
 
-                <button class="cta-button order-btn" id="checkout-btn" style="margin-bottom: 0;">
-                    Finalizar Pedido
+                <button class="finish-now-btn" id="finish-now-btn" style="display: none;">
+                    Finalizar Agora
                 </button>
             </div>
         </div>
-    </div>
-
-    <!-- CHECKOUT FORM MODAL (SIMPLIFIED) -->
-    <div class="cart-modal" id="checkout-modal">
-        <div class="cart-panel" style="max-height: 95vh;">
-            <div class="cart-header">
-                <div class="cart-title">Finalizar Pedido</div>
-                <button class="close-cart" id="close-checkout"><i class="fas fa-times"></i></button>
-            </div>
-            <div style="flex: 1; overflow-y: auto; padding: 20px;">
-                <div class="form-group">
-                    <label class="form-label">Nome Completo</label>
-                    <input type="text" class="form-input" id="cust-name" placeholder="Seu nome">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">WhatsApp</label>
-                    <input type="tel" class="form-input" id="cust-phone" placeholder="(00) 00000-0000">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Forma de Pagamento</label>
-                    <div class="payment-option-card selected" data-pay="pix">
-                        <div class="payment-option-header">
-                            <div class="payment-option-icon"><i class="fas fa-qrcode"></i></div>
-                            <div class="payment-option-info">
-                                <div class="payment-option-title">PIX</div>
-                                <div class="payment-option-desc">Aprovação imediata</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="payment-option-card" data-pay="card">
-                        <div class="payment-option-header">
-                            <div class="payment-option-icon"><i class="fas fa-credit-card"></i></div>
-                            <div class="payment-option-info">
-                                <div class="payment-option-title">Cartão de Crédito</div>
-                                <div class="payment-option-desc">Até 10x sem juros</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="finish-now-btn" id="confirm-order-btn">
-                    Confirmar e Pagar
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- SUCCESS MODAL -->
-    <div class="success-modal" id="success-modal">
-        <div class="success-icon"><i class="fas fa-check"></i></div>
-        <h2 class="success-title">Pedido Recebido!</h2>
-        <p class="success-msg">Um técnico entrará em contato via WhatsApp em instantes para confirmar a entrega e instalação.</p>
-        <button class="cta-button order-btn" onclick="location.reload()">Voltar ao Início</button>
-    </div>
-
-    <!-- LOADING OVERLAY -->
-    <div class="loading-overlay" id="loading-overlay">
-        <div class="spinner"></div>
-        <p style="font-weight: 700; color: var(--primary);">Processando...</p>
     </div>
 
     <script>
@@ -2044,6 +1578,16 @@
         let currentVariant = "60Ah";
         let currentPrice = 449.90;
         let mainQuantity = 1;
+        let shippingData = {
+            cep: '',
+            street: '',
+            neighborhood: '',
+            city: '',
+            state: '',
+            number: '',
+            complement: '',
+            deliveryType: ''
+        };
 
         // DOM Elements
         const variantPills = document.querySelectorAll('.variant-pill');
@@ -2059,8 +1603,18 @@
         const totalDisplay = document.getElementById('total-display');
         const cepInput = document.getElementById('cep-input');
         const addressBlock = document.getElementById('address-block');
-        const addressDisplay = document.getElementById('address-display');
-        const loadingOverlay = document.getElementById('loading-overlay');
+        const cepError = document.getElementById('cep-error');
+        const shippingSection = document.getElementById('shipping-section');
+        const cartSummary = document.getElementById('cart-summary');
+        const finishNowBtn = document.getElementById('finish-now-btn');
+        const deliveryGroup = document.getElementById('delivery-group');
+        const extraFieldsRow = document.getElementById('extra-fields-row');
+        const addrStreet = document.getElementById('addr-street');
+        const addrNeighborhood = document.getElementById('addr-neighborhood');
+        const addrCity = document.getElementById('addr-city');
+        const addrState = document.getElementById('addr-state');
+        const numberInput = document.getElementById('addr-number');
+        const complementInput = document.getElementById('addr-complement');
 
         // Variant Selection
         variantPills.forEach(pill => {
@@ -2100,12 +1654,15 @@
                 existingItem.quantity += mainQuantity;
             } else {
                 cart.push({
+                    name: `Bateria Moura ${currentVariant}`,
                     variant: currentVariant,
                     price: currentPrice,
                     quantity: mainQuantity,
                     image: mainImage.src
                 });
             }
+            mainQuantity = 1;
+            mainQtyNumber.textContent = mainQuantity;
             updateCart();
             openCart();
         });
@@ -2117,8 +1674,9 @@
 
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<div class="empty-cart"><i class="fas fa-shopping-cart"></i><p>Seu carrinho está vazio</p></div>';
-                document.getElementById('shipping-section').style.display = 'none';
-                document.getElementById('cart-summary').style.display = 'none';
+                shippingSection.style.display = 'none';
+                cartSummary.style.display = 'none';
+                finishNowBtn.style.display = 'none';
             } else {
                 let html = '';
                 let subtotal = 0;
@@ -2129,7 +1687,7 @@
                         <div class="cart-item">
                             <img src="${item.image}" class="cart-item-img">
                             <div class="cart-item-info">
-                                <div class="cart-item-title">Bateria Moura ${item.variant}</div>
+                                <div class="cart-item-title">${item.name}</div>
                                 <div class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
                                 <div style="display:flex; align-items:center; gap:10px; margin-top:5px;">
                                     <div class="quantity-selector" style="padding:2px;">
@@ -2146,8 +1704,11 @@
                 cartItemsContainer.innerHTML = html;
                 subtotalDisplay.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
                 totalDisplay.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-                document.getElementById('shipping-section').style.display = 'block';
-                document.getElementById('cart-summary').style.display = 'block';
+                shippingSection.style.display = 'block';
+                if (shippingData.deliveryType) {
+                    cartSummary.style.display = 'block';
+                    finishNowBtn.style.display = 'flex';
+                }
             }
         }
 
@@ -2171,61 +1732,90 @@
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 5) value = value.slice(0, 5) + '-' + value.slice(5, 8);
             e.target.value = value;
+            cepError.classList.remove('active');
 
             if (value.replace('-', '').length === 8) {
                 cepInput.classList.add('loading');
                 try {
                     const res = await fetch(`https://viacep.com.br/ws/${value.replace('-', '')}/json/`);
                     const data = await res.json();
-                    if (!data.erro) {
-                        addressDisplay.textContent = `${data.logradouro}, ${data.bairro} - ${data.localidade}/${data.uf}`;
+                    if (data.erro) {
+                        cepError.textContent = 'CEP não encontrado';
+                        cepError.classList.add('active');
+                        addressBlock.classList.remove('active');
+                        hideAddressElements();
+                    } else {
+                        shippingData.cep = value.replace('-', '');
+                        shippingData.street = data.logradouro || '-';
+                        shippingData.neighborhood = data.bairro || '-';
+                        shippingData.city = data.localidade || '-';
+                        shippingData.state = data.uf || '-';
+
+                        addrStreet.textContent = shippingData.street;
+                        addrNeighborhood.textContent = shippingData.neighborhood;
+                        addrCity.textContent = shippingData.city;
+                        addrState.textContent = shippingData.state;
+
                         addressBlock.classList.add('active');
+                        showAddressElements();
                     }
-                } catch (err) {}
+                } catch (err) {
+                    cepError.textContent = 'Erro ao buscar CEP';
+                    cepError.classList.add('active');
+                    addressBlock.classList.remove('active');
+                    hideAddressElements();
+                }
                 cepInput.classList.remove('loading');
             } else {
                 addressBlock.classList.remove('active');
+                hideAddressElements();
+                if (cartSummary) cartSummary.style.display = 'none';
+                finishNowBtn.style.display = 'none';
             }
         });
 
-        // Checkout Logic
-        document.getElementById('checkout-btn').addEventListener('click', () => {
-            if (cart.length === 0) return;
-            if (cepInput.value.replace('-', '').length !== 8) {
-                alert('Por favor, informe um CEP válido.');
-                return;
-            }
-            cartModal.classList.remove('active');
-            document.getElementById('checkout-modal').classList.add('active');
-        });
+        function showAddressElements() {
+            if (deliveryGroup) deliveryGroup.classList.add('visible');
+        }
 
-        document.getElementById('close-checkout').addEventListener('click', () => {
-            document.getElementById('checkout-modal').classList.remove('active');
-        });
+        function hideAddressElements() {
+            if (deliveryGroup) deliveryGroup.classList.remove('visible');
+            if (extraFieldsRow) extraFieldsRow.classList.add('hidden');
+        }
 
-        // Payment Selection
-        document.querySelectorAll('.payment-option-card').forEach(card => {
+        // Delivery Option Selection
+        document.querySelectorAll('.delivery-option-card').forEach(card => {
             card.addEventListener('click', () => {
-                document.querySelectorAll('.payment-option-card').forEach(c => c.classList.remove('selected'));
+                document.querySelectorAll('.delivery-option-card').forEach(c => c.classList.remove('selected'));
                 card.classList.add('selected');
+                shippingData.deliveryType = card.dataset.delivery;
+                
+                // Show extra fields
+                if (extraFieldsRow) extraFieldsRow.classList.remove('hidden');
+                
+                // Show summary and button
+                if (cartSummary) cartSummary.style.display = 'block';
+                finishNowBtn.style.display = 'flex';
             });
         });
 
-        // Final Confirmation
-        document.getElementById('confirm-order-btn').addEventListener('click', () => {
-            const name = document.getElementById('cust-name').value;
-            const phone = document.getElementById('cust-phone').value;
-            if (!name || !phone) {
-                alert('Por favor, preencha seu nome e WhatsApp.');
+        // Number and Complement inputs
+        numberInput.addEventListener('change', (e) => {
+            shippingData.number = e.target.value;
+        });
+
+        complementInput.addEventListener('change', (e) => {
+            shippingData.complement = e.target.value;
+        });
+
+        // Finish Now Button - Redirect to link
+        finishNowBtn.addEventListener('click', () => {
+            if (!shippingData.number) {
+                alert('Por favor, informe o número da residência');
                 return;
             }
-
-            loadingOverlay.classList.add('active');
-            setTimeout(() => {
-                loadingOverlay.classList.remove('active');
-                document.getElementById('checkout-modal').classList.remove('active');
-                document.getElementById('success-modal').classList.add('active');
-            }, 2000);
+            // Redirect to example link
+            window.location.href = 'https://www.example.com/checkout';
         });
 
         // Sticky Header
