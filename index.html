@@ -1084,8 +1084,8 @@
                                 <div class="shipping-card" data-value="fast">
                                     <i class="fas fa-bolt"></i>
                                     <div class="shipping-info">
-                                        <span class="shipping-title">Envio Rápido</span>
-                                        <span class="shipping-desc">Entrega em 30-40 minutos</span>
+                                        <span class="shipping-title">Envio Rápido (30-40 Minutos)</span>
+                                        <span class="shipping-desc">Envio Imediato</span>
                                     </div>
                                     <span class="shipping-price">Grátis</span>
                                 </div>
@@ -1145,14 +1145,14 @@
                 </div>
                 
                 <button class="btn-primary mt-20" id="finalize-btn" style="background: var(--primary);">
-                    Finalizar Pedido
+                    Prosseguir
                 </button>
             </div>
             
             <!-- Botão Fixo apenas para o Resumo -->
             <div class="cart-footer" id="cart-footer-summary" style="display: none;">
                 <button class="btn-primary" id="confirm-payment-btn" style="background: var(--success);">
-                    Confirmar e Pagar
+                    Concluir Pedido
                 </button>
             </div>
         </div>
@@ -1365,7 +1365,7 @@
                 if (!day || !time) return alert('Selecione o dia e horário para o agendamento.');
                 scheduleText = `Agendado para: ${day.split('-').reverse().join('/')} às ${time}`;
             } else {
-                scheduleText = 'Prazo: 30-40 minutos';
+                scheduleText = '30-40 minutos';
             }
 
             // Build Summary HTML
@@ -1405,7 +1405,7 @@
                     <div class="summary-info-box">
                         <div class="summary-info-row">
                             <span class="summary-info-label">Tipo:</span>
-                            <span class="summary-info-value">${selectedShipping === 'fast' ? 'Envio Rápido' : 'Envio Agendado'}</span>
+                            <span class="summary-info-value">${selectedShipping === 'fast' ? 'Envio Rápido (30-40 Minutos)' : 'Envio Agendado'}</span>
                         </div>
                         <div class="summary-info-row">
                             <span class="summary-info-label">Prazo/Horário:</span>
