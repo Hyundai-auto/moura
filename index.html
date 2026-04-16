@@ -1032,6 +1032,121 @@
             color: var(--primary-dark);
         }
 
+        /* Shipping Options Styles */
+        .shipping-options-container {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .shipping-options-container.active {
+            display: block;
+        }
+
+        .shipping-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .shipping-card {
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .shipping-card:hover {
+            border-color: var(--primary-light);
+            background-color: #fafafa;
+        }
+
+        .shipping-card.selected {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        .shipping-card-icon {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .shipping-card-info {
+            flex: 1;
+        }
+
+        .shipping-card-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            display: block;
+        }
+
+        .shipping-card-time {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            display: block;
+        }
+
+        .shipping-card-price {
+            font-weight: 800;
+            font-size: 0.85rem;
+            color: var(--success);
+        }
+
+        .shipping-card-check {
+            color: var(--primary);
+            font-size: 1.1rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .shipping-card.selected .shipping-card-check {
+            opacity: 1;
+        }
+
+        .scheduled-fields {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 8px;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .scheduled-fields.active {
+            display: block;
+        }
+
+        .scheduled-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
         .hidden {
             display: none !important;
         }
@@ -1953,6 +2068,51 @@
                         <input type="text" class="form-input" id="addr-complement" placeholder="Compl.">
                     </div>
                 </div>
+
+                <!-- Shipping Options Section -->
+                <div class="shipping-options-container" id="shipping-options">
+                    <div class="shipping-title">
+                        <i class="fas fa-truck"></i>
+                        Opções de envio
+                    </div>
+                    
+                    <div class="shipping-card selected" id="ship-fast">
+                        <div class="shipping-card-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="shipping-card-info">
+                            <span class="shipping-card-name">Entrega Expressa</span>
+                            <span class="shipping-card-time">30-40 minutos</span>
+                        </div>
+                        <div class="shipping-card-price">GRÁTIS</div>
+                        <div class="shipping-card-check"><i class="fas fa-check-circle"></i></div>
+                    </div>
+
+                    <div class="shipping-card" id="ship-scheduled">
+                        <div class="shipping-card-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="shipping-card-info">
+                            <span class="shipping-card-name">Entrega Agendada</span>
+                            <span class="shipping-card-time">Escolha o melhor horário</span>
+                        </div>
+                        <div class="shipping-card-price">GRÁTIS</div>
+                        <div class="shipping-card-check"><i class="fas fa-check-circle"></i></div>
+                    </div>
+
+                    <div class="scheduled-fields" id="scheduled-fields">
+                        <div class="scheduled-grid">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label" style="font-size: 0.75rem;">Data</label>
+                                <input type="date" class="form-input" id="delivery-date">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label" style="font-size: 0.75rem;">Hora</label>
+                                <input type="time" class="form-input" id="delivery-time">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="cart-footer">
@@ -2180,12 +2340,33 @@
                     if (!data.erro) {
                         addressDisplay.textContent = `${data.logradouro}, ${data.bairro} - ${data.localidade}/${data.uf}`;
                         addressBlock.classList.add('active');
+                        document.getElementById('shipping-options').classList.add('active');
                     }
-                } catch (err) {}
+                } catch (err) {
+                    console.error('Erro ao buscar CEP:', err);
+                }
                 cepInput.classList.remove('loading');
             } else {
                 addressBlock.classList.remove('active');
+                document.getElementById('shipping-options').classList.remove('active');
             }
+        });
+
+        // Shipping Options Logic
+        const shipFast = document.getElementById('ship-fast');
+        const shipScheduled = document.getElementById('ship-scheduled');
+        const scheduledFields = document.getElementById('scheduled-fields');
+
+        shipFast.addEventListener('click', () => {
+            shipFast.classList.add('selected');
+            shipScheduled.classList.remove('selected');
+            scheduledFields.classList.remove('active');
+        });
+
+        shipScheduled.addEventListener('click', () => {
+            shipScheduled.classList.add('selected');
+            shipFast.classList.remove('selected');
+            scheduledFields.classList.add('active');
         });
 
         // Checkout Logic
