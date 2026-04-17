@@ -1528,9 +1528,14 @@
         backToCart.addEventListener('click', resetToCartView);
 
         confirmPaymentBtn.addEventListener('click', () => {
+            showLoading();
             const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
             const targetUrl = `https://exemplo.com/?subtotal=${subtotal.toFixed(2)}`;
-            window.location.href = targetUrl;
+            
+            // Pequeno delay para garantir que o loading apareça antes do redirecionamento
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 500);
         });
 
         function showLoading() { loadingOverlay.classList.add('active'); }
@@ -1539,6 +1544,13 @@
         // Sticky Header
         window.addEventListener('scroll', () => {
             document.getElementById('main-header').classList.toggle('sticky', window.scrollY > 50);
+        });
+
+        // Hide loading if user comes back from another page
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                hideLoading();
+            }
         });
     </script>
 </body>
