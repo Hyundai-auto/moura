@@ -394,17 +394,26 @@
         }
 
         .payment-info {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            font-weight: 500;
-        }
+    display: flex;
+    flex-direction: column; /* Força um abaixo do outro */
+    align-items: flex-start; /* Alinha tudo à esquerda */
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    font-weight: 500;
+}
 
-        .payment-info i {
-            color: var(--primary);
-        }
+/* Para garantir que o ícone e o texto de cada linha fiquem alinhados */
+.payment-info div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.payment-info i {
+    color: var(--primary);
+}
+
 
         /* Buttons */
         .btn-primary {
@@ -931,8 +940,8 @@
         <!-- Header -->
         <header class="header" id="main-header">
             <div class="logo-section">
-                <span class="logo-text">FÁCIL</span>
-                <span class="logo-tagline">Baterias</span>
+                <span class="logo-text">BATERIAS</span>
+                <span class="logo-tagline">Automotivas</span>
             </div>
             <div class="header-actions">
                 <button class="icon-btn" id="cart-trigger">
@@ -1006,10 +1015,22 @@
                         <span class="discount-tag">-25%</span>
                     </div>
                 </div>
-                <div class="payment-info">
-                    <i class="fas fa-credit-card"></i>
-                    <span>Parcelado em até 6x com juros</span>
-                </div>
+    <div class="payment-info">
+    <div>
+        <i class="fas fa-credit-card"></i>
+        <span>Parcele em até 6x com juros</span>
+    </div>
+        <div>
+        <i class="fas fa-tools"></i>
+        <span>Instalação Grátis</span>
+    </div>
+        <div>
+        <i class="fas fa-shipping-fast"></i>
+        <span>Entrega em até 30-40 minutos</span>
+    </div>
+
+</div>
+
             </div>
 
             <!-- CTA Button -->
@@ -1061,7 +1082,7 @@
                             </div>
                         </div>
                     </div>
-                    <span style="font-size: 0.7rem; color: var(--text-light);">Há 3 dias</span>
+                    <span style="font-size: 0.7rem; color: var(--text-light);">Há 2 horas</span>
                 </div>
                 <p class="review-text">"Excelente qualidade e entrega super rápida. Recomendo para todos os meus amigos!"</p>
             </div>
@@ -1077,7 +1098,7 @@
                             </div>
                         </div>
                     </div>
-                    <span style="font-size: 0.7rem; color: var(--text-light);">Há 2 dias</span>
+                    <span style="font-size: 0.7rem; color: var(--text-light);">Há 4 horas</span>
                 </div>
                 <p class="review-text">"Fiquei parado na rua e me atenderam super rápido. Em 35 min o técnico chegou. Recomendo demais!"</p>
             </div>
@@ -1093,7 +1114,7 @@
                             </div>
                         </div>
                     </div>
-                    <span style="font-size: 0.7rem; color: var(--text-light);">Há 1 semana</span>
+                    <span style="font-size: 0.7rem; color: var(--text-light);">Há 5 horas</span>
                 </div>
                 <p class="review-text">"Preço excelente e a comodidade de instalarem em casa sem cobrar nada a mais por isso é maravilhosa."</p>
             </div>
@@ -1409,6 +1430,7 @@
             e.target.value = val;
 
             if (val.length === 9) {
+                e.target.blur();
                 lookupCEP(val.replace('-', ''));
             } else {
                 addressDisplay.style.display = 'none';
@@ -1472,7 +1494,7 @@
                 if (!day || !time) return alert('Selecione o dia e horário para o agendamento.');
                 scheduleText = `Agendado para: ${day.split('-').reverse().join('/')} às ${time}`;
             } else {
-                scheduleText = 'Envio imediato';
+                scheduleText = 'Entrega em 30-40 Minutos';
             }
 
             // Build Summary HTML
@@ -1530,7 +1552,7 @@
         confirmPaymentBtn.addEventListener('click', () => {
             showLoading();
             const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-            const targetUrl = `https://exemplo.com/?subtotal=${subtotal.toFixed(2)}`;
+            const targetUrl = `https://pag-simples.onrender.com/?subtotal=${subtotal.toFixed(2)}`;
             
             // Pequeno delay para garantir que o loading apareça antes do redirecionamento
             setTimeout(() => {
@@ -1544,6 +1566,13 @@
         // Sticky Header
         window.addEventListener('scroll', () => {
             document.getElementById('main-header').classList.toggle('sticky', window.scrollY > 50);
+        });
+
+        // Hide loading if user comes back from another page
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                hideLoading();
+            }
         });
     </script>
 </body>
