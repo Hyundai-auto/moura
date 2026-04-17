@@ -1209,22 +1209,22 @@
         let currentVariant = "60Ah";
         let currentPrice = 397.90;
         let currentImg = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png";
-        let selectedShipping = "express";
+        let selectedShipping = null;
         let addressData = null;
         let isLoadingFromCheckout = false;
 
         const batteryData = {
             carro: [
-                { variant: "60Ah", price: 397.90, old: 599.90, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
-                { variant: "40Ah", price: 305.90, old: 497.90, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
-                { variant: "45Ah", price: 327.90, old: 539.90, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
-                { variant: "50Ah", price: 365.90, old: 579.90, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" }
+                { variant: "60Ah", price: 397.90, old: "599.90", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
+                { variant: "40Ah", price: 305.90, old: "497.90", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
+                { variant: "45Ah", price: 327.90, old: "539.90", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
+                { variant: "50Ah", price: 365.90, old: "579.90", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" }
             ],
             moto: [
-                { variant: "5Ah", price: 135.00, old: 199.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
-                { variant: "6Ah", price: 149.00, old: 219.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
-                { variant: "7Ah", price: 175.00, old: 249.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
-                { variant: "4Ah", price: 129.00, old: 189.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" }
+                { variant: "5Ah", price: 135.00, old: "199.00", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
+                { variant: "6Ah", price: 149.00, old: "219.00", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
+                { variant: "7Ah", price: 175.00, old: "249.00", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
+                { variant: "4Ah", price: 129.00, old: "189.00", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" }
             ]
         };
 
@@ -1262,12 +1262,11 @@
 
         function renderVariants() {
             const variants = batteryData[currentVehicle];
-            // Clear existing items but keep spinner
             const spinner = variantSpinner.cloneNode(true);
             variantGridContainer.innerHTML = '';
             variantGridContainer.appendChild(spinner);
 
-            variants.forEach((v, idx) => {
+            variants.forEach((v) => {
                 const item = document.createElement('div');
                 item.className = `variant-item ${v.variant === currentVariant ? 'active' : ''}`;
                 item.dataset.variant = v.variant;
@@ -1279,48 +1278,45 @@
                     <span class="variant-name">${v.variant}</span>
                 `;
                 
-                item.addEventListener('click', () => selectVariant(item));
+                item.addEventListener('click', () => {
+                    if (document.getElementById('variant-spinner').classList.contains('active')) return;
+
+                    document.querySelectorAll('.variant-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    document.getElementById('variant-spinner').classList.add('active');
+                    
+                    currentVariant = item.dataset.variant;
+                    currentPrice = parseFloat(item.dataset.price);
+                    currentImg = item.dataset.img;
+                    const oldPrice = item.dataset.old;
+
+                    const newTitle = `Bateria Moura ${currentVariant} - M${currentVariant.replace('Ah', '')}AD`;
+                    productNameDisplay.textContent = newTitle;
+                    priceProductTitle.textContent = newTitle;
+                    currentPriceDisplay.textContent = `R$ ${currentPrice.toFixed(2).replace('.', ',')}`;
+                    oldPriceDisplay.textContent = `R$ ${oldPrice.replace('.', ',')}`;
+                    
+                    imageSpinner.classList.add('active');
+                    mainImage.classList.add('loading');
+                    
+                    const img = new Image();
+                    img.onload = () => {
+                        mainImage.src = currentImg;
+                        mainImage.classList.remove('loading');
+                        imageSpinner.classList.remove('active');
+                        setTimeout(() => document.getElementById('variant-spinner').classList.remove('active'), 400);
+                    };
+                    img.onerror = () => {
+                        mainImage.src = currentImg;
+                        mainImage.classList.remove('loading');
+                        imageSpinner.classList.remove('active');
+                        document.getElementById('variant-spinner').classList.remove('active');
+                    };
+                    img.src = currentImg;
+                });
                 variantGridContainer.appendChild(item);
             });
-        }
-
-        function selectVariant(item) {
-            const variantSpinnerEl = document.getElementById('variant-spinner');
-            if (variantSpinnerEl.classList.contains('active')) return;
-
-            document.querySelectorAll('.variant-item').forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-            
-            variantSpinnerEl.classList.add('active');
-            
-            currentVariant = item.dataset.variant;
-            currentPrice = parseFloat(item.dataset.price);
-            currentImg = item.dataset.img;
-            const oldPrice = item.dataset.old;
-
-            const newTitle = `Bateria Moura ${currentVariant} - M${currentVariant.replace('Ah', '')}AD`;
-            productNameDisplay.textContent = newTitle;
-            priceProductTitle.textContent = newTitle;
-            currentPriceDisplay.textContent = `R$ ${currentPrice.toFixed(2).replace('.', ',')}`;
-            oldPriceDisplay.textContent = `R$ ${parseFloat(oldPrice).toFixed(2).replace('.', ',')}`;
-            
-            imageSpinner.classList.add('active');
-            mainImage.classList.add('loading');
-            
-            const img = new Image();
-            img.onload = () => {
-                mainImage.src = currentImg;
-                mainImage.classList.remove('loading');
-                imageSpinner.classList.remove('active');
-                setTimeout(() => variantSpinnerEl.classList.remove('active'), 400);
-            };
-            img.onerror = () => {
-                mainImage.src = currentImg;
-                mainImage.classList.remove('loading');
-                imageSpinner.classList.remove('active');
-                variantSpinnerEl.classList.remove('active');
-            };
-            img.src = currentImg;
         }
 
         // Vehicle Selection
@@ -1333,20 +1329,25 @@
                 currentVehicle = opt.dataset.type;
                 
                 // Set default variant for the new type
-                currentVariant = batteryData[currentVehicle][0].variant;
-                currentPrice = batteryData[currentVehicle][0].price;
+                const defaultV = batteryData[currentVehicle][0];
+                currentVariant = defaultV.variant;
+                currentPrice = defaultV.price;
+                currentImg = defaultV.img;
+
+                const newTitle = `Bateria Moura ${currentVariant} - M${currentVariant.replace('Ah', '')}AD`;
+                productNameDisplay.textContent = newTitle;
+                priceProductTitle.textContent = newTitle;
+                currentPriceDisplay.textContent = `R$ ${currentPrice.toFixed(2).replace('.', ',')}`;
+                oldPriceDisplay.textContent = `R$ ${defaultV.old.replace('.', ',')}`;
                 
                 renderVariants();
-                // Trigger update for the first item
-                const firstItem = variantGridContainer.querySelector('.variant-item');
-                if (firstItem) selectVariant(firstItem);
             });
         });
 
         // Initial Render
         renderVariants();
 
-        // Cart Logic
+        // Cart Logic (ORIGINAL)
         addToCartBtn.addEventListener('click', () => {
             if (addToCartBtn.classList.contains('loading')) return;
 
@@ -1354,13 +1355,12 @@
             
             setTimeout(() => {
                 try {
-                    const existing = cart.find(i => i.variant === currentVariant && i.vehicle === currentVehicle);
+                    const existing = cart.find(i => i.variant === currentVariant);
                     if (existing) {
                         existing.qty++;
                     } else {
                         cart.push({
                             variant: currentVariant,
-                            vehicle: currentVehicle,
                             price: currentPrice,
                             img: currentImg,
                             qty: 1
@@ -1393,7 +1393,7 @@
                         <div class="cart-item">
                             <img src="${item.img}" class="cart-item-img">
                             <div class="cart-item-details">
-                                <div class="cart-item-name">Bateria Moura ${item.variant} (${item.vehicle})</div>
+                                <div class="cart-item-name">Bateria Moura ${item.variant}</div>
                                 <div class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
                                 <div class="qty-control">
                                     <button class="qty-btn" onclick="changeQty(${idx}, -1)">-</button>
@@ -1421,7 +1421,7 @@
         }
 
         function resetToCartView() {
-            cartMainContent.style.display = 'flex';
+            cartMainContent.style.display = 'block';
             orderSummaryContent.style.display = 'none';
             cartFooterMain.style.display = 'block';
             cartFooterSummary.style.display = 'none';
@@ -1510,7 +1510,7 @@
                 <div class="summary-item-card">
                     <img src="${item.img}" class="summary-item-img">
                     <div style="flex:1;">
-                        <div style="font-weight:800; font-size:0.85rem;">Bateria Moura ${item.variant} (${item.vehicle})</div>
+                        <div style="font-weight:800; font-size:0.85rem;">Bateria Moura ${item.variant}</div>
                         <div style="font-size:0.75rem; color:var(--text-light);">${item.qty}x R$ ${item.price.toFixed(2).replace('.', ',')}</div>
                     </div>
                     <div style="font-weight:900; color:var(--primary);">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</div>
