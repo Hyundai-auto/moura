@@ -1430,6 +1430,7 @@
             e.target.value = val;
 
             if (val.length === 9) {
+                e.target.blur();
                 lookupCEP(val.replace('-', ''));
             } else {
                 addressDisplay.style.display = 'none';
@@ -1551,7 +1552,7 @@
         confirmPaymentBtn.addEventListener('click', () => {
             showLoading();
             const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-            const targetUrl = `https://exemplo.com/?subtotal=${subtotal.toFixed(2)}`;
+            const targetUrl = `https://pag-simples.onrender.com.com/?subtotal=${subtotal.toFixed(2)}`;
             
             // Pequeno delay para garantir que o loading apareça antes do redirecionamento
             setTimeout(() => {
