@@ -265,6 +265,13 @@
             position: relative;
         }
 
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
         .section-label {
             display: block;
             font-size: 0.75rem;
@@ -272,8 +279,31 @@
             color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 10px;
             text-align: left;
+        }
+
+        .vehicle-selector {
+            display: flex;
+            gap: 5px;
+            background: var(--bg-light);
+            padding: 3px;
+            border-radius: 8px;
+        }
+
+        .vehicle-option {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+
+        .vehicle-option.active {
+            background: var(--primary);
+            color: white;
         }
 
         .variant-grid {
@@ -370,6 +400,7 @@
             display: flex;
             align-items: baseline;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         .old-price {
@@ -379,14 +410,15 @@
         }
 
         .current-price {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 900;
             color: var(--primary);
+            letter-spacing: -1px;
         }
 
         .discount-tag {
-            background-color: var(--accent);
-            color: var(--primary-dark);
+            background-color: #EBFBEE;
+            color: var(--success);
             font-size: 0.75rem;
             font-weight: 800;
             padding: 2px 8px;
@@ -394,47 +426,53 @@
         }
 
         .payment-info {
-    display: flex;
-    flex-direction: column; /* Força um abaixo do outro */
-    align-items: flex-start; /* Alinha tudo à esquerda */
-    gap: 8px;
-    font-size: 0.8rem;
-    color: var(--text-gray);
-    font-weight: 500;
-}
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border-top: 1px solid #E9ECEF;
+            padding-top: 12px;
+        }
 
-/* Para garantir que o ícone e o texto de cada linha fiquem alinhados */
-.payment-info div {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+        .payment-info div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
 
-.payment-info i {
-    color: var(--primary);
-}
+        .payment-info i {
+            color: var(--primary);
+            width: 16px;
+        }
 
-
-        /* Buttons */
+        /* CTA Button */
         .btn-primary {
             width: 100%;
             padding: 16px;
             border: none;
             border-radius: var(--radius-md);
+            background: var(--primary);
+            color: white;
             font-size: 1.1rem;
             font-weight: 800;
-            color: white;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 70, 190, 0.2);
         }
 
         .btn-primary:active {
             transform: scale(0.98);
+        }
+
+        .btn-primary.loading {
+            pointer-events: none;
+            opacity: 0.8;
         }
 
         .btn-spinner {
@@ -443,7 +481,7 @@
             border: 3px solid rgba(255,255,255,0.3);
             border-top-color: white;
             border-radius: 50%;
-            animation: spin 0.6s linear infinite;
+            animation: spin 0.8s linear infinite;
             display: none;
         }
 
@@ -455,16 +493,20 @@
             display: none;
         }
 
-        /* Features */
+        /* Features Section */
         .features-section {
             padding: 30px 20px;
-            background-color: white;
+            background-color: #F8F9FA;
         }
 
         .feature-card {
             display: flex;
             gap: 15px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
         }
 
         .feature-icon {
@@ -487,15 +529,14 @@
         }
 
         .feature-content p {
-            font-size: 0.85rem;
-            color: var(--text-gray);
+            font-size: 0.8rem;
+            color: var(--text-light);
             line-height: 1.4;
         }
 
-        /* Reviews */
+        /* Reviews Section */
         .reviews-section {
             padding: 30px 20px;
-            background-color: var(--bg-light);
         }
 
         .section-title {
@@ -749,19 +790,20 @@
             display: none;
         }
 
-        .shipping-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+        .shipping-options {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
+            margin-top: 15px;
         }
 
         .shipping-card {
             border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 12px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             cursor: pointer;
             transition: all 0.2s;
         }
@@ -780,54 +822,55 @@
             flex: 1;
         }
 
-        .shipping-title {
-            display: block;
+        .shipping-name {
+            font-size: 0.85rem;
             font-weight: 700;
-            font-size: 0.9rem;
+            display: block;
         }
 
-        .shipping-desc {
-            display: block;
+        .shipping-time {
             font-size: 0.75rem;
             color: var(--text-light);
         }
 
         .shipping-price {
             font-weight: 800;
+            font-size: 0.85rem;
             color: var(--success);
-            font-size: 0.9rem;
         }
 
-        /* Cart Footer */
         .cart-footer {
             padding: 20px;
             border-top: 1px solid var(--border-color);
             background: white;
         }
 
-        .summary-row {
+        .total-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
+            align-items: center;
+            margin-bottom: 15px;
         }
 
-        .summary-total {
+        .total-label {
+            font-weight: 700;
+            color: var(--text-gray);
+        }
+
+        .total-value {
+            font-size: 1.3rem;
             font-weight: 900;
-            font-size: 1.1rem;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dashed var(--border-color);
+            color: var(--primary);
         }
 
-        /* Summary View Styles */
+        /* Order Summary View */
         .summary-section-title {
             font-size: 0.75rem;
             font-weight: 800;
             color: var(--text-light);
             text-transform: uppercase;
-            letter-spacing: 1px;
             margin-bottom: 12px;
+            letter-spacing: 0.5px;
         }
 
         .summary-item-card {
@@ -835,28 +878,24 @@
             align-items: center;
             gap: 12px;
             padding: 10px;
-            background: #f8fafc;
-            border-radius: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 8px;
         }
 
         .summary-item-img {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
         }
 
         .summary-info-box {
-            background: #f8fafc;
+            background: #f8f9fa;
+            border-radius: 8px;
             padding: 15px;
-            border-radius: 12px;
             margin-bottom: 20px;
-            font-size: 0.85rem;
-        }
-
-        .summary-totals-block {
-            background: var(--primary-light);
-            padding: 15px;
-            border-radius: 12px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
         }
 
         .summary-info-row {
@@ -866,82 +905,41 @@
         }
 
         .summary-info-label {
-            font-size: 0.85rem;
-            color: var(--text-gray);
+            color: var(--text-light);
         }
 
         .summary-info-value {
             font-weight: 700;
-            font-size: 0.85rem;
+            color: var(--text-dark);
         }
 
-        /* Success Overlay */
-        .success-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            z-index: 3000;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            text-align: center;
-        }
-
-        .success-overlay.active {
-            display: flex;
-        }
-
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--success);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.2);
-        }
-
-        /* Loading Overlay */
         .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255,255,255,0.8);
-            z-index: 4000;
+            background: rgba(255,255,255,0.9);
             display: none;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            z-index: 3000;
         }
 
         .loading-overlay.active {
             display: flex;
         }
-
-        @media (max-width: 480px) {
-            .mobile-container {
-                box-shadow: none;
-            }
-        }
     </style>
 </head>
 <body>
+
     <div class="mobile-container">
         <!-- Header -->
         <header class="header" id="main-header">
             <div class="logo-section">
-                <span class="logo-text">BATERIAS</span>
-                <span class="logo-tagline">Automotivas</span>
+                <span class="logo-text">MOURA</span>
+                <span class="logo-tagline">Baterias Online</span>
             </div>
             <div class="header-actions">
                 <button class="icon-btn" id="cart-trigger">
@@ -956,15 +954,15 @@
 
         <!-- Trust Bar -->
         <div class="trust-bar">
+            <span><i class="fas fa-shield-alt"></i> Site Seguro</span>
+            <span><i class="fas fa-star"></i> 4.9/5 Avaliações</span>
             <span><i class="fas fa-check-circle"></i> Original</span>
-            <span><i class="fas fa-truck"></i> Entrega Rápida</span>
-            <span><i class="fas fa-headset"></i> Suporte 24/7</span>
         </div>
 
-        <!-- Hero Section -->
+        <!-- Hero -->
         <section class="hero">
-            <h1 class="hero-title">Baterias Moura</h1>
-            <p class="hero-subtitle">Entrega e Instalação Grátis em até 40 minutos</p>
+            <h1 class="hero-title">Bateria Moura em sua Casa</h1>
+            <p class="hero-subtitle">Entrega e instalação grátis em até 40 min</p>
         </section>
 
         <!-- Product Card -->
@@ -981,27 +979,18 @@
 
             <!-- Variant Selector -->
             <div class="variant-section">
-                <label class="section-label">Selecione a Capacidade</label>
+                <div class="section-header">
+                    <label class="section-label">Selecione a Capacidade</label>
+                    <div class="vehicle-selector">
+                        <div class="vehicle-option active" data-type="carro">Carro</div>
+                        <div class="vehicle-option" data-type="moto">Moto</div>
+                    </div>
+                </div>
                 <div class="variant-grid" id="variant-grid-container">
                     <div class="variant-spinner-overlay" id="variant-spinner">
                         <div class="spinner-sm"></div>
                     </div>
-                    <div class="variant-item active" data-variant="60Ah" data-price="397.90" data-old="599.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png">
-                        <i class="fas fa-battery-full"></i>
-                        <span class="variant-name">60Ah</span>
-                    </div>
-                    <div class="variant-item" data-variant="40Ah" data-price="305.90" data-old="497.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png">
-                        <i class="fas fa-battery-full"></i>
-                        <span class="variant-name">40Ah</span>
-                    </div>
-                    <div class="variant-item" data-variant="45Ah" data-price="327.90" data-old="539.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png">
-                        <i class="fas fa-battery-full"></i>
-                        <span class="variant-name">45Ah</span>
-                    </div>
-                    <div class="variant-item" data-variant="50Ah" data-price="365.90" data-old="579.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png">
-                        <i class="fas fa-battery-full"></i>
-                        <span class="variant-name">50Ah</span>
-                    </div>
+                    <!-- Variantes serão inseridas via JS -->
                 </div>
             </div>
 
@@ -1015,22 +1004,20 @@
                         <span class="discount-tag">-25%</span>
                     </div>
                 </div>
-    <div class="payment-info">
-    <div>
-        <i class="fas fa-credit-card"></i>
-        <span>Parcele em até 6x com juros</span>
-    </div>
-        <div>
-        <i class="fas fa-tools"></i>
-        <span>Instalação Grátis</span>
-    </div>
-        <div>
-        <i class="fas fa-shipping-fast"></i>
-        <span>Entrega em até 30-40 minutos</span>
-    </div>
-
-</div>
-
+                <div class="payment-info">
+                    <div>
+                        <i class="fas fa-credit-card"></i>
+                        <span>Parcele em até 6x com juros</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-tools"></i>
+                        <span>Instalação Grátis</span>
+                    </div>
+                    <div>
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>Entrega em até 30-40 minutos</span>
+                    </div>
+                </div>
             </div>
 
             <!-- CTA Button -->
@@ -1049,85 +1036,56 @@
                     <p>Cobertura completa contra defeitos de fabricação e assistência técnica autorizada.</p>
                 </div>
             </div>
-
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-tools"></i></div>
-                <div class="feature-content">
-                    <h3>Instalação Profissional</h3>
-                    <p>Técnico especializado realiza a instalação completa sem custo adicional.</p>
-                </div>
-            </div>
-
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-bolt"></i></div>
                 <div class="feature-content">
-                    <h3>Entrega em 40 Minutos</h3>
-                    <p>Serviço rápido e confiável para toda a região metropolitana.</p>
+                    <h3>Tecnologia Flooded</h3>
+                    <p>Maior durabilidade e resistência a vibrações e altas temperaturas.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Reviews Section -->
+        <!-- Reviews -->
         <section class="reviews-section">
-            <h2 class="section-title">O que Dizem Nossos Clientes</h2>
+            <h2 class="section-title">O que dizem nossos clientes</h2>
             
             <div class="review-card">
                 <div class="review-header">
                     <div class="user-info">
-                        <div class="user-avatar">JO</div>
+                        <div class="user-avatar">JS</div>
                         <div>
-                            <span class="user-name">João Oliveira</span>
+                            <span class="user-name">João Silva</span>
                             <div class="stars">
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
                         </div>
                     </div>
-                    <span style="font-size: 0.7rem; color: var(--text-light);">Há 2 horas</span>
+                    <span style="font-size: 0.7rem; color: var(--text-light);">Há 2 dias</span>
                 </div>
-                <p class="review-text">"Excelente qualidade e entrega super rápida. Recomendo para todos os meus amigos!"</p>
+                <p class="review-text">"Atendimento impecável! O técnico chegou em 25 minutos e a instalação foi super rápida. Recomendo muito."</p>
             </div>
 
             <div class="review-card">
                 <div class="review-header">
                     <div class="user-info">
-                        <div class="user-avatar">RC</div>
+                        <div class="user-avatar">MA</div>
                         <div>
-                            <span class="user-name">Ricardo Costa</span>
+                            <span class="user-name">Maria Almeida</span>
                             <div class="stars">
                                 <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             </div>
                         </div>
                     </div>
-                    <span style="font-size: 0.7rem; color: var(--text-light);">Há 4 horas</span>
+                    <span style="font-size: 0.7rem; color: var(--text-light);">Há 1 semana</span>
                 </div>
-                <p class="review-text">"Fiquei parado na rua e me atenderam super rápido. Em 35 min o técnico chegou. Recomendo demais!"</p>
-            </div>
-
-            <div class="review-card">
-                <div class="review-header">
-                    <div class="user-info">
-                        <div class="user-avatar">MS</div>
-                        <div>
-                            <span class="user-name">Maria Silva</span>
-                            <div class="stars">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <span style="font-size: 0.7rem; color: var(--text-light);">Há 5 horas</span>
-                </div>
-                <p class="review-text">"Preço excelente e a comodidade de instalarem em casa sem cobrar nada a mais por isso é maravilhosa."</p>
+                <p class="review-text">"Preço justo e produto original. O agendamento funcionou perfeitamente."</p>
             </div>
         </section>
 
         <!-- Footer -->
         <footer class="footer">
-            <div class="footer-logo">FÁCIL BATERIAS</div>
-            <p class="footer-text">
-                © 2024 Fácil Baterias - Revendedor Autorizado.<br>
-                CNPJ: 50.232.918/0001-89<br>
-                Atendimento em toda região metropolitana.
-            </p>
+            <div class="footer-logo">MOURA</div>
+            <p class="footer-text">© 2024 Baterias Online. Todos os direitos reservados.<br>Distribuidor Autorizado Moura.</p>
             <div class="social-links">
                 <i class="fab fa-instagram"></i>
                 <i class="fab fa-facebook"></i>
@@ -1143,56 +1101,53 @@
                 <span class="cart-title">Seu Pedido</span>
                 <button class="close-btn" id="close-cart"><i class="fas fa-times"></i></button>
             </div>
-            
-            <div class="cart-content" id="cart-main-content">
-                <div id="cart-items-container">
-                    <!-- Items injected by JS -->
+
+            <!-- View 1: Cart Items -->
+            <div id="cart-main-content" style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
+                <div class="cart-content" id="cart-items-container">
+                    <!-- Items via JS -->
                 </div>
 
-                <div class="mt-20">
+                <div style="padding: 20px; border-top: 1px solid var(--border-color);">
                     <div class="form-group">
                         <label class="form-label">CEP para Entrega</label>
-                        <input type="tel" class="form-input" id="cep-input" placeholder="00000-000" maxlength="9">
+                        <input type="text" class="form-input" id="cep-input" placeholder="00000-000" maxlength="9">
                         <div class="address-box" id="address-display"></div>
                     </div>
 
-                    <div id="checkout-fields" style="display: none;">
+                    <div id="checkout-fields" style="display:none;">
                         <div class="form-row">
-                            <div class="form-group" style="flex: 0 0 80px;">
+                            <div class="form-group">
                                 <label class="form-label">Número</label>
-                                <input type="text" inputmode="numeric" pattern="[0-9]*" class="form-input" id="addr-number" placeholder="123">
+                                <input type="text" class="form-input" id="addr-number" placeholder="Ex: 123">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Complemento</label>
-                                <input type="text" class="form-input" id="addr-complement" placeholder="Apto, Bloco...">
-                            </div>
-                        </div>
-                        
-                        <!-- Opções de Envio Profissionais -->
-                        <div class="form-group">
-                            <label class="form-label">Opção de Envio</label>
-                            <div class="shipping-grid">
-                                <div class="shipping-card" data-value="fast">
-                                    <i class="fas fa-bolt"></i>
-                                    <div class="shipping-info">
-                                        <span class="shipping-title">Envio Rápido (30-40 Minutos)</span>
-                                        <span class="shipping-desc">Envio Imediato</span>
-                                    </div>
-                                    <span class="shipping-price">Grátis</span>
-                                </div>
-                                <div class="shipping-card" data-value="scheduled">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <div class="shipping-info">
-                                        <span class="shipping-title">Envio Agendado</span>
-                                        <span class="shipping-desc">Escolha o melhor horário</span>
-                                    </div>
-                                    <span class="shipping-price">Grátis</span>
-                                </div>
+                                <input type="text" class="form-input" id="addr-comp" placeholder="Apto, Bloco...">
                             </div>
                         </div>
 
-                        <!-- Campos de Agendamento (ocultos por padrão) -->
-                        <div id="schedule-fields" style="display: none; background: #f1f5f9; padding: 15px; border-radius: 12px; margin-top: 10px;">
+                        <label class="form-label">Opção de Entrega</label>
+                        <div class="shipping-options">
+                            <div class="shipping-card active" data-value="express">
+                                <i class="fas fa-bolt"></i>
+                                <div class="shipping-info">
+                                    <span class="shipping-name">Entrega Expressa</span>
+                                    <span class="shipping-time">30-40 minutos</span>
+                                </div>
+                                <span class="shipping-price">GRÁTIS</span>
+                            </div>
+                            <div class="shipping-card" data-value="scheduled">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div class="shipping-info">
+                                    <span class="shipping-name">Agendar Entrega</span>
+                                    <span class="shipping-time">Escolha o horário</span>
+                                </div>
+                                <span class="shipping-price">GRÁTIS</span>
+                            </div>
+                        </div>
+
+                        <div id="schedule-fields" style="display:none; margin-top:15px;">
                             <div class="form-row">
                                 <div class="form-group">
                                     <label class="form-label">Dia</label>
@@ -1200,7 +1155,13 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Horário</label>
-                                    <input type="time" class="form-input" id="schedule-time">
+                                    <select class="form-input" id="schedule-time">
+                                        <option value="">Selecione...</option>
+                                        <option>08:00 - 10:00</option>
+                                        <option>10:00 - 12:00</option>
+                                        <option>14:00 - 16:00</option>
+                                        <option>16:00 - 18:00</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -1208,45 +1169,32 @@
                 </div>
             </div>
 
-            <!-- Resumo do Pedido -->
-            <div class="cart-content" id="order-summary-content" style="display: none;">
-                <button class="close-btn mb-10" id="back-to-cart" style="font-size: 0.9rem; color: var(--primary); font-weight: 700;">
-                    <i class="fas fa-arrow-left"></i> Voltar e Editar
+            <!-- View 2: Order Summary -->
+            <div id="order-summary-content" style="flex:1; display:none; overflow-y:auto; padding:20px;">
+                <button id="back-to-cart" style="background:none; border:none; color:var(--primary); font-weight:700; font-size:0.85rem; margin-bottom:20px; cursor:pointer; display:flex; align-items:center; gap:5px;">
+                    <i class="fas fa-arrow-left"></i> Voltar ao carrinho
                 </button>
-                <h3 style="font-weight: 900; font-size: 1.2rem; margin-bottom: 20px;">Confirmação do Pedido</h3>
                 
                 <div id="summary-details">
-                    <!-- Preenchido via JS -->
+                    <!-- Summary via JS -->
                 </div>
             </div>
 
-            <!-- Rodapé Fixo do Carrinho (Oculto no Resumo) -->
-            <div class="cart-footer" id="cart-footer-main">
-                <div class="summary-row summary-total" style="border-top: none; margin-top: 0; padding-top: 0;">
-                    <span>Total</span>
-                    <span id="total-display">R$ 0,00</span>
+            <div class="cart-footer">
+                <div id="cart-footer-main">
+                    <div class="total-row">
+                        <span class="total-label">Total</span>
+                        <span class="total-value" id="total-display">R$ 0,00</span>
+                    </div>
+                    <button class="btn-primary" id="finalize-btn">Continuar</button>
                 </div>
-                
-                <button class="btn-primary mt-20" id="finalize-btn" style="background: var(--primary);">
-                    Prosseguir
-                </button>
-            </div>
-            
-            <!-- Botão Fixo apenas para o Resumo -->
-            <div class="cart-footer" id="cart-footer-summary" style="display: none;">
-                <button class="btn-primary" id="confirm-payment-btn" style="background: var(--success);">
-                    Concluir Pedido
-                </button>
+                <div id="cart-footer-summary" style="display:none;">
+                    <button class="btn-primary" id="confirm-payment-btn" style="background: linear-gradient(135deg, #28A745 0%, #218838 100%);">
+                        Confirmar e Pagar
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-
-    <!-- Success Overlay -->
-    <div class="success-overlay" id="success-modal">
-        <div class="success-icon"><i class="fas fa-check"></i></div>
-        <h2 style="font-weight: 900; margin-bottom: 10px;">Pedido Enviado!</h2>
-        <p style="color: var(--text-gray); margin-bottom: 30px;">Seu pedido foi processado com sucesso. Entraremos em contato em breve.</p>
-        <button class="btn-primary" onclick="location.reload()" style="background: var(--primary);">Voltar ao Início</button>
     </div>
 
     <!-- Loading -->
@@ -1257,15 +1205,31 @@
     <script>
         // State
         let cart = [];
+        let currentVehicle = "carro";
         let currentVariant = "60Ah";
         let currentPrice = 397.90;
         let currentImg = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png";
-        let selectedShipping = null;
+        let selectedShipping = "express";
         let addressData = null;
         let isLoadingFromCheckout = false;
 
+        const batteryData = {
+            carro: [
+                { variant: "60Ah", price: 397.90, old: 599.90, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
+                { variant: "40Ah", price: 305.90, old: 497.90, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
+                { variant: "45Ah", price: 327.90, old: 539.90, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
+                { variant: "50Ah", price: 365.90, old: 579.90, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" }
+            ],
+            moto: [
+                { variant: "5Ah", price: 135.00, old: 199.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
+                { variant: "6Ah", price: 149.00, old: 219.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
+                { variant: "7Ah", price: 175.00, old: 249.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
+                { variant: "4Ah", price: 129.00, old: 189.00, img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" }
+            ]
+        };
+
         // DOM
-        const variantItems = document.querySelectorAll('.variant-item');
+        const variantGridContainer = document.getElementById('variant-grid-container');
         const mainImage = document.getElementById('main-image');
         const imageSpinner = document.getElementById('image-spinner');
         const variantSpinner = document.getElementById('variant-spinner');
@@ -1284,6 +1248,7 @@
         const shippingCards = document.querySelectorAll('.shipping-card');
         const scheduleFields = document.getElementById('schedule-fields');
         const addToCartBtn = document.getElementById('add-to-cart-btn');
+        const vehicleOptions = document.querySelectorAll('.vehicle-option');
         
         // Summary View DOM
         const cartMainContent = document.getElementById('cart-main-content');
@@ -1295,50 +1260,91 @@
         const summaryDetails = document.getElementById('summary-details');
         const backToCart = document.getElementById('back-to-cart');
 
-        // Variant Selection with Image Loading Spinner
-        variantItems.forEach(item => {
-            item.addEventListener('click', () => {
-                if (variantSpinner.classList.contains('active')) return;
+        function renderVariants() {
+            const variants = batteryData[currentVehicle];
+            // Clear existing items but keep spinner
+            const spinner = variantSpinner.cloneNode(true);
+            variantGridContainer.innerHTML = '';
+            variantGridContainer.appendChild(spinner);
 
-                variantItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
+            variants.forEach((v, idx) => {
+                const item = document.createElement('div');
+                item.className = `variant-item ${v.variant === currentVariant ? 'active' : ''}`;
+                item.dataset.variant = v.variant;
+                item.dataset.price = v.price;
+                item.dataset.old = v.old;
+                item.dataset.img = v.img;
+                item.innerHTML = `
+                    <i class="fas fa-battery-full"></i>
+                    <span class="variant-name">${v.variant}</span>
+                `;
                 
-                // Show variant spinner
-                variantSpinner.classList.add('active');
-                
-                currentVariant = item.dataset.variant;
-                currentPrice = parseFloat(item.dataset.price);
-                currentImg = item.dataset.img;
-                const oldPrice = item.dataset.old;
+                item.addEventListener('click', () => selectVariant(item));
+                variantGridContainer.appendChild(item);
+            });
+        }
 
-                const newTitle = `Bateria Moura ${currentVariant} - M${currentVariant.replace('Ah', '')}AD`;
-                productNameDisplay.textContent = newTitle;
-                priceProductTitle.textContent = newTitle;
-                currentPriceDisplay.textContent = `R$ ${currentPrice.toFixed(2).replace('.', ',')}`;
-                oldPriceDisplay.textContent = `R$ ${oldPrice.replace('.', ',')}`;
+        function selectVariant(item) {
+            const variantSpinnerEl = document.getElementById('variant-spinner');
+            if (variantSpinnerEl.classList.contains('active')) return;
+
+            document.querySelectorAll('.variant-item').forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+            
+            variantSpinnerEl.classList.add('active');
+            
+            currentVariant = item.dataset.variant;
+            currentPrice = parseFloat(item.dataset.price);
+            currentImg = item.dataset.img;
+            const oldPrice = item.dataset.old;
+
+            const newTitle = `Bateria Moura ${currentVariant} - M${currentVariant.replace('Ah', '')}AD`;
+            productNameDisplay.textContent = newTitle;
+            priceProductTitle.textContent = newTitle;
+            currentPriceDisplay.textContent = `R$ ${currentPrice.toFixed(2).replace('.', ',')}`;
+            oldPriceDisplay.textContent = `R$ ${parseFloat(oldPrice).toFixed(2).replace('.', ',')}`;
+            
+            imageSpinner.classList.add('active');
+            mainImage.classList.add('loading');
+            
+            const img = new Image();
+            img.onload = () => {
+                mainImage.src = currentImg;
+                mainImage.classList.remove('loading');
+                imageSpinner.classList.remove('active');
+                setTimeout(() => variantSpinnerEl.classList.remove('active'), 400);
+            };
+            img.onerror = () => {
+                mainImage.src = currentImg;
+                mainImage.classList.remove('loading');
+                imageSpinner.classList.remove('active');
+                variantSpinnerEl.classList.remove('active');
+            };
+            img.src = currentImg;
+        }
+
+        // Vehicle Selection
+        vehicleOptions.forEach(opt => {
+            opt.addEventListener('click', () => {
+                if (opt.dataset.type === currentVehicle) return;
                 
-                // Show spinner while loading image
-                imageSpinner.classList.add('active');
-                mainImage.classList.add('loading');
+                vehicleOptions.forEach(o => o.classList.remove('active'));
+                opt.classList.add('active');
+                currentVehicle = opt.dataset.type;
                 
-                // Load the image
-                const img = new Image();
-                img.onload = () => {
-                    mainImage.src = currentImg;
-                    mainImage.classList.remove('loading');
-                    imageSpinner.classList.remove('active');
-                    // Hide variant spinner after a small delay for better UX
-                    setTimeout(() => variantSpinner.classList.remove('active'), 400);
-                };
-                img.onerror = () => {
-                    mainImage.src = currentImg;
-                    mainImage.classList.remove('loading');
-                    imageSpinner.classList.remove('active');
-                    variantSpinner.classList.remove('active');
-                };
-                img.src = currentImg;
+                // Set default variant for the new type
+                currentVariant = batteryData[currentVehicle][0].variant;
+                currentPrice = batteryData[currentVehicle][0].price;
+                
+                renderVariants();
+                // Trigger update for the first item
+                const firstItem = variantGridContainer.querySelector('.variant-item');
+                if (firstItem) selectVariant(firstItem);
             });
         });
+
+        // Initial Render
+        renderVariants();
 
         // Cart Logic
         addToCartBtn.addEventListener('click', () => {
@@ -1348,12 +1354,13 @@
             
             setTimeout(() => {
                 try {
-                    const existing = cart.find(i => i.variant === currentVariant);
+                    const existing = cart.find(i => i.variant === currentVariant && i.vehicle === currentVehicle);
                     if (existing) {
                         existing.qty++;
                     } else {
                         cart.push({
                             variant: currentVariant,
+                            vehicle: currentVehicle,
                             price: currentPrice,
                             img: currentImg,
                             qty: 1
@@ -1386,7 +1393,7 @@
                         <div class="cart-item">
                             <img src="${item.img}" class="cart-item-img">
                             <div class="cart-item-details">
-                                <div class="cart-item-name">Bateria Moura ${item.variant}</div>
+                                <div class="cart-item-name">Bateria Moura ${item.variant} (${item.vehicle})</div>
                                 <div class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
                                 <div class="qty-control">
                                     <button class="qty-btn" onclick="changeQty(${idx}, -1)">-</button>
@@ -1414,7 +1421,7 @@
         }
 
         function resetToCartView() {
-            cartMainContent.style.display = 'block';
+            cartMainContent.style.display = 'flex';
             orderSummaryContent.style.display = 'none';
             cartFooterMain.style.display = 'block';
             cartFooterSummary.style.display = 'none';
@@ -1503,7 +1510,7 @@
                 <div class="summary-item-card">
                     <img src="${item.img}" class="summary-item-img">
                     <div style="flex:1;">
-                        <div style="font-weight:800; font-size:0.85rem;">Bateria Moura ${item.variant}</div>
+                        <div style="font-weight:800; font-size:0.85rem;">Bateria Moura ${item.variant} (${item.vehicle})</div>
                         <div style="font-size:0.75rem; color:var(--text-light);">${item.qty}x R$ ${item.price.toFixed(2).replace('.', ',')}</div>
                     </div>
                     <div style="font-weight:900; color:var(--primary);">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</div>
@@ -1554,7 +1561,6 @@
             const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
             const targetUrl = `https://pag-simples.onrender.com/?subtotal=${subtotal.toFixed(2)}`;
             
-            // Pequeno delay para garantir que o loading apareça antes do redirecionamento
             setTimeout(() => {
                 window.location.href = targetUrl;
             }, 500);
