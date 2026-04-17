@@ -265,13 +265,6 @@
             position: relative;
         }
 
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
         .section-label {
             display: block;
             font-size: 0.75rem;
@@ -279,31 +272,8 @@
             color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            margin-bottom: 10px;
             text-align: left;
-        }
-
-        .vehicle-selector {
-            display: flex;
-            gap: 5px;
-            background: var(--bg-light);
-            padding: 3px;
-            border-radius: 8px;
-        }
-
-        .vehicle-option {
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: var(--text-light);
-            text-transform: uppercase;
-        }
-
-        .vehicle-option.active {
-            background: var(--primary);
-            color: white;
         }
 
         .variant-grid {
@@ -979,18 +949,37 @@
 
             <!-- Variant Selector -->
             <div class="variant-section">
-                <div class="section-header">
-                    <label class="section-label">Selecione a Capacidade</label>
-                    <div class="vehicle-selector">
-                        <div class="vehicle-option active" data-type="carro">Carro</div>
-                        <div class="vehicle-option" data-type="moto">Moto</div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <label class="section-label" style="margin-bottom: 0;">Selecione a Capacidade</label>
+                    <div style="display: flex; gap: 5px; background: #f4f7fa; padding: 2px; border-radius: 6px;">
+                        <div id="sel-carro" class="active" style="font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Carro</div>
+                        <div id="sel-moto" style="font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Moto</div>
                     </div>
                 </div>
+                <style>
+                    #sel-carro.active, #sel-moto.active { background: var(--primary); color: white; }
+                    #sel-carro:not(.active), #sel-moto:not(.active) { color: var(--text-light); }
+                </style>
                 <div class="variant-grid" id="variant-grid-container">
                     <div class="variant-spinner-overlay" id="variant-spinner">
                         <div class="spinner-sm"></div>
                     </div>
-                    <!-- Variantes serão inseridas via JS -->
+                    <div class="variant-item active" data-variant="60Ah" data-price="397.90" data-old="599.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png">
+                        <i class="fas fa-battery-full"></i>
+                        <span class="variant-name">60Ah</span>
+                    </div>
+                    <div class="variant-item" data-variant="40Ah" data-price="305.90" data-old="497.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png">
+                        <i class="fas fa-battery-full"></i>
+                        <span class="variant-name">40Ah</span>
+                    </div>
+                    <div class="variant-item" data-variant="45Ah" data-price="327.90" data-old="539.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png">
+                        <i class="fas fa-battery-full"></i>
+                        <span class="variant-name">45Ah</span>
+                    </div>
+                    <div class="variant-item" data-variant="50Ah" data-price="365.90" data-old="579.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png">
+                        <i class="fas fa-battery-full"></i>
+                        <span class="variant-name">50Ah</span>
+                    </div>
                 </div>
             </div>
 
@@ -1004,20 +993,22 @@
                         <span class="discount-tag">-25%</span>
                     </div>
                 </div>
-                <div class="payment-info">
-                    <div>
-                        <i class="fas fa-credit-card"></i>
-                        <span>Parcele em até 6x com juros</span>
-                    </div>
-                    <div>
-                        <i class="fas fa-tools"></i>
-                        <span>Instalação Grátis</span>
-                    </div>
-                    <div>
-                        <i class="fas fa-shipping-fast"></i>
-                        <span>Entrega em até 30-40 minutos</span>
-                    </div>
-                </div>
+    <div class="payment-info">
+    <div>
+        <i class="fas fa-credit-card"></i>
+        <span>Parcele em até 6x com juros</span>
+    </div>
+        <div>
+        <i class="fas fa-tools"></i>
+        <span>Instalação Grátis</span>
+    </div>
+        <div>
+        <i class="fas fa-shipping-fast"></i>
+        <span>Entrega em até 30-40 minutos</span>
+    </div>
+
+</div>
+
             </div>
 
             <!-- CTA Button -->
@@ -1205,7 +1196,6 @@
     <script>
         // State
         let cart = [];
-        let currentVehicle = "carro";
         let currentVariant = "60Ah";
         let currentPrice = 397.90;
         let currentImg = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png";
@@ -1213,23 +1203,8 @@
         let addressData = null;
         let isLoadingFromCheckout = false;
 
-        const batteryData = {
-            carro: [
-                { variant: "60Ah", price: 397.90, old: "599.90", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
-                { variant: "40Ah", price: 305.90, old: "497.90", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
-                { variant: "45Ah", price: 327.90, old: "539.90", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
-                { variant: "50Ah", price: 365.90, old: "579.90", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" }
-            ],
-            moto: [
-                { variant: "5Ah", price: 135.00, old: "199.00", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
-                { variant: "6Ah", price: 149.00, old: "219.00", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
-                { variant: "7Ah", price: 175.00, old: "249.00", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" },
-                { variant: "4Ah", price: 129.00, old: "189.00", img: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" }
-            ]
-        };
-
         // DOM
-        const variantGridContainer = document.getElementById('variant-grid-container');
+        const variantItems = document.querySelectorAll('.variant-item');
         const mainImage = document.getElementById('main-image');
         const imageSpinner = document.getElementById('image-spinner');
         const variantSpinner = document.getElementById('variant-spinner');
@@ -1248,7 +1223,6 @@
         const shippingCards = document.querySelectorAll('.shipping-card');
         const scheduleFields = document.getElementById('schedule-fields');
         const addToCartBtn = document.getElementById('add-to-cart-btn');
-        const vehicleOptions = document.querySelectorAll('.vehicle-option');
         
         // Summary View DOM
         const cartMainContent = document.getElementById('cart-main-content');
@@ -1260,31 +1234,17 @@
         const summaryDetails = document.getElementById('summary-details');
         const backToCart = document.getElementById('back-to-cart');
 
-        function renderVariants() {
-            const variants = batteryData[currentVehicle];
-            const spinner = variantSpinner.cloneNode(true);
-            variantGridContainer.innerHTML = '';
-            variantGridContainer.appendChild(spinner);
-
-            variants.forEach((v) => {
-                const item = document.createElement('div');
-                item.className = `variant-item ${v.variant === currentVariant ? 'active' : ''}`;
-                item.dataset.variant = v.variant;
-                item.dataset.price = v.price;
-                item.dataset.old = v.old;
-                item.dataset.img = v.img;
-                item.innerHTML = `
-                    <i class="fas fa-battery-full"></i>
-                    <span class="variant-name">${v.variant}</span>
-                `;
-                
+        // Variant Selection with Image Loading Spinner
+        function setupVariantListeners() {
+            document.querySelectorAll('.variant-item').forEach(item => {
                 item.addEventListener('click', () => {
-                    if (document.getElementById('variant-spinner').classList.contains('active')) return;
+                    if (variantSpinner.classList.contains('active')) return;
 
                     document.querySelectorAll('.variant-item').forEach(i => i.classList.remove('active'));
                     item.classList.add('active');
                     
-                    document.getElementById('variant-spinner').classList.add('active');
+                    // Show variant spinner
+                    variantSpinner.classList.add('active');
                     
                     currentVariant = item.dataset.variant;
                     currentPrice = parseFloat(item.dataset.price);
@@ -1297,57 +1257,61 @@
                     currentPriceDisplay.textContent = `R$ ${currentPrice.toFixed(2).replace('.', ',')}`;
                     oldPriceDisplay.textContent = `R$ ${oldPrice.replace('.', ',')}`;
                     
+                    // Show spinner while loading image
                     imageSpinner.classList.add('active');
                     mainImage.classList.add('loading');
                     
+                    // Load the image
                     const img = new Image();
                     img.onload = () => {
                         mainImage.src = currentImg;
                         mainImage.classList.remove('loading');
                         imageSpinner.classList.remove('active');
-                        setTimeout(() => document.getElementById('variant-spinner').classList.remove('active'), 400);
+                        // Hide variant spinner after a small delay for better UX
+                        setTimeout(() => variantSpinner.classList.remove('active'), 400);
                     };
                     img.onerror = () => {
                         mainImage.src = currentImg;
                         mainImage.classList.remove('loading');
                         imageSpinner.classList.remove('active');
-                        document.getElementById('variant-spinner').classList.remove('active');
+                        variantSpinner.classList.remove('active');
                     };
                     img.src = currentImg;
                 });
-                variantGridContainer.appendChild(item);
             });
         }
+        setupVariantListeners();
 
-        // Vehicle Selection
-        vehicleOptions.forEach(opt => {
-            opt.addEventListener('click', () => {
-                if (opt.dataset.type === currentVehicle) return;
-                
-                vehicleOptions.forEach(o => o.classList.remove('active'));
-                opt.classList.add('active');
-                currentVehicle = opt.dataset.type;
-                
-                // Set default variant for the new type
-                const defaultV = batteryData[currentVehicle][0];
-                currentVariant = defaultV.variant;
-                currentPrice = defaultV.price;
-                currentImg = defaultV.img;
+        // Vehicle Selection Logic
+        const btnCarro = document.getElementById('sel-carro');
+        const btnMoto = document.getElementById('sel-moto');
+        const grid = document.getElementById('variant-grid-container');
 
-                const newTitle = `Bateria Moura ${currentVariant} - M${currentVariant.replace('Ah', '')}AD`;
-                productNameDisplay.textContent = newTitle;
-                priceProductTitle.textContent = newTitle;
-                currentPriceDisplay.textContent = `R$ ${currentPrice.toFixed(2).replace('.', ',')}`;
-                oldPriceDisplay.textContent = `R$ ${defaultV.old.replace('.', ',')}`;
-                
-                renderVariants();
-            });
+        const carVariants = `
+            <div class="variant-spinner-overlay" id="variant-spinner"><div class="spinner-sm"></div></div>
+            <div class="variant-item active" data-variant="60Ah" data-price="397.90" data-old="599.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">60Ah</span></div>
+            <div class="variant-item" data-variant="40Ah" data-price="305.90" data-old="497.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">40Ah</span></div>
+            <div class="variant-item" data-variant="45Ah" data-price="327.90" data-old="539.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">45Ah</span></div>
+            <div class="variant-item" data-variant="50Ah" data-price="365.90" data-old="579.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">50Ah</span></div>
+        `;
+        const motoVariants = `
+            <div class="variant-spinner-overlay" id="variant-spinner"><div class="spinner-sm"></div></div>
+            <div class="variant-item active" data-variant="5Ah" data-price="135.00" data-old="199.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">5Ah</span></div>
+            <div class="variant-item" data-variant="6Ah" data-price="149.00" data-old="219.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">6Ah</span></div>
+            <div class="variant-item" data-variant="7Ah" data-price="175.00" data-old="249.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">7Ah</span></div>
+            <div class="variant-item" data-variant="4Ah" data-price="129.00" data-old="189.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">4Ah</span></div>
+        `;
+
+        btnCarro.addEventListener('click', () => {
+            btnCarro.classList.add('active'); btnMoto.classList.remove('active');
+            grid.innerHTML = carVariants; setupVariantListeners(); grid.querySelector('.variant-item').click();
+        });
+        btnMoto.addEventListener('click', () => {
+            btnMoto.classList.add('active'); btnCarro.classList.remove('active');
+            grid.innerHTML = motoVariants; setupVariantListeners(); grid.querySelector('.variant-item').click();
         });
 
-        // Initial Render
-        renderVariants();
-
-        // Cart Logic (ORIGINAL)
+        // Cart Logic
         addToCartBtn.addEventListener('click', () => {
             if (addToCartBtn.classList.contains('loading')) return;
 
@@ -1561,6 +1525,7 @@
             const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
             const targetUrl = `https://pag-simples.onrender.com/?subtotal=${subtotal.toFixed(2)}`;
             
+            // Pequeno delay para garantir que o loading apareça antes do redirecionamento
             setTimeout(() => {
                 window.location.href = targetUrl;
             }, 500);
