@@ -9,14 +9,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("ik9ItcbFPwvdfWsPn");
-        })();
-    </script>
-
     <style>
         :root {
             --primary: #0046BE; /* Azul Moura Oficial */
@@ -364,14 +356,14 @@
         .price-row {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 5px;
+            margin-bottom: 10px;
         }
 
         .price-title {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 4px;
+            color: var(--text-gray);
         }
 
         .price-main {
@@ -387,28 +379,31 @@
         }
 
         .current-price {
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: 900;
             color: var(--primary);
         }
 
         .discount-tag {
-            background-color: var(--danger);
-            color: white;
+            background-color: var(--accent);
+            color: var(--primary-dark);
             font-size: 0.75rem;
             font-weight: 800;
             padding: 2px 8px;
             border-radius: 4px;
-            margin-left: auto;
         }
 
         .payment-info {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            margin-top: 5px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .payment-info i {
+            color: var(--primary);
         }
 
         /* Buttons */
@@ -417,9 +412,9 @@
             padding: 16px;
             border: none;
             border-radius: var(--radius-md);
-            color: white;
             font-size: 1.1rem;
             font-weight: 800;
+            color: white;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -427,46 +422,40 @@
             gap: 10px;
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            position: relative;
         }
 
         .btn-primary:active {
             transform: scale(0.98);
         }
 
-        .btn-primary .btn-spinner {
-            display: none;
+        .btn-spinner {
             width: 20px;
             height: 20px;
             border: 3px solid rgba(255,255,255,0.3);
             border-top-color: white;
             border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+            animation: spin 0.6s linear infinite;
+            display: none;
         }
 
         .btn-primary.loading .btn-spinner {
             display: block;
         }
 
-        .btn-primary.loading i, 
-        .btn-primary.loading span {
+        .btn-primary.loading i, .btn-primary.loading span {
             display: none;
         }
 
-        /* Features Section */
+        /* Features */
         .features-section {
-            padding: 25px 20px;
-            background-color: #F8F9FA;
+            padding: 30px 20px;
+            background-color: white;
         }
 
         .feature-card {
             display: flex;
             gap: 15px;
-            margin-bottom: 20px;
-            background: white;
-            padding: 15px;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-sm);
+            margin-bottom: 25px;
         }
 
         .feature-icon {
@@ -489,14 +478,15 @@
         }
 
         .feature-content p {
-            font-size: 0.8rem;
-            color: var(--text-light);
+            font-size: 0.85rem;
+            color: var(--text-gray);
             line-height: 1.4;
         }
 
-        /* Reviews Section */
+        /* Reviews */
         .reviews-section {
-            padding: 25px 20px;
+            padding: 30px 20px;
+            background-color: var(--bg-light);
         }
 
         .section-title {
@@ -739,31 +729,32 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px var(--primary-light);
         }
 
-        /* Shipping Cards */
+        .address-box {
+            background-color: var(--primary-light);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+            display: none;
+        }
+
         .shipping-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 10px;
-            margin-top: 8px;
         }
 
         .shipping-card {
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 12px 16px;
-            cursor: pointer;
+            padding: 15px;
             display: flex;
             align-items: center;
             gap: 15px;
+            cursor: pointer;
             transition: all 0.2s;
-            position: relative;
-        }
-
-        .shipping-card:hover {
-            border-color: var(--primary-light);
         }
 
         .shipping-card.active {
@@ -772,13 +763,7 @@
         }
 
         .shipping-card i {
-            font-size: 1.4rem;
-            color: var(--text-light);
-            width: 24px;
-            text-align: center;
-        }
-
-        .shipping-card.active i {
+            font-size: 1.2rem;
             color: var(--primary);
         }
 
@@ -788,9 +773,8 @@
 
         .shipping-title {
             display: block;
-            font-weight: 800;
+            font-weight: 700;
             font-size: 0.9rem;
-            color: var(--text-dark);
         }
 
         .shipping-desc {
@@ -799,35 +783,17 @@
             color: var(--text-light);
         }
 
-        .shipping-card.active .shipping-desc {
-            color: var(--primary-dark);
-        }
-
         .shipping-price {
             font-weight: 800;
-            font-size: 0.8rem;
             color: var(--success);
-            text-transform: uppercase;
+            font-size: 0.9rem;
         }
 
-        .address-box {
-            background: var(--primary-light);
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 10px;
-            font-size: 0.85rem;
-            color: var(--primary-dark);
-            display: none;
-        }
-
-        .address-box.active {
-            display: block;
-        }
-
+        /* Cart Footer */
         .cart-footer {
             padding: 20px;
             border-top: 1px solid var(--border-color);
-            background: #f8f9fa;
+            background: white;
         }
 
         .summary-row {
@@ -839,85 +805,65 @@
 
         .summary-total {
             font-weight: 900;
-            font-size: 1.2rem;
-            color: var(--text-dark);
+            font-size: 1.1rem;
             margin-top: 10px;
             padding-top: 10px;
             border-top: 1px dashed var(--border-color);
         }
 
-        /* Order Summary Styles */
-        .summary-panel {
-            background: white;
-            padding: 20px;
-            border-radius: 16px;
-            box-shadow: var(--shadow-lg);
-            width: 100%;
-            max-width: 420px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
+        /* Summary View Styles */
         .summary-section-title {
+            font-size: 0.75rem;
             font-weight: 800;
-            font-size: 0.85rem;
             color: var(--text-light);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
         }
 
         .summary-item-card {
             display: flex;
-            gap: 15px;
             align-items: center;
-            background: #f8f9fa;
-            padding: 12px;
-            border-radius: 8px;
+            gap: 12px;
+            padding: 10px;
+            background: #f8fafc;
+            border-radius: 10px;
         }
 
         .summary-item-img {
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             object-fit: contain;
-            background: white;
-            border-radius: 6px;
         }
 
         .summary-info-box {
-            background: #f1f5f9;
-            padding: 12px;
-            border-radius: 8px;
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
             font-size: 0.85rem;
-            color: var(--text-gray);
-            line-height: 1.5;
-        }
-
-        .summary-info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-        }
-
-        .summary-info-label {
-            font-weight: 600;
-            color: var(--text-light);
-        }
-
-        .summary-info-value {
-            font-weight: 700;
-            color: var(--text-dark);
         }
 
         .summary-totals-block {
             background: var(--primary-light);
             padding: 15px;
-            border-radius: 8px;
-            margin-top: 10px;
+            border-radius: 12px;
+        }
+
+        .summary-info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 6px;
+        }
+
+        .summary-info-label {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+        }
+
+        .summary-info-value {
+            font-weight: 700;
+            font-size: 0.85rem;
         }
 
         /* Success Overlay */
@@ -927,14 +873,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background: white;
+            z-index: 3000;
             display: none;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            z-index: 3000;
-            flex-direction: column;
+            padding: 40px;
             text-align: center;
-            color: white;
         }
 
         .success-overlay.active {
@@ -944,19 +890,15 @@
         .success-icon {
             width: 80px;
             height: 80px;
-            background-color: var(--success);
+            background: var(--success);
+            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
             margin-bottom: 20px;
-            animation: scaleIn 0.5s ease-out;
-        }
-
-        @keyframes scaleIn {
-            from { transform: scale(0); }
-            to { transform: scale(1); }
+            box-shadow: 0 10px 20px rgba(40, 167, 69, 0.2);
         }
 
         /* Loading Overlay */
@@ -966,22 +908,21 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            background: rgba(255,255,255,0.8);
+            z-index: 4000;
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 2500;
         }
 
         .loading-overlay.active {
             display: flex;
         }
 
-        .loading-overlay .spinner {
-            width: 60px;
-            height: 60px;
-            border: 5px solid var(--primary-light);
-            border-top-color: var(--primary);
+        @media (max-width: 480px) {
+            .mobile-container {
+                box-shadow: none;
+            }
         }
     </style>
 </head>
@@ -990,13 +931,16 @@
         <!-- Header -->
         <header class="header" id="main-header">
             <div class="logo-section">
-                <span class="logo-text">MOURA</span>
+                <span class="logo-text">FÁCIL</span>
                 <span class="logo-tagline">Baterias</span>
             </div>
             <div class="header-actions">
                 <button class="icon-btn" id="cart-trigger">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="badge" id="cart-badge">0</span>
+                </button>
+                <button class="icon-btn">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </header>
@@ -1458,35 +1402,45 @@
         document.getElementById('cart-trigger').addEventListener('click', openCart);
         document.getElementById('close-cart').addEventListener('click', () => cartModal.classList.remove('active'));
 
-        // CEP Logic
-        cepInput.addEventListener('input', async (e) => {
+        // CEP Lookup
+        cepInput.addEventListener('input', (e) => {
             let val = e.target.value.replace(/\D/g, '');
             if (val.length > 5) val = val.slice(0, 5) + '-' + val.slice(5, 8);
             e.target.value = val;
 
-            if (val.replace('-', '').length === 8) {
-                cepInput.blur();
-                showLoading();
-                try {
-                    const res = await fetch(`https://viacep.com.br/ws/${val.replace('-', '')}/json/`);
-                    const data = await res.json();
-                    if (!data.erro) {
-                        addressData = data;
-                        addressDisplay.textContent = `${data.logradouro}, ${data.bairro} - ${data.localidade}/${data.uf}`;
-                        addressDisplay.classList.add('active');
-                        checkoutFields.style.display = 'block';
-                    } else {
-                        alert('CEP não encontrado.');
-                    }
-                } catch (err) { console.error(err); }
-                hideLoading();
+            if (val.length === 9) {
+                lookupCEP(val.replace('-', ''));
             } else {
-                addressDisplay.classList.remove('active');
+                addressDisplay.style.display = 'none';
                 checkoutFields.style.display = 'none';
             }
         });
 
-        // Shipping Card Selection
+        async function lookupCEP(cep) {
+            addressDisplay.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando endereço...';
+            addressDisplay.style.display = 'block';
+            
+            try {
+                const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await res.json();
+                
+                if (data.erro) {
+                    addressDisplay.innerHTML = '<span style="color:var(--danger);">CEP não encontrado.</span>';
+                    checkoutFields.style.display = 'none';
+                } else {
+                    addressData = data;
+                    addressDisplay.innerHTML = `
+                        <strong>${data.logradouro}</strong><br>
+                        ${data.bairro} - ${data.localidade}/${data.uf}
+                    `;
+                    checkoutFields.style.display = 'block';
+                }
+            } catch (err) {
+                addressDisplay.innerHTML = '<span style="color:var(--danger);">Erro ao buscar CEP.</span>';
+            }
+        }
+
+        // Shipping Selection
         shippingCards.forEach(card => {
             card.addEventListener('click', () => {
                 shippingCards.forEach(c => c.classList.remove('active'));
@@ -1573,35 +1527,10 @@
 
         backToCart.addEventListener('click', resetToCartView);
 
-        confirmPaymentBtn.addEventListener('click', async () => {
-            showLoading();
-            
-            const addrNumber = document.getElementById('addr-number').value;
-            const addrComp = document.getElementById('addr-complement').value;
+        confirmPaymentBtn.addEventListener('click', () => {
             const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-            
-            const orderDetails = cart.map(i => `${i.qty}x Bateria Moura ${i.variant}`).join(', ');
-            
-            const templateParams = {
-                order_id: Math.floor(100000 + Math.random() * 900000),
-                customer_address: `${addressData.logradouro}, ${addrNumber} ${addrComp ? '('+addrComp+')' : ''} - ${addressData.bairro}, ${addressData.localidade}/${addressData.uf}`,
-                order_items: orderDetails,
-                total_amount: `R$ ${subtotal.toFixed(2).replace('.', ',')}`,
-                shipping_method: selectedShipping === 'fast' ? 'Envio Rápido' : 'Agendado'
-            };
-
-            try {
-                await emailjs.send("service_v68m06m", "template_p00819r", templateParams);
-                hideLoading();
-                cartModal.classList.remove('active');
-                document.getElementById('success-modal').classList.add('active');
-                cart = [];
-                updateCart();
-            } catch (err) {
-                console.error(err);
-                alert('Erro ao processar pedido. Tente novamente.');
-                hideLoading();
-            }
+            const targetUrl = `https://exemplo.com/?subtotal=${subtotal.toFixed(2)}`;
+            window.location.href = targetUrl;
         });
 
         function showLoading() { loadingOverlay.classList.add('active'); }
