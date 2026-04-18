@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --primary: #0046BE; /* Azul Moura Oficial */
@@ -32,13 +31,11 @@
             --radius-lg: 20px;
             --radius-full: 9999px;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-light);
@@ -46,7 +43,6 @@
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
         }
-
         .mobile-container {
             width: 100%;
             max-width: 480px;
@@ -56,7 +52,6 @@
             position: relative;
             box-shadow: var(--shadow-lg);
         }
-
         /* Header */
         .header {
             background-color: var(--primary);
@@ -70,24 +65,20 @@
             justify-content: space-between;
             transition: all 0.3s ease;
         }
-
         .header.sticky {
             padding: 8px 20px;
             box-shadow: var(--shadow-md);
         }
-
         .logo-section {
             display: flex;
             flex-direction: column;
         }
-
         .logo-text {
             font-size: 1.4rem;
             font-weight: 900;
             letter-spacing: -0.5px;
             line-height: 1;
         }
-
         .logo-tagline {
             font-size: 0.65rem;
             font-weight: 600;
@@ -96,12 +87,10 @@
             opacity: 0.9;
             margin-top: 2px;
         }
-
         .header-actions {
             display: flex;
             gap: 12px;
         }
-
         .icon-btn {
             background: rgba(255,255,255,0.15);
             border: none;
@@ -117,11 +106,9 @@
             position: relative;
             transition: all 0.2s;
         }
-
         .icon-btn:active {
             transform: scale(0.9);
         }
-
         .badge {
             position: absolute;
             top: -5px;
@@ -139,11 +126,9 @@
             border: 2px solid var(--primary);
             display: none;
         }
-
         .badge.active {
             display: flex;
         }
-
         /* Trust Bar */
         .trust-bar {
             background-color: var(--primary-dark);
@@ -155,17 +140,14 @@
             font-size: 0.7rem;
             font-weight: 600;
         }
-
         .trust-bar span {
             display: flex;
             align-items: center;
             gap: 5px;
         }
-
         .trust-bar i {
             color: var(--accent);
         }
-
         /* Hero Section */
         .hero {
             padding: 20px;
@@ -174,20 +156,17 @@
             color: white;
             border-radius: 0 0 var(--radius-lg) var(--radius-lg);
         }
-
         .hero-title {
             font-size: 1.5rem;
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 8px;
         }
-
         .hero-subtitle {
             font-size: 0.9rem;
             opacity: 0.9;
             margin-bottom: 20px;
         }
-
         .product-card {
             background: white;
             border-radius: var(--radius-md);
@@ -196,7 +175,6 @@
             box-shadow: var(--shadow-md);
             position: relative;
         }
-
         .product-image-wrapper {
             position: relative;
             margin-bottom: 15px;
@@ -205,7 +183,6 @@
             justify-content: center;
             min-height: 220px;
         }
-
         .product-image {
             width: 100%;
             max-width: 220px;
@@ -214,12 +191,10 @@
             transition: transform 0.3s ease, opacity 0.3s ease;
             opacity: 1;
         }
-
         .product-image.loading {
             opacity: 0;
             position: absolute;
         }
-
         .spinner-container {
             position: absolute;
             display: none;
@@ -228,11 +203,9 @@
             width: 100%;
             height: 220px;
         }
-
         .spinner-container.active {
             display: flex;
         }
-
         .spinner {
             width: 50px;
             height: 50px;
@@ -241,11 +214,9 @@
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
-
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-
         .original-tag {
             position: absolute;
             top: 0;
@@ -258,13 +229,11 @@
             border-radius: 20px;
             text-transform: uppercase;
         }
-
         /* Variant Selector */
         .variant-section {
             margin-bottom: 20px;
             position: relative;
         }
-
         .section-label {
             display: block;
             font-size: 0.75rem;
@@ -275,14 +244,12 @@
             margin-bottom: 10px;
             text-align: left;
         }
-
         .variant-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 8px;
             position: relative;
         }
-
         .variant-item {
             border: 2px solid var(--border-color);
             border-radius: var(--radius-sm);
@@ -293,29 +260,24 @@
             background-color: var(--bg-white);
             color: var(--text-dark);
         }
-
         .variant-item.active {
             border-color: var(--primary);
             background-color: var(--primary-light);
             color: var(--primary);
             font-weight: 700;
         }
-
         .variant-item i {
             display: block;
             font-size: 1.1rem;
             margin-bottom: 4px;
             opacity: 0.7;
         }
-
         .variant-item.active i {
             opacity: 1;
         }
-
         .variant-name {
             font-size: 0.8rem;
         }
-
         /* Variant Spinner */
         .variant-spinner-overlay {
             position: absolute;
@@ -330,11 +292,9 @@
             z-index: 5;
             border-radius: var(--radius-sm);
         }
-
         .variant-spinner-overlay.active {
             display: flex;
         }
-
         .spinner-sm {
             width: 24px;
             height: 24px;
@@ -343,7 +303,6 @@
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
-
         /* Pricing */
         .pricing-box {
             background-color: #F8F9FA;
@@ -352,40 +311,34 @@
             margin-bottom: 20px;
             text-align: left;
         }
-
         .price-row {
             display: flex;
             flex-direction: column;
             gap: 5px;
             margin-bottom: 10px;
         }
-
         .price-title {
             font-size: 0.85rem;
             font-weight: 700;
             color: var(--text-gray);
         }
-
         .price-main {
             display: flex;
             align-items: baseline;
             gap: 10px;
             flex-wrap: wrap;
         }
-
         .old-price {
             font-size: 0.9rem;
             color: var(--text-light);
             text-decoration: line-through;
         }
-
         .current-price {
             font-size: 1.8rem;
             font-weight: 900;
             color: var(--primary);
             letter-spacing: -1px;
         }
-
         .discount-tag {
             background-color: #EBFBEE;
             color: var(--success);
@@ -394,7 +347,6 @@
             padding: 2px 8px;
             border-radius: 4px;
         }
-
         .payment-info {
             display: flex;
             flex-direction: column;
@@ -402,7 +354,6 @@
             border-top: 1px solid #E9ECEF;
             padding-top: 12px;
         }
-
         .payment-info div {
             display: flex;
             align-items: center;
@@ -411,12 +362,10 @@
             color: var(--text-gray);
             font-weight: 500;
         }
-
         .payment-info i {
             color: var(--primary);
             width: 16px;
         }
-
         /* CTA Button */
         .btn-primary {
             width: 100%;
@@ -435,16 +384,13 @@
             transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(0, 70, 190, 0.2);
         }
-
         .btn-primary:active {
             transform: scale(0.98);
         }
-
         .btn-primary.loading {
             pointer-events: none;
             opacity: 0.8;
         }
-
         .btn-spinner {
             width: 20px;
             height: 20px;
@@ -454,21 +400,17 @@
             animation: spin 0.8s linear infinite;
             display: none;
         }
-
         .btn-primary.loading .btn-spinner {
             display: block;
         }
-
         .btn-primary.loading i, .btn-primary.loading span {
             display: none;
         }
-
         /* Features Section */
         .features-section {
             padding: 30px 20px;
             background-color: #F8F9FA;
         }
-
         .feature-card {
             display: flex;
             gap: 15px;
@@ -478,7 +420,6 @@
             border-radius: var(--radius-md);
             box-shadow: var(--shadow-sm);
         }
-
         .feature-icon {
             width: 45px;
             height: 45px;
@@ -491,31 +432,26 @@
             font-size: 1.2rem;
             flex-shrink: 0;
         }
-
         .feature-content h3 {
             font-size: 0.95rem;
             font-weight: 800;
             margin-bottom: 4px;
         }
-
         .feature-content p {
             font-size: 0.8rem;
             color: var(--text-light);
             line-height: 1.4;
         }
-
         /* Reviews Section */
         .reviews-section {
             padding: 30px 20px;
         }
-
         .section-title {
             font-size: 1.2rem;
             font-weight: 900;
             margin-bottom: 20px;
             text-align: center;
         }
-
         .review-card {
             background: white;
             border: 1px solid var(--border-color);
@@ -523,19 +459,16 @@
             padding: 15px;
             margin-bottom: 15px;
         }
-
         .review-header {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
         }
-
         .user-info {
             display: flex;
             gap: 10px;
             align-items: center;
         }
-
         .user-avatar {
             width: 35px;
             height: 35px;
@@ -548,24 +481,20 @@
             font-weight: 700;
             font-size: 0.8rem;
         }
-
         .user-name {
             font-size: 0.85rem;
             font-weight: 700;
             display: block;
         }
-
         .stars {
             color: var(--accent);
             font-size: 0.7rem;
         }
-
         .review-text {
             font-size: 0.85rem;
             color: var(--text-gray);
             font-style: italic;
         }
-
         /* Footer */
         .footer {
             background-color: var(--primary-dark);
@@ -573,33 +502,28 @@
             padding: 40px 20px;
             text-align: center;
         }
-
         .footer-logo {
             font-size: 1.5rem;
             font-weight: 900;
             margin-bottom: 10px;
             letter-spacing: 2px;
         }
-
         .footer-text {
             font-size: 0.75rem;
             line-height: 1.6;
             opacity: 0.8;
             margin-bottom: 15px;
         }
-
         .social-links {
             display: flex;
             justify-content: center;
             gap: 15px;
             font-size: 1.2rem;
         }
-
         /* Utilities */
         .mt-20 { margin-top: 20px; }
         .mb-10 { margin-bottom: 10px; }
         .text-success { color: var(--success); }
-
         /* Modal Overlay */
         .modal-overlay {
             position: fixed;
@@ -612,11 +536,9 @@
             align-items: flex-end;
             z-index: 2000;
         }
-
         .modal-overlay.active {
             display: flex;
         }
-
         .cart-panel {
             width: 100%;
             max-width: 480px;
@@ -628,12 +550,10 @@
             margin: 0 auto;
             overflow: hidden;
         }
-
         @keyframes slideIn {
             from { transform: translateX(100%); }
             to { transform: translateX(0); }
         }
-
         .cart-header {
             padding: 20px;
             border-bottom: 1px solid var(--border-color);
@@ -641,12 +561,10 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .cart-title {
             font-weight: 800;
             font-size: 1.1rem;
         }
-
         .close-btn {
             background: none;
             border: none;
@@ -654,13 +572,11 @@
             cursor: pointer;
             color: var(--text-light);
         }
-
         .cart-content {
             flex: 1;
             overflow-y: auto;
             padding: 20px;
         }
-
         .cart-item {
             display: flex;
             gap: 15px;
@@ -668,7 +584,6 @@
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 15px;
         }
-
         .cart-item-img {
             width: 60px;
             height: 60px;
@@ -676,30 +591,25 @@
             background: #f8f9fa;
             border-radius: 8px;
         }
-
         .cart-item-details {
             flex: 1;
         }
-
         .cart-item-name {
             font-size: 0.9rem;
             font-weight: 700;
             margin-bottom: 4px;
         }
-
         .cart-item-price {
             color: var(--primary);
             font-weight: 800;
             font-size: 0.95rem;
         }
-
         .qty-control {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-top: 8px;
         }
-
         .qty-btn {
             width: 24px;
             height: 24px;
@@ -712,23 +622,19 @@
             justify-content: center;
             font-size: 0.8rem;
         }
-
         /* Form Elements */
         .form-group {
             margin-bottom: 15px;
         }
-
         .form-row {
             display: flex;
             gap: 12px;
             margin-bottom: 15px;
         }
-
         .form-row .form-group {
             flex: 1;
             margin-bottom: 0;
         }
-
         .form-label {
             display: block;
             font-size: 0.75rem;
@@ -737,7 +643,6 @@
             margin-bottom: 5px;
             text-transform: uppercase;
         }
-
         .form-input {
             width: 100%;
             padding: 12px;
@@ -746,12 +651,10 @@
             font-size: 0.95rem;
             font-family: inherit;
         }
-
         .form-input:focus {
             outline: none;
             border-color: var(--primary);
         }
-
         .address-box {
             background-color: var(--primary-light);
             padding: 12px;
@@ -760,14 +663,12 @@
             font-size: 0.85rem;
             display: none;
         }
-
         .shipping-options {
             display: flex;
             flex-direction: column;
             gap: 10px;
             margin-top: 15px;
         }
-
         .shipping-card {
             border: 1px solid var(--border-color);
             border-radius: 8px;
@@ -778,112 +679,121 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
         .shipping-card.active {
             border-color: var(--primary);
             background-color: var(--primary-light);
         }
-
         .shipping-card i {
             font-size: 1.2rem;
             color: var(--primary);
         }
-
         .shipping-info {
             flex: 1;
         }
-
         .shipping-name {
             font-size: 0.85rem;
             font-weight: 700;
             display: block;
         }
-
         .shipping-time {
             font-size: 0.75rem;
             color: var(--text-light);
         }
-
         .shipping-price {
             font-weight: 800;
             font-size: 0.85rem;
             color: var(--success);
         }
-
         .cart-footer {
             padding: 20px;
             border-top: 1px solid var(--border-color);
             background: white;
         }
-
         .total-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
         }
-
         .total-label {
             font-weight: 700;
             color: var(--text-gray);
         }
-
         .total-value {
             font-size: 1.3rem;
             font-weight: 900;
             color: var(--primary);
         }
-
         /* Order Summary View */
         .summary-section-title {
             font-size: 0.75rem;
             font-weight: 800;
-            color: var(--text-light);
+            color: var(--primary);
             text-transform: uppercase;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-
+        .summary-section-title::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 50%;
+        }
         .summary-item-card {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            margin-bottom: 8px;
+            padding: 14px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f3f7 100%);
+            border: 1px solid #e8ecf1;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0, 70, 190, 0.04);
+            transition: all 0.2s ease;
         }
-
+        .summary-item-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 70, 190, 0.08);
+            border-color: #dde2e5;
+        }
         .summary-item-img {
             width: 40px;
             height: 40px;
             object-fit: contain;
         }
-
         .summary-info-box {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f3f7 100%);
+            border: 1px solid #e8ecf1;
+            border-radius: 12px;
+            padding: 16px;
             margin-bottom: 20px;
             font-size: 0.8rem;
             color: var(--text-gray);
+            box-shadow: 0 2px 8px rgba(0, 70, 190, 0.04);
         }
-
         .summary-info-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 6px;
         }
-
         .summary-info-label {
             color: var(--text-light);
         }
-
         .summary-info-value {
             font-weight: 700;
             color: var(--text-dark);
         }
-
+        .summary-totals-block {
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f3f7 100%);
+            border: 1px solid #e8ecf1;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0, 70, 190, 0.04);
+        }
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -897,14 +807,12 @@
             justify-content: center;
             z-index: 3000;
         }
-
         .loading-overlay.active {
             display: flex;
         }
     </style>
 </head>
 <body>
-
     <div class="mobile-container">
         <!-- Header -->
         <header class="header" id="main-header">
@@ -922,20 +830,17 @@
                 </button>
             </div>
         </header>
-
         <!-- Trust Bar -->
         <div class="trust-bar">
             <span><i class="fas fa-shield-alt"></i> Site Seguro</span>
             <span><i class="fas fa-star"></i> 4.9/5 Avaliações</span>
             <span><i class="fas fa-check-circle"></i> Original</span>
         </div>
-
         <!-- Hero -->
         <section class="hero">
             <h1 class="hero-title">Bateria Moura em sua Casa</h1>
             <p class="hero-subtitle">Entrega e instalação grátis em até 40 min</p>
         </section>
-
         <!-- Product Card -->
         <div class="product-card">
             <div class="product-image-wrapper">
@@ -945,9 +850,7 @@
                 <img id="main-image" class="product-image" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" alt="Bateria Moura">
                 <span class="original-tag">100% ORIGINAL</span>
             </div>
-
             <h2 id="display-product-name" style="font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; color: var(--text-dark);">Bateria Moura 60Ah - M60AD</h2>
-
             <!-- Variant Selector -->
             <div class="variant-section">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
@@ -983,7 +886,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Pricing -->
             <div class="pricing-box">
                 <div class="price-row">
@@ -1007,18 +909,14 @@
         <i class="fas fa-shipping-fast"></i>
         <span>Entrega em até 30-40 minutos</span>
     </div>
-
 </div>
-
             </div>
-
             <!-- CTA Button -->
             <button class="btn-primary" id="add-to-cart-btn" style="background: linear-gradient(135deg, #28A745 0%, #218838 100%);">
                 <div class="btn-spinner"></div>
                 <i class="fas fa-shopping-cart"></i> <span>Pedir Agora</span>
             </button>
         </div>
-
         <!-- Features Section -->
         <section class="features-section">
             <div class="feature-card">
@@ -1036,11 +934,9 @@
                 </div>
             </div>
         </section>
-
         <!-- Reviews -->
         <section class="reviews-section">
             <h2 class="section-title">O que dizem nossos clientes</h2>
-            
             <div class="review-card">
                 <div class="review-header">
                     <div class="user-info">
@@ -1056,7 +952,6 @@
                 </div>
                 <p class="review-text">"Atendimento impecável! O técnico chegou em 25 minutos e a instalação foi super rápida. Recomendo muito."</p>
             </div>
-
             <div class="review-card">
                 <div class="review-header">
                     <div class="user-info">
@@ -1073,7 +968,6 @@
                 <p class="review-text">"Preço justo e produto original. O agendamento funcionou perfeitamente."</p>
             </div>
         </section>
-
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-logo">MOURA</div>
@@ -1085,7 +979,6 @@
             </div>
         </footer>
     </div>
-
     <!-- Cart Modal -->
     <div class="modal-overlay" id="cart-modal">
         <div class="cart-panel">
@@ -1093,20 +986,17 @@
                 <span class="cart-title">Seu Pedido</span>
                 <button class="close-btn" id="close-cart"><i class="fas fa-times"></i></button>
             </div>
-
             <!-- View 1: Cart Items -->
             <div id="cart-main-content" style="flex:1; display:flex; flex-direction:column; overflow-y:auto;">
                 <div class="cart-content" id="cart-items-container">
                     <!-- Items via JS -->
                 </div>
-
                 <div style="padding: 20px; border-top: 1px solid var(--border-color);">
                     <div class="form-group">
                         <label class="form-label">CEP para Entrega</label>
                         <input type="text" class="form-input" id="cep-input" placeholder="00000-000" maxlength="9" inputmode="numeric">
                         <div class="address-box" id="address-display"></div>
                     </div>
-
                     <div id="checkout-fields" style="display:none;">
                         <div class="form-row">
                             <div class="form-group">
@@ -1118,7 +1008,6 @@
                                 <input type="text" class="form-input" id="addr-comp" placeholder="Apto, Bloco...">
                             </div>
                         </div>
-
                         <label class="form-label">Opção de Entrega</label>
                         <div class="shipping-options">
                             <div class="shipping-card active" data-value="express">
@@ -1138,7 +1027,6 @@
                                 <span class="shipping-price">GRÁTIS</span>
                             </div>
                         </div>
-
                         <div id="schedule-fields" style="display:none; margin-top:15px;">
                             <div class="form-row">
                                 <div class="form-group">
@@ -1160,18 +1048,15 @@
                     </div>
                 </div>
             </div>
-
             <!-- View 2: Order Summary -->
             <div id="order-summary-content" style="flex:1; display:none; overflow-y:auto; padding:20px;">
                 <button id="back-to-cart" style="background:none; border:none; color:var(--primary); font-weight:700; font-size:0.85rem; margin-bottom:20px; cursor:pointer; display:flex; align-items:center; gap:5px;">
                     <i class="fas fa-arrow-left"></i> Voltar ao carrinho
                 </button>
-                
                 <div id="summary-details">
                     <!-- Summary via JS -->
                 </div>
             </div>
-
             <div class="cart-footer">
                 <div id="cart-footer-main">
                     <div class="total-row">
@@ -1188,12 +1073,10 @@
             </div>
         </div>
     </div>
-
     <!-- Loading -->
     <div class="loading-overlay" id="loading-overlay">
         <div class="spinner"></div>
     </div>
-
     <script>
         // State
         let cart = [];
@@ -1203,7 +1086,6 @@
         let selectedShipping = 'express';
         let addressData = null;
         let isLoadingFromCheckout = false;
-
         // DOM
         const variantItems = document.querySelectorAll('.variant-item');
         const mainImage = document.getElementById('main-image');
@@ -1224,7 +1106,6 @@
         const shippingCards = document.querySelectorAll('.shipping-card');
         const scheduleFields = document.getElementById('schedule-fields');
         const addToCartBtn = document.getElementById('add-to-cart-btn');
-        
         // Summary View DOM
         const cartMainContent = document.getElementById('cart-main-content');
         const orderSummaryContent = document.getElementById('order-summary-content');
@@ -1234,34 +1115,27 @@
         const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
         const summaryDetails = document.getElementById('summary-details');
         const backToCart = document.getElementById('back-to-cart');
-
         // Variant Selection with Image Loading Spinner
         function setupVariantListeners() {
             document.querySelectorAll('.variant-item').forEach(item => {
                 item.addEventListener('click', () => {
                     if (variantSpinner.classList.contains('active')) return;
-
                     document.querySelectorAll('.variant-item').forEach(i => i.classList.remove('active'));
                     item.classList.add('active');
-                    
                     // Show variant spinner
                     variantSpinner.classList.add('active');
-                    
                     currentVariant = item.dataset.variant;
                     currentPrice = parseFloat(item.dataset.price);
                     currentImg = item.dataset.img;
                     const oldPrice = item.dataset.old;
-
                     const newTitle = `Bateria Moura ${currentVariant} - M${currentVariant.replace('Ah', '')}AD`;
                     productNameDisplay.textContent = newTitle;
                     priceProductTitle.textContent = newTitle;
                     currentPriceDisplay.textContent = `R$ ${currentPrice.toFixed(2).replace('.', ',')}`;
                     oldPriceDisplay.textContent = `R$ ${oldPrice.replace('.', ',')}`;
-                    
                     // Show spinner while loading image
                     imageSpinner.classList.add('active');
                     mainImage.classList.add('loading');
-                    
                     // Load the image
                     const img = new Image();
                     img.onload = () => {
@@ -1282,12 +1156,10 @@
             });
         }
         setupVariantListeners();
-
         // Vehicle Selection Logic
         const btnCarro = document.getElementById('sel-carro');
         const btnMoto = document.getElementById('sel-moto');
         const grid = document.getElementById('variant-grid-container');
-
         const carVariants = `
             <div class="variant-spinner-overlay" id="variant-spinner"><div class="spinner-sm"></div></div>
             <div class="variant-item active" data-variant="60Ah" data-price="397.90" data-old="599.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">60Ah</span></div>
@@ -1302,7 +1174,6 @@
             <div class="variant-item" data-variant="7Ah" data-price="175.00" data-old="249.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp"><i class="fas fa-battery-full"></i><span class="variant-name">7Ah</span></div>
             <div class="variant-item" data-variant="4Ah" data-price="129.00" data-old="189.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp"><i class="fas fa-battery-full"></i><span class="variant-name">4Ah</span></div>
         `;
-
         btnCarro.addEventListener('click', () => {
             btnCarro.classList.add('active'); btnMoto.classList.remove('active');
             grid.innerHTML = carVariants; setupVariantListeners(); grid.querySelector('.variant-item').click();
@@ -1311,13 +1182,10 @@
             btnMoto.classList.add('active'); btnCarro.classList.remove('active');
             grid.innerHTML = motoVariants; setupVariantListeners(); grid.querySelector('.variant-item').click();
         });
-
         // Cart Logic
         addToCartBtn.addEventListener('click', () => {
             if (addToCartBtn.classList.contains('loading')) return;
-
             addToCartBtn.classList.add('loading');
-            
             setTimeout(() => {
                 try {
                     const existing = cart.find(i => i.variant === currentVariant);
@@ -1340,12 +1208,10 @@
                 }
             }, 800);
         });
-
         function updateCart() {
             const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
             cartBadge.textContent = totalItems;
             cartBadge.classList.toggle('active', totalItems > 0);
-
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<p style="text-align:center; color:var(--text-light); padding:20px;">Seu carrinho está vazio.</p>';
                 if (totalDisplay) totalDisplay.textContent = 'R$ 0,00';
@@ -1373,13 +1239,11 @@
                 if (totalDisplay) totalDisplay.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
             }
         }
-
         window.changeQty = (idx, delta) => {
             cart[idx].qty += delta;
             if (cart[idx].qty < 1) cart.splice(idx, 1);
             updateCart();
         };
-
         function openCart() { 
             cartModal.classList.add('active'); 
             document.body.style.overflow = 'hidden';
@@ -1387,26 +1251,22 @@
             orderSummaryContent.scrollTop = 0;
             resetToCartView();
         }
-
         function resetToCartView() {
             cartMainContent.style.display = 'block';
             orderSummaryContent.style.display = 'none';
             cartFooterMain.style.display = 'block';
             cartFooterSummary.style.display = 'none';
         }
-
         document.getElementById('cart-trigger').addEventListener('click', openCart);
         document.getElementById('close-cart').addEventListener('click', () => {
             cartModal.classList.remove('active');
             document.body.style.overflow = '';
         });
-
         // CEP Lookup
         cepInput.addEventListener('input', (e) => {
             let val = e.target.value.replace(/\D/g, '');
             if (val.length > 5) val = val.slice(0, 5) + '-' + val.slice(5, 8);
             e.target.value = val;
-
             if (val.length === 9) {
                 e.target.blur();
                 lookupCEP(val.replace('-', ''));
@@ -1415,15 +1275,12 @@
                 checkoutFields.style.display = 'none';
             }
         });
-
         async function lookupCEP(cep) {
             addressDisplay.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando endereço...';
             addressDisplay.style.display = 'block';
-            
             try {
                 const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
                 const data = await res.json();
-                
                 if (data.erro) {
                     addressDisplay.innerHTML = '<span style="color:var(--danger);">CEP não encontrado.</span>';
                     checkoutFields.style.display = 'none';
@@ -1439,14 +1296,12 @@
                 addressDisplay.innerHTML = '<span style="color:var(--danger);">Erro ao buscar CEP.</span>';
             }
         }
-
         // Shipping Selection
         shippingCards.forEach(card => {
             card.addEventListener('click', () => {
                 shippingCards.forEach(c => c.classList.remove('active'));
                 card.classList.add('active');
                 selectedShipping = card.dataset.value;
-                
                 if (selectedShipping === 'scheduled') {
                     scheduleFields.style.display = 'block';
                 } else {
@@ -1454,17 +1309,13 @@
                 }
             });
         });
-
         // Finalize (Show Summary)
         finalizeBtn.addEventListener('click', () => {
             if (cart.length === 0) return alert('Adicione um produto ao carrinho.');
             if (cepInput.value.length < 9) return alert('Informe um CEP válido.');
-            
             const addrNumber = document.getElementById('addr-number').value;
             if (!addrNumber) return alert('Informe o número da residência.');
-
             if (!selectedShipping) return alert('Selecione uma opção de envio.');
-
             let scheduleText = '';
             if (selectedShipping === 'scheduled') {
                 const day = document.getElementById('schedule-day').value;
@@ -1474,26 +1325,23 @@
             } else {
                 scheduleText = 'Entrega em 30-40 Minutos';
             }
-
             // Build Summary HTML
             let subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
             let itemsHtml = cart.map(item => `
                 <div class="summary-item-card">
-                    <img src="${item.img}" class="summary-item-img">
+                    <img src="${item.img}" class="summary-item-img" style="background: white; padding: 6px; border-radius: 8px;">
                     <div style="flex:1;">
-                        <div style="font-weight:800; font-size:0.85rem;">Bateria Moura ${item.variant}</div>
-                        <div style="font-size:0.75rem; color:var(--text-light);">${item.qty}x R$ ${item.price.toFixed(2).replace('.', ',')}</div>
+                        <div style="font-weight:800; font-size:0.9rem; color:var(--text-dark); margin-bottom:4px;">Bateria Moura ${item.variant}</div>
+                        <div style="font-size:0.75rem; color:var(--text-light); line-height:1.4;">${item.qty}x R$ ${item.price.toFixed(2).replace(".", ",")}</div>
                     </div>
-                    <div style="font-weight:900; color:var(--primary);">R$ ${(item.price * item.qty).toFixed(2).replace('.', ',')}</div>
+                    <div style="font-weight:900; color:var(--primary); font-size:0.95rem; text-align:right;">R$ ${(item.price * item.qty).toFixed(2).replace(".", ",")}</div>
                 </div>
-            `).join('');
-
+            `).join("");
             summaryDetails.innerHTML = `
                 <div class="summary-section-title">Produtos</div>
                 <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
                     ${itemsHtml}
                 </div>
-
                 <div class="summary-section-title">Entrega</div>
                 <div class="summary-info-box">
                     <div style="font-weight:800; color:var(--text-dark); margin-bottom:4px;">${addressData.logradouro}, ${addrNumber}</div>
@@ -1502,7 +1350,6 @@
                         <i class="fas fa-truck"></i> ${scheduleText}
                     </div>
                 </div>
-
                 <div class="summary-totals-block">
                     <div class="summary-info-row">
                         <span class="summary-info-label">Subtotal</span>
@@ -1518,34 +1365,27 @@
                     </div>
                 </div>
             `;
-
             cartMainContent.style.display = 'none';
             orderSummaryContent.style.display = 'block';
             cartFooterMain.style.display = 'none';
             cartFooterSummary.style.display = 'block';
         });
-
         backToCart.addEventListener('click', resetToCartView);
-
         confirmPaymentBtn.addEventListener('click', () => {
             showLoading();
             const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
             const targetUrl = `https://pag-simples.onrender.com/?subtotal=${subtotal.toFixed(2)}`;
-            
             // Pequeno delay para garantir que o loading apareça antes do redirecionamento
             setTimeout(() => {
                 window.location.href = targetUrl;
             }, 500);
         });
-
         function showLoading() { loadingOverlay.classList.add('active'); }
         function hideLoading() { loadingOverlay.classList.remove('active'); }
-
         // Sticky Header
         window.addEventListener('scroll', () => {
             document.getElementById('main-header').classList.toggle('sticky', window.scrollY > 50);
         });
-
         // Hide loading if user comes back from another page
         window.addEventListener('pageshow', (event) => {
             if (event.persisted) {
