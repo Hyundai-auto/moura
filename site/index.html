@@ -1225,7 +1225,8 @@
                     <span class="total-value" id="cart-total-display">R$ 0,00</span>
                 </div>
                 <button class="btn-primary" id="finalize-order-btn" style="background:var(--primary);">
-                    <span>Prosseguir</span>
+                    <div class="btn-spinner" id="finalize-spinner"></div>
+                    <span id="finalize-text">Prosseguir</span>
                 </button>
             </div>
             <!-- Footer for Summary View -->
@@ -1529,6 +1530,20 @@
             const addrNumber = document.getElementById('addr-number').value;
             if (!addrNumber) return alert('Informe o número da residência.');
             if (!selectedShipping) return alert('Selecione uma opção de envio.');
+
+            // Efeito de carregamento profissional
+            finalizeBtn.classList.add('loading');
+            finalizeBtn.disabled = true;
+
+            setTimeout(() => {
+                finalizeBtn.classList.remove('loading');
+                finalizeBtn.disabled = false;
+                proceedToSummary();
+            }, 1200);
+        });
+
+        function proceedToSummary() {
+            const addrNumber = document.getElementById('addr-number').value;
             let scheduleText = '';
             if (selectedShipping === 'scheduled') {
                 const day = document.getElementById('schedule-day').value;
@@ -1590,7 +1605,7 @@
             orderSummaryContent.style.display = 'block';
             cartFooterMain.style.display = 'none';
             cartFooterSummary.style.display = 'block';
-        });
+        }
         backToCart.addEventListener('click', resetToCartView);
         confirmPaymentBtn.addEventListener('click', () => {
             showLoading();
