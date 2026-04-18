@@ -907,6 +907,42 @@
         .loading-overlay.active {
             display: flex;
         }
+
+        .hero {
+  max-width: 600px; /* Ajuste conforme a largura do seu layout */
+}
+
+.hero-reviews {
+  display: flex;
+  justify-content: space-between; /* Empurra os grupos para as extremidades */
+  align-items: center;
+  margin-top: 15px;
+  font-family: sans-serif;
+  border-top: 1px solid #eee; /* Opcional: uma linha fina para separar */
+  padding-top: 10px;
+}
+
+.reviews-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stars {
+  color: #ffb400; /* Cor dourada */
+  font-size: 1.1rem;
+}
+
+.rating-score {
+  font-weight: bold;
+  color: #333;
+}
+
+.rating-count {
+  color: #666;
+  font-size: 0.9rem;
+}
+
     </style>
 </head>
 <body>
@@ -938,11 +974,12 @@
   <h1 class="hero-title">Entrega Rápida</h1>
   <p class="hero-subtitle">Entrega e instalação grátis em até 40 min</p>
   
-  <!-- Nova seção de avaliações -->
   <div class="hero-reviews">
-    <span class="stars">★★★★★</span>
-    <span class="rating-score">4.9</span>
-    <span class="rating-count">(13.478 avaliações)</span>
+    <div class="reviews-left">
+      <span class="stars">★★★★★</span>
+      <span class="rating-score">4.9</span>
+    </div>
+    <span class="rating-count">13.478 avaliações</span>
   </div>
 </section>
         <!-- Product Card -->
