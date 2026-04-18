@@ -1510,6 +1510,16 @@
                     scheduleFields.style.display = 'none';
                 }
                 cartFooterMain.style.display = 'block';
+                
+                // Rola suavemente para o final do carrinho para mostrar o subtotal
+                setTimeout(() => {
+                    if (cartMainContent) {
+                        cartMainContent.scrollTo({
+                            top: cartMainContent.scrollHeight,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 100);
             });
         });
         // Finalize (Show Summary)
