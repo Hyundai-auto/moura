@@ -917,12 +917,12 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 15px;
-  margin-bottom: 40px; /* Adiciona o espaço desejado abaixo das avaliações */
+  margin-bottom: 20px;
   font-family: sans-serif;
-  border-top: 1px solid #eee;
+  /* Opcional: borda sutil em branco transparente */
+  border-top: 1px solid rgba(255, 255, 255, 0.2); 
   padding-top: 10px;
 }
-
 
 .reviews-left {
   display: flex;
@@ -931,19 +931,21 @@
 }
 
 .stars {
-  color: #ffb400; /* Cor dourada */
+  color: #ffb400; /* Mantive o dourado para destaque, mas pode ser branco se preferir */
   font-size: 1.1rem;
 }
 
 .rating-score {
   font-weight: bold;
-  color: #333;
+  color: #ffffff; /* Texto branco */
 }
 
 .rating-count {
-  color: #666;
+  color: #ffffff; /* Texto branco */
   font-size: 0.9rem;
+  opacity: 0.9; /* Leve transparência para diferenciar da nota */
 }
+
 
     </style>
 </head>
