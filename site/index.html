@@ -334,15 +334,14 @@
             text-decoration: line-through;
         }
         .current-price {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 900;
             color: var(--primary);
-            letter-spacing: -1px;
         }
         .discount-tag {
-            background-color: #EBFBEE;
-            color: var(--success);
-            font-size: 0.75rem;
+            background-color: var(--danger);
+            color: white;
+            font-size: 0.7rem;
             font-weight: 800;
             padding: 2px 8px;
             border-radius: 4px;
@@ -351,8 +350,9 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            border-top: 1px solid #E9ECEF;
-            padding-top: 12px;
+            margin-top: 10px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
         }
         .payment-info div {
             display: flex;
@@ -360,36 +360,30 @@
             gap: 8px;
             font-size: 0.8rem;
             color: var(--text-gray);
-            font-weight: 500;
         }
         .payment-info i {
-            color: var(--primary);
+            color: var(--success);
             width: 16px;
         }
-        /* CTA Button */
+        /* Buttons */
         .btn-primary {
             width: 100%;
             padding: 16px;
             border: none;
             border-radius: var(--radius-md);
-            background: var(--primary);
-            color: white;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 800;
+            color: white;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 70, 190, 0.2);
+            position: relative;
         }
         .btn-primary:active {
             transform: scale(0.98);
-        }
-        .btn-primary.loading {
-            pointer-events: none;
-            opacity: 0.8;
         }
         .btn-spinner {
             width: 20px;
@@ -406,26 +400,28 @@
         .btn-primary.loading i, .btn-primary.loading span {
             display: none;
         }
-        /* Features Section */
+        /* Features */
         .features-section {
             padding: 30px 20px;
-            background-color: #F8F9FA;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
         .feature-card {
             display: flex;
+            align-items: flex-start;
             gap: 15px;
-            margin-bottom: 20px;
             background: white;
             padding: 15px;
             border-radius: var(--radius-md);
-            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
         }
         .feature-icon {
-            width: 45px;
-            height: 45px;
-            background-color: var(--primary-light);
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
             color: var(--primary);
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -439,46 +435,48 @@
         }
         .feature-content p {
             font-size: 0.8rem;
-            color: var(--text-light);
+            color: var(--text-gray);
             line-height: 1.4;
         }
-        /* Reviews Section */
+        /* Reviews */
         .reviews-section {
             padding: 30px 20px;
+            background-color: #F8F9FA;
         }
         .section-title {
-            font-size: 1.2rem;
-            font-weight: 900;
+            font-size: 1.1rem;
+            font-weight: 800;
             margin-bottom: 20px;
             text-align: center;
         }
         .review-card {
             background: white;
-            border: 1px solid var(--border-color);
+            padding: 20px;
             border-radius: var(--radius-md);
-            padding: 15px;
             margin-bottom: 15px;
+            box-shadow: var(--shadow-sm);
         }
         .review-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
+            align-items: flex-start;
+            margin-bottom: 12px;
         }
         .user-info {
             display: flex;
-            gap: 10px;
             align-items: center;
+            gap: 10px;
         }
         .user-avatar {
             width: 35px;
             height: 35px;
-            background-color: var(--primary);
-            color: white;
+            background: var(--primary-light);
+            color: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 0.8rem;
         }
         .user-name {
@@ -489,12 +487,110 @@
         .stars {
             color: var(--accent);
             font-size: 0.7rem;
+            display: flex;
+            gap: 2px;
         }
         .review-text {
             font-size: 0.85rem;
             color: var(--text-gray);
             font-style: italic;
+            line-height: 1.5;
         }
+
+        /* Novas Seções Estilos */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 20px;
+            background: var(--primary);
+            color: white;
+        }
+        .benefit-item {
+            text-align: center;
+            padding: 15px 5px;
+        }
+        .benefit-item i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--accent);
+        }
+        .benefit-item span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .newsletter-section {
+            padding: 30px 20px;
+            background: var(--bg-white);
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+        .newsletter-section h3 {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .newsletter-section p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 8px;
+        }
+        .newsletter-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        .newsletter-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .faq-section {
+            padding: 30px 20px;
+            background: var(--bg-light);
+        }
+        .faq-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .faq-question {
+            padding: 15px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .faq-answer {
+            padding: 0 15px 15px;
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            display: none;
+        }
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        .faq-item.active .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+
         /* Footer */
         .footer {
             background-color: var(--primary-dark);
@@ -760,7 +856,6 @@
             height: 50px;
             object-fit: contain;
             background: var(--bg-light);
-            padding: 4px;
             border-radius: var(--radius-sm);
         }
         .summary-info-box {
@@ -966,7 +1061,85 @@
                 </div>
                 <p class="review-text">"Preço justo e produto original. O agendamento funcionou perfeitamente."</p>
             </div>
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="user-info">
+                        <div class="user-avatar">RC</div>
+                        <div>
+                            <span class="user-name">Ricardo Costa</span>
+                            <div class="stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <span style="font-size: 0.7rem; color: var(--text-light);">Há 3 dias</span>
+                </div>
+                <p class="review-text">"Fiquei surpreso com a agilidade. Em menos de 30 minutos já estava com a bateria nova instalada. Nota 10!"</p>
+            </div>
         </section>
+
+        <!-- Benefícios Section -->
+        <section class="benefits-grid">
+            <div class="benefit-item">
+                <i class="fas fa-truck-fast"></i>
+                <span>Entrega Grátis</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-screwdriver-wrench"></i>
+                <span>Instalação Inclusa</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-shield-halved"></i>
+                <span>Garantia Nacional</span>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-hand-holding-dollar"></i>
+                <span>Melhor Preço</span>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <h3>Ofertas Exclusivas</h3>
+            <p>Receba descontos e dicas para sua bateria no seu e-mail.</p>
+            <div class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Seu melhor e-mail">
+                <button class="newsletter-btn">OK</button>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <h2 class="section-title">Dúvidas Frequentes</h2>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Como funciona a instalação grátis?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Nossos técnicos vão até o seu local, realizam o teste do sistema elétrico e fazem a troca da bateria sem custo adicional de mão de obra.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Quais as formas de pagamento?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Aceitamos cartões de crédito (parcelamento em até 6x), débito, PIX e dinheiro no ato da entrega.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    A bateria é original?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Sim, trabalhamos apenas com baterias Moura 100% originais, com certificado de garantia e nota fiscal.
+                </div>
+            </div>
+        </section>
+
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-logo">BATERIAS ONLINE</div>
@@ -991,32 +1164,32 @@
             <!-- View 1: Cart Items -->
             <div id="cart-main-content" style="flex:1; display:flex; flex-direction:column; overflow-y:auto;">
                 <div class="cart-content" id="cart-items-container">
-                    <!-- Items via JS -->
+                    <!-- Items will be injected here -->
                 </div>
-                <div style="padding: 20px; border-top: 1px solid var(--border-color);">
+                <div style="padding:20px; border-top:1px solid var(--border-color);">
                     <div class="form-group">
-                        <label class="form-label">CEP para Entrega</label>
-                        <input type="text" class="form-input" id="cep-input" placeholder="00000-000" maxlength="9" inputmode="numeric">
+                        <label class="form-label">CEP para entrega</label>
+                        <input type="text" class="form-input" id="cep-input" placeholder="00000-000" maxlength="9">
                         <div class="address-box" id="address-display"></div>
                     </div>
                     <div id="checkout-fields" style="display:none;">
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label">Número</label>
-                                <input type="text" class="form-input" id="addr-number" placeholder="Ex: 123" inputmode="numeric">
+                                <input type="text" class="form-input" id="addr-number" placeholder="123">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Complemento</label>
-                                <input type="text" class="form-input" id="addr-comp" placeholder="Apto, Bloco...">
+                                <label class="form-label">Comp.</label>
+                                <input type="text" class="form-input" id="addr-complement" placeholder="Apto 10">
                             </div>
                         </div>
-                        <label class="form-label">Opção de Entrega</label>
+                        <label class="form-label">Opção de Envio</label>
                         <div class="shipping-options">
-                            <div class="shipping-card" data-value="express">
+                            <div class="shipping-card active" data-value="express">
                                 <i class="fas fa-bolt"></i>
                                 <div class="shipping-info">
-                                    <span class="shipping-name">Entrega Rápida</span>
-                                    <span class="shipping-time">30-40 minutos</span>
+                                    <span class="shipping-name">Entrega Expressa</span>
+                                    <span class="shipping-time">30 a 40 minutos</span>
                                 </div>
                                 <span class="shipping-price">GRÁTIS</span>
                             </div>
@@ -1038,11 +1211,12 @@
                                 <div class="form-group">
                                     <label class="form-label">Horário</label>
                                     <select class="form-input" id="schedule-time">
-                                        <option value="">Selecione...</option>
-                                        <option>08:00 - 10:00</option>
-                                        <option>10:00 - 12:00</option>
-                                        <option>14:00 - 16:00</option>
-                                        <option>16:00 - 18:00</option>
+                                        <option value="08:00">08:00</option>
+                                        <option value="10:00">10:00</option>
+                                        <option value="12:00">12:00</option>
+                                        <option value="14:00">14:00</option>
+                                        <option value="16:00">16:00</option>
+                                        <option value="18:00">18:00</option>
                                     </select>
                                 </div>
                             </div>
@@ -1050,154 +1224,165 @@
                     </div>
                 </div>
             </div>
-            <!-- View 2: Order Summary -->
-            <div id="order-summary-content" style="flex:1; display:none; overflow-y:auto; padding:20px;">
-                <button id="back-to-cart" style="background:none; border:none; color:var(--primary); font-weight:700; font-size:0.85rem; margin-bottom:20px; cursor:pointer; display:flex; align-items:center; gap:5px;">
-                    <i class="fas fa-arrow-left"></i> Voltar ao carrinho
-                </button>
+            <!-- View 2: Order Summary (Hidden initially) -->
+            <div id="order-summary-content" style="flex:1; display:none; overflow-y:auto; padding:20px; background:var(--bg-light);">
                 <div id="summary-details">
-                    <!-- Summary via JS -->
+                    <!-- Summary content will be injected here -->
                 </div>
             </div>
-            <div class="cart-footer">
-                <div id="cart-footer-main">
-                    <div class="total-row">
-                        <span class="total-label">Total</span>
-                        <span class="total-value" id="total-display">R$ 0,00</span>
-                    </div>
-                    <button class="btn-primary" id="finalize-btn">Continuar</button>
+            <!-- Footer for Cart View -->
+            <div class="cart-footer" id="cart-footer-main">
+                <div class="total-row">
+                    <span class="total-label">Total</span>
+                    <span class="total-value" id="cart-total-display">R$ 0,00</span>
                 </div>
-                <div id="cart-footer-summary" style="display:none;">
-                    <button class="btn-primary" id="confirm-payment-btn" style="background: linear-gradient(135deg, #28A745 0%, #218838 100%);">
-                        Concluir Pedido
+                <button class="btn-primary" id="finalize-order-btn" style="background:var(--primary);">
+                    <span>Continuar</span>
+                </button>
+            </div>
+            <!-- Footer for Summary View -->
+            <div class="cart-footer" id="cart-footer-summary" style="display:none;">
+                <div style="display:flex; gap:10px;">
+                    <button class="btn-primary" id="back-to-cart" style="background:var(--bg-white); color:var(--text-gray); border:1px solid var(--border-color); flex:0.4;">
+                        <span>Voltar</span>
+                    </button>
+                    <button class="btn-primary" id="confirm-payment-btn" style="background:var(--success); flex:1;">
+                        <i class="fab fa-whatsapp"></i> <span>Confirmar Pedido</span>
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Loading -->
+    <!-- Loading Overlay -->
     <div class="loading-overlay" id="loading-overlay">
         <div class="spinner"></div>
+        <p style="margin-top:15px; font-weight:700; color:var(--primary);">Processando seu pedido...</p>
     </div>
+
     <script>
+        // Data
+        const products = {
+            carro: [
+                { variant: '60Ah', price: 397.90, old: 599.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
+                { variant: '40Ah', price: 305.90, old: 497.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
+                { variant: '45Ah', price: 327.90, old: 539.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
+                { variant: '50Ah', price: 365.90, old: 579.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
+                { variant: '70Ah', price: 549.90, old: 799.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
+                { variant: '75Ah', price: 589.90, old: 849.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
+                { variant: '90Ah', price: 749.90, old: 1099.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
+                { variant: '100Ah', price: 899.90, old: 1299.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' }
+            ],
+            moto: [
+                { variant: '5Ah', price: 189.90, old: 289.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
+                { variant: '6Ah', price: 219.90, old: 319.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
+                { variant: '7Ah', price: 249.90, old: 349.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
+                { variant: '8Ah', price: 279.90, old: 379.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' }
+            ]
+        };
         // State
+        let currentType = 'carro';
+        let currentVariant = products.carro[0];
         let cart = [];
-        let currentVariant = "60Ah";
-        let currentPrice = 397.90;
-        let currentImg = "https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png";
-        let selectedShipping = 'express';
         let addressData = null;
-        let isLoadingFromCheckout = false;
-        // DOM
-        const variantItems = document.querySelectorAll('.variant-item');
+        let selectedShipping = 'express';
+        // Elements
         const mainImage = document.getElementById('main-image');
         const imageSpinner = document.getElementById('image-spinner');
+        const variantGrid = document.getElementById('variant-grid-container');
         const variantSpinner = document.getElementById('variant-spinner');
         const productNameDisplay = document.getElementById('display-product-name');
         const priceProductTitle = document.getElementById('price-product-title');
-        const currentPriceDisplay = document.getElementById('current-price-display');
         const oldPriceDisplay = document.getElementById('old-price-display');
+        const currentPriceDisplay = document.getElementById('current-price-display');
+        const addToCartBtn = document.getElementById('add-to-cart-btn');
         const cartBadge = document.getElementById('cart-badge');
         const cartModal = document.getElementById('cart-modal');
         const cartItemsContainer = document.getElementById('cart-items-container');
-        const totalDisplay = document.getElementById('total-display');
+        const totalDisplay = document.getElementById('cart-total-display');
         const cepInput = document.getElementById('cep-input');
         const addressDisplay = document.getElementById('address-display');
         const checkoutFields = document.getElementById('checkout-fields');
-        const loadingOverlay = document.getElementById('loading-overlay');
         const shippingCards = document.querySelectorAll('.shipping-card');
         const scheduleFields = document.getElementById('schedule-fields');
-        const addToCartBtn = document.getElementById('add-to-cart-btn');
-        // Summary View DOM
-        const cartMainContent = document.getElementById('cart-main-content');
+        const finalizeBtn = document.getElementById('finalize-order-btn');
         const orderSummaryContent = document.getElementById('order-summary-content');
+        const cartMainContent = document.getElementById('cart-main-content');
+        const summaryDetails = document.getElementById('summary-details');
         const cartFooterMain = document.getElementById('cart-footer-main');
         const cartFooterSummary = document.getElementById('cart-footer-summary');
-        const finalizeBtn = document.getElementById('finalize-btn');
-        const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
-        const summaryDetails = document.getElementById('summary-details');
         const backToCart = document.getElementById('back-to-cart');
-        // Variant Selection with Image Loading Spinner
-        function setupVariantListeners() {
-            document.querySelectorAll('.variant-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    if (variantSpinner.classList.contains('active')) return;
-                    document.querySelectorAll('.variant-item').forEach(i => i.classList.remove('active'));
-                    item.classList.add('active');
-                    // Show variant spinner
-                    variantSpinner.classList.add('active');
-                    currentVariant = item.dataset.variant;
-                    currentPrice = parseFloat(item.dataset.price);
-                    currentImg = item.dataset.img;
-                    const oldPrice = item.dataset.old;
-                    const newTitle = `Bateria Moura ${currentVariant} - M${currentVariant.replace('Ah', '')}AD`;
-                    productNameDisplay.textContent = newTitle;
-                    priceProductTitle.textContent = newTitle;
-                    currentPriceDisplay.textContent = `R$ ${currentPrice.toFixed(2).replace('.', ',')}`;
-                    oldPriceDisplay.textContent = `R$ ${oldPrice.replace('.', ',')}`;
-                    // Show spinner while loading image
-                    imageSpinner.classList.add('active');
-                    mainImage.classList.add('loading');
-                    // Load the image
-                    const img = new Image();
-                    img.onload = () => {
-                        mainImage.src = currentImg;
-                        mainImage.classList.remove('loading');
-                        imageSpinner.classList.remove('active');
-                        // Hide variant spinner after a small delay for better UX
-                        setTimeout(() => variantSpinner.classList.remove('active'), 400);
-                    };
-                    img.onerror = () => {
-                        mainImage.src = currentImg;
-                        mainImage.classList.remove('loading');
-                        imageSpinner.classList.remove('active');
-                        variantSpinner.classList.remove('active');
-                    };
-                    img.src = currentImg;
+        const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        // Logic
+        function renderVariants(type) {
+            variantSpinner.classList.add('active');
+            setTimeout(() => {
+                const items = products[type];
+                let html = `<div class="variant-spinner-overlay" id="variant-spinner"><div class="spinner-sm"></div></div>`;
+                items.forEach((item, idx) => {
+                    html += `
+                        <div class="variant-item ${item.variant === currentVariant.variant ? 'active' : ''}" 
+                             onclick="selectVariant('${type}', ${idx})">
+                            <i class="fas fa-battery-full"></i>
+                            <span class="variant-name">${item.variant}</span>
+                        </div>
+                    `;
                 });
-            });
+                variantGrid.innerHTML = html;
+                variantSpinner.classList.remove('active');
+            }, 300);
         }
-        setupVariantListeners();
-        // Vehicle Selection Logic
-        const btnCarro = document.getElementById('sel-carro');
-        const btnMoto = document.getElementById('sel-moto');
-        const grid = document.getElementById('variant-grid-container');
-        const carVariants = `
-            <div class="variant-spinner-overlay" id="variant-spinner"><div class="spinner-sm"></div></div>
-            <div class="variant-item active" data-variant="60Ah" data-price="397.90" data-old="599.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">60Ah</span></div>
-            <div class="variant-item" data-variant="40Ah" data-price="305.90" data-old="497.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">40Ah</span></div>
-            <div class="variant-item" data-variant="45Ah" data-price="327.90" data-old="539.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">45Ah</span></div>
-            <div class="variant-item" data-variant="50Ah" data-price="365.90" data-old="579.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">50Ah</span></div>
-        `;
-        const motoVariants = `
-            <div class="variant-spinner-overlay" id="variant-spinner"><div class="spinner-sm"></div></div>
-            <div class="variant-item active" data-variant="5Ah" data-price="135.00" data-old="199.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp"><i class="fas fa-battery-full"></i><span class="variant-name">5Ah</span></div>
-            <div class="variant-item" data-variant="6Ah" data-price="149.00" data-old="219.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp"><i class="fas fa-battery-full"></i><span class="variant-name">6Ah</span></div>
-            <div class="variant-item" data-variant="7Ah" data-price="175.00" data-old="249.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp"><i class="fas fa-battery-full"></i><span class="variant-name">7Ah</span></div>
-            <div class="variant-item" data-variant="4Ah" data-price="129.00" data-old="189.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp"><i class="fas fa-battery-full"></i><span class="variant-name">4Ah</span></div>
-        `;
-        btnCarro.addEventListener('click', () => {
-            btnCarro.classList.add('active'); btnMoto.classList.remove('active');
-            grid.innerHTML = carVariants; setupVariantListeners(); grid.querySelector('.variant-item').click();
+        window.selectVariant = (type, idx) => {
+            currentVariant = products[type][idx];
+            updateDisplay();
+            renderVariants(type);
+        };
+        function updateDisplay() {
+            imageSpinner.classList.add('active');
+            mainImage.classList.add('loading');
+            setTimeout(() => {
+                mainImage.src = currentVariant.img;
+                mainImage.onload = () => {
+                    imageSpinner.classList.remove('active');
+                    mainImage.classList.remove('loading');
+                };
+                const name = `Bateria Moura ${currentVariant.variant}`;
+                productNameDisplay.textContent = name;
+                priceProductTitle.textContent = name;
+                oldPriceDisplay.textContent = `R$ ${currentVariant.old.toFixed(2).replace('.', ',')}`;
+                currentPriceDisplay.textContent = `R$ ${currentVariant.price.toFixed(2).replace('.', ',')}`;
+            }, 400);
+        }
+        document.getElementById('sel-carro').addEventListener('click', () => {
+            if (currentType === 'carro') return;
+            currentType = 'carro';
+            currentVariant = products.carro[0];
+            document.getElementById('sel-carro').classList.add('active');
+            document.getElementById('sel-moto').classList.remove('active');
+            updateDisplay();
+            renderVariants('carro');
         });
-        btnMoto.addEventListener('click', () => {
-            btnMoto.classList.add('active'); btnCarro.classList.remove('active');
-            grid.innerHTML = motoVariants; setupVariantListeners(); grid.querySelector('.variant-item').click();
+        document.getElementById('sel-moto').addEventListener('click', () => {
+            if (currentType === 'moto') return;
+            currentType = 'moto';
+            currentVariant = products.moto[0];
+            document.getElementById('sel-moto').classList.add('active');
+            document.getElementById('sel-carro').classList.remove('active');
+            updateDisplay();
+            renderVariants('moto');
         });
-        // Cart Logic
         addToCartBtn.addEventListener('click', () => {
-            if (addToCartBtn.classList.contains('loading')) return;
             addToCartBtn.classList.add('loading');
             setTimeout(() => {
                 try {
-                    const existing = cart.find(i => i.variant === currentVariant);
+                    const existing = cart.find(i => i.variant === currentVariant.variant);
                     if (existing) {
-                        existing.qty++;
+                        existing.qty += 1;
                     } else {
                         cart.push({
-                            variant: currentVariant,
-                            price: currentPrice,
-                            img: currentImg,
+                            variant: currentVariant.variant,
+                            price: currentVariant.price,
+                            img: currentVariant.img,
                             qty: 1
                         });
                     }
@@ -1395,6 +1580,13 @@
         // Sticky Header
         window.addEventListener('scroll', () => {
             document.getElementById('main-header').classList.toggle('sticky', window.scrollY > 50);
+        });
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('active');
+            });
         });
         // Hide loading if user comes back from another page
         window.addEventListener('pageshow', (event) => {
