@@ -1290,6 +1290,11 @@
         const imageSpinner = document.getElementById('image-spinner');
         const variantGrid = document.getElementById('variant-grid-container');
         const variantSpinner = document.getElementById('variant-spinner');
+
+        // Initialize variants on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderVariants('carro');
+        });
         const productNameDisplay = document.getElementById('display-product-name');
         const priceProductTitle = document.getElementById('price-product-title');
         const oldPriceDisplay = document.getElementById('old-price-display');
@@ -1318,7 +1323,7 @@
             variantSpinner.classList.add('active');
             setTimeout(() => {
                 const items = products[type];
-                let html = `<div class="variant-spinner-overlay" id="variant-spinner"><div class="spinner-sm"></div></div>`;
+                let html = '';
                 items.forEach((item, idx) => {
                     html += `
                         <div class="variant-item ${item.variant === currentVariant.variant ? 'active' : ''}" 
