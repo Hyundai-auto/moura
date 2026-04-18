@@ -962,22 +962,7 @@
                     <div class="variant-spinner-overlay" id="variant-spinner">
                         <div class="spinner-sm"></div>
                     </div>
-                    <div class="variant-item active" data-variant="60Ah" data-price="397.90" data-old="599.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png">
-                        <i class="fas fa-battery-full"></i>
-                        <span class="variant-name">60Ah</span>
-                    </div>
-                    <div class="variant-item" data-variant="40Ah" data-price="305.90" data-old="497.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png">
-                        <i class="fas fa-battery-full"></i>
-                        <span class="variant-name">40Ah</span>
-                    </div>
-                    <div class="variant-item" data-variant="45Ah" data-price="327.90" data-old="539.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png">
-                        <i class="fas fa-battery-full"></i>
-                        <span class="variant-name">45Ah</span>
-                    </div>
-                    <div class="variant-item" data-variant="50Ah" data-price="365.90" data-old="579.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png">
-                        <i class="fas fa-battery-full"></i>
-                        <span class="variant-name">50Ah</span>
-                    </div>
+                    <!-- Variantes serão injetadas via JavaScript -->
                 </div>
             </div>
             <!-- Pricing -->
@@ -1333,7 +1318,13 @@
                         </div>
                     `;
                 });
-                variantGrid.innerHTML = html;
+                
+                // Limpa apenas os itens de variante, mantendo o spinner
+                const itemsToRemove = variantGrid.querySelectorAll('.variant-item');
+                itemsToRemove.forEach(item => item.remove());
+                
+                // Adiciona os novos itens
+                variantGrid.insertAdjacentHTML('beforeend', html);
                 variantSpinner.classList.remove('active');
             }, 300);
         }
