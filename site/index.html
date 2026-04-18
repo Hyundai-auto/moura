@@ -1265,7 +1265,7 @@
         let currentVariant = products.carro[0];
         let cart = [];
         let addressData = null;
-        let selectedShipping = 'express';
+        let selectedShipping = null;
         // Elements
         const mainImage = document.getElementById('main-image');
         const imageSpinner = document.getElementById('image-spinner');
@@ -1433,8 +1433,14 @@
         function resetToCartView() {
             cartMainContent.style.display = 'block';
             orderSummaryContent.style.display = 'none';
-            cartFooterMain.style.display = 'block';
             cartFooterSummary.style.display = 'none';
+            
+            // Se o CEP estiver preenchido e uma opção de envio NÃO estiver selecionada, oculta o rodapé
+            if (cepInput.value.length === 9 && !selectedShipping) {
+                cartFooterMain.style.display = 'none';
+            } else {
+                cartFooterMain.style.display = 'block';
+            }
         }
         document.getElementById('cart-trigger').addEventListener('click', openCart);
         document.getElementById('close-cart').addEventListener('click', () => {
@@ -1452,6 +1458,10 @@
             } else {
                 addressDisplay.style.display = 'none';
                 checkoutFields.style.display = 'none';
+                cartFooterMain.style.display = 'block';
+                // Reset shipping selection
+                selectedShipping = null;
+                shippingCards.forEach(c => c.classList.remove('active'));
             }
         });
         async function lookupCEP(cep) {
@@ -1463,6 +1473,7 @@
                 if (data.erro) {
                     addressDisplay.innerHTML = '<span style="color:var(--danger);">CEP não encontrado.</span>';
                     checkoutFields.style.display = 'none';
+                    cartFooterMain.style.display = 'block';
                 } else {
                     addressData = data;
                     addressDisplay.innerHTML = `
@@ -1470,9 +1481,14 @@
                         ${data.bairro} - ${data.localidade}/${data.uf}
                     `;
                     checkoutFields.style.display = 'block';
+                    cartFooterMain.style.display = 'none';
+                    // Reset shipping selection when new CEP is loaded
+                    selectedShipping = null;
+                    shippingCards.forEach(c => c.classList.remove('active'));
                 }
             } catch (err) {
                 addressDisplay.innerHTML = '<span style="color:var(--danger);">Erro ao buscar CEP.</span>';
+                cartFooterMain.style.display = 'block';
             }
         }
         // Shipping Selection
@@ -1486,6 +1502,7 @@
                 } else {
                     scheduleFields.style.display = 'none';
                 }
+                cartFooterMain.style.display = 'block';
             });
         });
         // Finalize (Show Summary)
