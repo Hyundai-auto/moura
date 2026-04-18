@@ -805,6 +805,9 @@
             border-top: 1px solid var(--border-color);
             background: white;
         }
+        #cart-footer-main {
+            display: none;
+        }
         .total-row {
             display: flex;
             justify-content: space-between;
@@ -1222,7 +1225,7 @@
                     <span class="total-value" id="cart-total-display">R$ 0,00</span>
                 </div>
                 <button class="btn-primary" id="finalize-order-btn" style="background:var(--primary);">
-                    <span>Continuar</span>
+                    <span>Prosseguir</span>
                 </button>
             </div>
             <!-- Footer for Summary View -->
@@ -1435,11 +1438,15 @@
             orderSummaryContent.style.display = 'none';
             cartFooterSummary.style.display = 'none';
             
-            // Se o CEP estiver preenchido e uma opção de envio NÃO estiver selecionada, oculta o rodapé
-            if (cepInput.value.length === 9 && !selectedShipping) {
-                cartFooterMain.style.display = 'none';
-            } else {
+            // Oculta o rodapé por padrão ao abrir/voltar para a visualização do carrinho
+            cartFooterMain.style.display = 'none';
+            
+            // Se o CEP estiver preenchido e uma opção de envio ESTIVER selecionada, mostra o rodapé
+            if (cepInput.value.length === 9 && selectedShipping) {
                 cartFooterMain.style.display = 'block';
+            } else if (cepInput.value.length !== 9) {
+                // Se o CEP não estiver preenchido, também mantém oculto conforme solicitado
+                cartFooterMain.style.display = 'none';
             }
         }
         document.getElementById('cart-trigger').addEventListener('click', openCart);
@@ -1458,7 +1465,7 @@
             } else {
                 addressDisplay.style.display = 'none';
                 checkoutFields.style.display = 'none';
-                cartFooterMain.style.display = 'block';
+                cartFooterMain.style.display = 'none';
                 // Reset shipping selection
                 selectedShipping = null;
                 shippingCards.forEach(c => c.classList.remove('active'));
@@ -1473,7 +1480,7 @@
                 if (data.erro) {
                     addressDisplay.innerHTML = '<span style="color:var(--danger);">CEP não encontrado.</span>';
                     checkoutFields.style.display = 'none';
-                    cartFooterMain.style.display = 'block';
+                    cartFooterMain.style.display = 'none';
                 } else {
                     addressData = data;
                     addressDisplay.innerHTML = `
@@ -1488,7 +1495,7 @@
                 }
             } catch (err) {
                 addressDisplay.innerHTML = '<span style="color:var(--danger);">Erro ao buscar CEP.</span>';
-                cartFooterMain.style.display = 'block';
+                cartFooterMain.style.display = 'none';
             }
         }
         // Shipping Selection
