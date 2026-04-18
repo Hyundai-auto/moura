@@ -1018,6 +1018,22 @@
     display: block;
 }
 
+        .contact-info div {
+    display: flex;
+    flex-direction: column; /* Força um item abaixo do outro */
+    gap: 2px;
+}
+
+.dias-texto {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.horario-texto {
+    color: #ffb400; /* Cor de destaque para o horário */
+    font-weight: bold;
+}
+
 
 
     </style>
@@ -1320,11 +1336,14 @@
                 <li><i class="fas fa-envelope"></i> contato@suporteonline.com</li>
                 <li><i class="fas fa-phone-alt"></i> (21) 99173-6182</li>
                 <li>
-                    <i class="fas fa-clock"></i> 
-                    <strong>Funcionamento:</strong><br>
-                    Seg. a Dom.<br>
-                    07:00 às 23:00
-                </li>
+                    <li>
+    <i class="fas fa-clock"></i> 
+    <div>
+        <strong>Funcionamento:</strong>
+        <span class="dias-texto">Segunda a Domingo</span>
+        <span class="horario-texto">07:00 às 23:00</span>
+    </div>
+</li>
             </ul>
         </div>
 
