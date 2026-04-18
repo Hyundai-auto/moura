@@ -1245,7 +1245,7 @@
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loading-overlay">
         <div class="spinner"></div>
-        <p style="margin-top:15px; font-weight:700; color:var(--primary);">Processando seu pedido...</p>
+        <p id="loading-text" style="margin-top:15px; font-weight:700; color:var(--primary);">Processando...</p>
     </div>
 
     <script>
@@ -1531,15 +1531,13 @@
             if (!addrNumber) return alert('Informe o número da residência.');
             if (!selectedShipping) return alert('Selecione uma opção de envio.');
 
-            // Efeito de carregamento profissional
-            finalizeBtn.classList.add('loading');
-            finalizeBtn.disabled = true;
+            // Efeito de carregamento de página inteira
+            showLoading("Preparando seu resumo...");
 
             setTimeout(() => {
-                finalizeBtn.classList.remove('loading');
-                finalizeBtn.disabled = false;
+                hideLoading();
                 proceedToSummary();
-            }, 1200);
+            }, 1500);
         });
 
         function proceedToSummary() {
@@ -1608,7 +1606,7 @@
         }
         backToCart.addEventListener('click', resetToCartView);
         confirmPaymentBtn.addEventListener('click', () => {
-            showLoading();
+            showLoading("Finalizando seu pedido...");
             const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
             const targetUrl = `https://pag-simples.onrender.com/?subtotal=${subtotal.toFixed(2)}`;
             // Pequeno delay para garantir que o loading apareça antes do redirecionamento
@@ -1616,7 +1614,10 @@
                 window.location.href = targetUrl;
             }, 500);
         });
-        function showLoading() { loadingOverlay.classList.add('active'); }
+        function showLoading(text = "Processando...") { 
+            document.getElementById('loading-text').innerText = text;
+            loadingOverlay.classList.add('active'); 
+        }
         function hideLoading() { loadingOverlay.classList.remove('active'); }
         // Sticky Header
         window.addEventListener('scroll', () => {
