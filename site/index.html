@@ -337,10 +337,11 @@
             font-size: 1.8rem;
             font-weight: 900;
             color: var(--primary);
+            letter-spacing: -1px;
         }
         .discount-tag {
-            background-color: var(--accent);
-            color: var(--primary-dark);
+            background-color: #EBFBEE;
+            color: var(--success);
             font-size: 0.75rem;
             font-weight: 800;
             padding: 2px 8px;
@@ -350,28 +351,29 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid #E9ECEF;
             padding-top: 12px;
         }
         .payment-info div {
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            font-weight: 500;
         }
         .payment-info i {
             color: var(--primary);
             width: 16px;
         }
-        /* Buttons */
+        /* CTA Button */
         .btn-primary {
             width: 100%;
-            background-color: var(--primary);
-            color: white;
-            border: none;
             padding: 16px;
+            border: none;
             border-radius: var(--radius-md);
+            background: var(--primary);
+            color: white;
             font-size: 1.1rem;
             font-weight: 800;
             cursor: pointer;
@@ -380,14 +382,14 @@
             justify-content: center;
             gap: 10px;
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 70, 190, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 70, 190, 0.2);
         }
         .btn-primary:active {
             transform: scale(0.98);
         }
         .btn-primary.loading {
-            opacity: 0.8;
             pointer-events: none;
+            opacity: 0.8;
         }
         .btn-spinner {
             width: 20px;
@@ -406,22 +408,24 @@
         }
         /* Features Section */
         .features-section {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            padding: 30px 20px;
+            background-color: #F8F9FA;
         }
         .feature-card {
             display: flex;
             gap: 15px;
-            align-items: flex-start;
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
         }
         .feature-icon {
+            width: 45px;
+            height: 45px;
             background-color: var(--primary-light);
             color: var(--primary);
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -430,7 +434,7 @@
         }
         .feature-content h3 {
             font-size: 0.95rem;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 4px;
         }
         .feature-content p {
@@ -440,21 +444,20 @@
         }
         /* Reviews Section */
         .reviews-section {
-            padding: 20px;
-            background-color: #F8F9FA;
+            padding: 30px 20px;
         }
         .section-title {
-            font-size: 1.1rem;
-            font-weight: 800;
+            font-size: 1.2rem;
+            font-weight: 900;
             margin-bottom: 20px;
             text-align: center;
         }
         .review-card {
             background: white;
-            padding: 15px;
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
+            padding: 15px;
             margin-bottom: 15px;
-            box-shadow: var(--shadow-sm);
         }
         .review-header {
             display: flex;
@@ -479,23 +482,22 @@
             font-size: 0.8rem;
         }
         .user-name {
-            display: block;
             font-size: 0.85rem;
             font-weight: 700;
+            display: block;
         }
         .stars {
-            color: #FFC107;
+            color: var(--accent);
             font-size: 0.7rem;
         }
         .review-text {
             font-size: 0.85rem;
             color: var(--text-gray);
             font-style: italic;
-            line-height: 1.4;
         }
         /* Footer */
         .footer {
-            background-color: var(--text-dark);
+            background-color: var(--primary-dark);
             color: white;
             padding: 40px 20px;
             text-align: center;
@@ -724,87 +726,73 @@
         }
         /* Order Summary View */
         .summary-section-title {
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             font-weight: 800;
-            color: var(--text-dark);
+            color: var(--primary);
             text-transform: uppercase;
-            margin-bottom: 16px;
-            letter-spacing: 0.8px;
+            margin-bottom: 14px;
+            letter-spacing: 0.5px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            position: relative;
+            gap: 8px;
         }
-        .summary-section-title::after {
+        .summary-section-title::before {
             content: '';
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(to right, var(--border-color), transparent);
+            width: 4px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 50%;
         }
         .summary-item-card {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 16px;
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
+            gap: 12px;
+            padding: 14px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f3f7 100%);
+            border: 1px solid #e8ecf1;
+            border-radius: 12px;
             margin-bottom: 12px;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 70, 190, 0.04);
+            transition: all 0.2s ease;
         }
         .summary-item-card:hover {
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary-light);
+            box-shadow: 0 4px 12px rgba(0, 70, 190, 0.08);
+            border-color: #dde2e5;
         }
         .summary-item-img {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             object-fit: contain;
-            border-radius: 8px;
-            background: var(--bg-light);
-            padding: 4px;
         }
         .summary-info-box {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 18px;
-            margin-bottom: 24px;
-            font-size: 0.85rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f3f7 100%);
+            border: 1px solid #e8ecf1;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-size: 0.8rem;
             color: var(--text-gray);
-            box-shadow: var(--shadow-sm);
+            box-shadow: 0 2px 8px rgba(0, 70, 190, 0.04);
         }
         .summary-info-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
-            align-items: center;
-        }
-        .summary-info-row:last-child {
-            margin-bottom: 0;
+            margin-bottom: 6px;
         }
         .summary-info-label {
             color: var(--text-light);
-            font-weight: 500;
         }
         .summary-info-value {
             font-weight: 700;
             color: var(--text-dark);
         }
         .summary-totals-block {
-            background: var(--primary-dark);
-            border-radius: 16px;
-            padding: 20px;
-            margin-top: 25px;
-            box-shadow: 0 8px 20px rgba(0, 51, 141, 0.2);
-            color: white;
-        }
-        .summary-totals-block .summary-info-label {
-            color: rgba(255,255,255,0.7);
-        }
-        .summary-totals-block .summary-info-value {
-            color: white;
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f3f7 100%);
+            border: 1px solid #e8ecf1;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0, 70, 190, 0.04);
         }
         .loading-overlay {
             position: fixed;
@@ -977,13 +965,16 @@
                     </div>
                     <span style="font-size: 0.7rem; color: var(--text-light);">Há 1 semana</span>
                 </div>
-                <p class="review-text">"Muito prático pedir pelo site. O preço é justo e a bateria é original mesmo, veio com certificado."</p>
+                <p class="review-text">"Preço justo e produto original. O agendamento funcionou perfeitamente."</p>
             </div>
         </section>
         <!-- Footer -->
         <footer class="footer">
-            <div class="footer-logo">MOURA</div>
-            <p class="footer-text">Baterias Online - Revendedor Autorizado<br>CNPJ: 00.000.000/0001-00</p>
+            <div class="footer-logo">BATERIAS ONLINE</div>
+            <p class="footer-text">
+  © 2026 Baterias Online. Todos os direitos reservados.<br>
+  Distribuidor de Baterias Automotivas. CNPJ: 45.198.398/0001-25
+</p>
             <div class="social-links">
                 <i class="fab fa-instagram"></i>
                 <i class="fab fa-facebook"></i>
@@ -995,41 +986,38 @@
     <div class="modal-overlay" id="cart-modal">
         <div class="cart-panel">
             <div class="cart-header">
-                <span class="cart-title">Carrinho</span>
+                <span class="cart-title">Seu Pedido</span>
                 <button class="close-btn" id="close-cart"><i class="fas fa-times"></i></button>
             </div>
-            <!-- View 1: Cart Items & Address -->
-            <div id="cart-main-content" style="flex:1; overflow-y:auto; padding:20px;">
-                <div id="cart-items-container">
+            <!-- View 1: Cart Items -->
+            <div id="cart-main-content" style="flex:1; display:flex; flex-direction:column; overflow-y:auto;">
+                <div class="cart-content" id="cart-items-container">
                     <!-- Items via JS -->
                 </div>
-                <div class="mt-20">
-                    <span class="section-label">Endereço de Entrega</span>
+                <div style="padding: 20px; border-top: 1px solid var(--border-color);">
                     <div class="form-group">
-                        <label class="form-label">CEP</label>
-                        <input type="text" class="form-input" id="cep-input" placeholder="00000-000" maxlength="9">
-                        <div class="address-box" id="address-box">
-                            <i class="fas fa-map-marker-alt"></i> <span id="address-text"></span>
-                        </div>
+                        <label class="form-label">CEP para Entrega</label>
+                        <input type="text" class="form-input" id="cep-input" placeholder="00000-000" maxlength="9" inputmode="numeric">
+                        <div class="address-box" id="address-display"></div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Número</label>
-                            <input type="text" class="form-input" id="addr-number" placeholder="Ex: 123">
+                    <div id="checkout-fields" style="display:none;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Número</label>
+                                <input type="text" class="form-input" id="addr-number" placeholder="Ex: 123" inputmode="numeric">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Complemento</label>
+                                <input type="text" class="form-input" id="addr-comp" placeholder="Apto, Bloco...">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label class="form-label">Complemento</label>
-                            <input type="text" class="form-input" id="addr-complement" placeholder="Apto, Bloco...">
-                        </div>
-                    </div>
-                    <div class="mt-20">
-                        <span class="section-label">Opções de Entrega</span>
+                        <label class="form-label">Opção de Entrega</label>
                         <div class="shipping-options">
-                            <div class="shipping-card active" data-value="express">
+                            <div class="shipping-card" data-value="express">
                                 <i class="fas fa-bolt"></i>
                                 <div class="shipping-info">
-                                    <span class="shipping-name">Entrega Expressa</span>
-                                    <span class="shipping-time">30 a 40 minutos</span>
+                                    <span class="shipping-name">Entrega Rápida</span>
+                                    <span class="shipping-time">30-40 minutos</span>
                                 </div>
                                 <span class="shipping-price">GRÁTIS</span>
                             </div>
@@ -1037,7 +1025,7 @@
                                 <i class="fas fa-calendar-alt"></i>
                                 <div class="shipping-info">
                                     <span class="shipping-name">Agendar Entrega</span>
-                                    <span class="shipping-time">Escolha o melhor horário</span>
+                                    <span class="shipping-time">Escolha o horário</span>
                                 </div>
                                 <span class="shipping-price">GRÁTIS</span>
                             </div>
@@ -1045,7 +1033,7 @@
                         <div id="schedule-fields" style="display:none; margin-top:15px;">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label class="form-label">Data</label>
+                                    <label class="form-label">Dia</label>
                                     <input type="date" class="form-input" id="schedule-day">
                                 </div>
                                 <div class="form-group">
@@ -1110,103 +1098,160 @@
         const priceProductTitle = document.getElementById('price-product-title');
         const currentPriceDisplay = document.getElementById('current-price-display');
         const oldPriceDisplay = document.getElementById('old-price-display');
-        const addToCartBtn = document.getElementById('add-to-cart-btn');
-        const cartTrigger = document.getElementById('cart-trigger');
-        const closeCart = document.getElementById('close-cart');
-        const cartModal = document.getElementById('cart-modal');
         const cartBadge = document.getElementById('cart-badge');
+        const cartModal = document.getElementById('cart-modal');
         const cartItemsContainer = document.getElementById('cart-items-container');
         const totalDisplay = document.getElementById('total-display');
         const cepInput = document.getElementById('cep-input');
-        const addressBox = document.getElementById('address-box');
-        const addressText = document.getElementById('address-text');
+        const addressDisplay = document.getElementById('address-display');
+        const checkoutFields = document.getElementById('checkout-fields');
+        const loadingOverlay = document.getElementById('loading-overlay');
         const shippingCards = document.querySelectorAll('.shipping-card');
         const scheduleFields = document.getElementById('schedule-fields');
-        const finalizeBtn = document.getElementById('finalize-btn');
+        const addToCartBtn = document.getElementById('add-to-cart-btn');
+        // Summary View DOM
         const cartMainContent = document.getElementById('cart-main-content');
         const orderSummaryContent = document.getElementById('order-summary-content');
-        const summaryDetails = document.getElementById('summary-details');
-        const backToCart = document.getElementById('back-to-cart');
         const cartFooterMain = document.getElementById('cart-footer-main');
         const cartFooterSummary = document.getElementById('cart-footer-summary');
+        const finalizeBtn = document.getElementById('finalize-btn');
         const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
-        const loadingOverlay = document.getElementById('loading-overlay');
-        // Variant Selection
-        variantItems.forEach(item => {
-            item.addEventListener('click', () => {
-                if (item.classList.contains('active')) return;
-                variantSpinner.classList.add('active');
-                imageSpinner.classList.add('active');
-                mainImage.classList.add('loading');
-                variantItems.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-                currentVariant = item.dataset.variant;
-                currentPrice = parseFloat(item.dataset.price);
-                currentImg = item.dataset.img;
-                setTimeout(() => {
-                    mainImage.src = currentImg;
-                    productNameDisplay.textContent = `Bateria Moura ${currentVariant} - M${currentVariant.replace('Ah', '')}AD`;
-                    priceProductTitle.textContent = `Bateria Moura ${currentVariant} - M${currentVariant.replace('Ah', '')}AD`;
+        const summaryDetails = document.getElementById('summary-details');
+        const backToCart = document.getElementById('back-to-cart');
+        // Variant Selection with Image Loading Spinner
+        function setupVariantListeners() {
+            document.querySelectorAll('.variant-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    if (variantSpinner.classList.contains('active')) return;
+                    document.querySelectorAll('.variant-item').forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    // Show variant spinner
+                    variantSpinner.classList.add('active');
+                    currentVariant = item.dataset.variant;
+                    currentPrice = parseFloat(item.dataset.price);
+                    currentImg = item.dataset.img;
+                    const oldPrice = item.dataset.old;
+                    const newTitle = `Bateria Moura ${currentVariant} - M${currentVariant.replace('Ah', '')}AD`;
+                    productNameDisplay.textContent = newTitle;
+                    priceProductTitle.textContent = newTitle;
                     currentPriceDisplay.textContent = `R$ ${currentPrice.toFixed(2).replace('.', ',')}`;
-                    oldPriceDisplay.textContent = `R$ ${item.dataset.old.replace('.', ',')}`;
-                    mainImage.onload = () => {
+                    oldPriceDisplay.textContent = `R$ ${oldPrice.replace('.', ',')}`;
+                    // Show spinner while loading image
+                    imageSpinner.classList.add('active');
+                    mainImage.classList.add('loading');
+                    // Load the image
+                    const img = new Image();
+                    img.onload = () => {
+                        mainImage.src = currentImg;
                         mainImage.classList.remove('loading');
                         imageSpinner.classList.remove('active');
+                        // Hide variant spinner after a small delay for better UX
+                        setTimeout(() => variantSpinner.classList.remove('active'), 400);
                     };
-                    variantSpinner.classList.remove('active');
-                }, 400);
+                    img.onerror = () => {
+                        mainImage.src = currentImg;
+                        mainImage.classList.remove('loading');
+                        imageSpinner.classList.remove('active');
+                        variantSpinner.classList.remove('active');
+                    };
+                    img.src = currentImg;
+                });
             });
+        }
+        setupVariantListeners();
+        // Vehicle Selection Logic
+        const btnCarro = document.getElementById('sel-carro');
+        const btnMoto = document.getElementById('sel-moto');
+        const grid = document.getElementById('variant-grid-container');
+        const carVariants = `
+            <div class="variant-spinner-overlay" id="variant-spinner"><div class="spinner-sm"></div></div>
+            <div class="variant-item active" data-variant="60Ah" data-price="397.90" data-old="599.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">60Ah</span></div>
+            <div class="variant-item" data-variant="40Ah" data-price="305.90" data-old="497.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">40Ah</span></div>
+            <div class="variant-item" data-variant="45Ah" data-price="327.90" data-old="539.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">45Ah</span></div>
+            <div class="variant-item" data-variant="50Ah" data-price="365.90" data-old="579.90" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png"><i class="fas fa-battery-full"></i><span class="variant-name">50Ah</span></div>
+        `;
+        const motoVariants = `
+            <div class="variant-spinner-overlay" id="variant-spinner"><div class="spinner-sm"></div></div>
+            <div class="variant-item active" data-variant="5Ah" data-price="135.00" data-old="199.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp"><i class="fas fa-battery-full"></i><span class="variant-name">5Ah</span></div>
+            <div class="variant-item" data-variant="6Ah" data-price="149.00" data-old="219.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp"><i class="fas fa-battery-full"></i><span class="variant-name">6Ah</span></div>
+            <div class="variant-item" data-variant="7Ah" data-price="175.00" data-old="249.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp"><i class="fas fa-battery-full"></i><span class="variant-name">7Ah</span></div>
+            <div class="variant-item" data-variant="4Ah" data-price="129.00" data-old="189.00" data-img="https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp"><i class="fas fa-battery-full"></i><span class="variant-name">4Ah</span></div>
+        `;
+        btnCarro.addEventListener('click', () => {
+            btnCarro.classList.add('active'); btnMoto.classList.remove('active');
+            grid.innerHTML = carVariants; setupVariantListeners(); grid.querySelector('.variant-item').click();
+        });
+        btnMoto.addEventListener('click', () => {
+            btnMoto.classList.add('active'); btnCarro.classList.remove('active');
+            grid.innerHTML = motoVariants; setupVariantListeners(); grid.querySelector('.variant-item').click();
         });
         // Cart Logic
         addToCartBtn.addEventListener('click', () => {
+            if (addToCartBtn.classList.contains('loading')) return;
             addToCartBtn.classList.add('loading');
             setTimeout(() => {
-                const existing = cart.find(i => i.variant === currentVariant);
-                if (existing) {
-                    existing.qty++;
-                } else {
-                    cart.push({ variant: currentVariant, price: currentPrice, img: currentImg, qty: 1 });
+                try {
+                    const existing = cart.find(i => i.variant === currentVariant);
+                    if (existing) {
+                        existing.qty++;
+                    } else {
+                        cart.push({
+                            variant: currentVariant,
+                            price: currentPrice,
+                            img: currentImg,
+                            qty: 1
+                        });
+                    }
+                    updateCart();
+                    openCart();
+                } catch (err) {
+                    console.error("Erro ao adicionar ao carrinho:", err);
+                } finally {
+                    addToCartBtn.classList.remove('loading');
                 }
-                updateCart();
-                addToCartBtn.classList.remove('loading');
-                openCartView();
-            }, 600);
+            }, 800);
         });
         function updateCart() {
-            const count = cart.reduce((sum, i) => sum + i.qty, 0);
-            cartBadge.textContent = count;
-            cartBadge.classList.toggle('active', count > 0);
-            renderCartItems();
-            const total = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-            totalDisplay.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-        }
-        function renderCartItems() {
+            const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+            cartBadge.textContent = totalItems;
+            cartBadge.classList.toggle('active', totalItems > 0);
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<p style="text-align:center; padding:20px; color:var(--text-light);">Seu carrinho está vazio.</p>';
-                return;
-            }
-            cartItemsContainer.innerHTML = cart.map((item, index) => `
-                <div class="cart-item">
-                    <img src="${item.img}" class="cart-item-img">
-                    <div class="cart-item-details">
-                        <div class="cart-item-name">Bateria Moura ${item.variant}</div>
-                        <div class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
-                        <div class="qty-control">
-                            <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
-                            <span style="font-size:0.9rem; font-weight:700;">${item.qty}</span>
-                            <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+                cartItemsContainer.innerHTML = '<p style="text-align:center; color:var(--text-light); padding:20px;">Seu carrinho está vazio.</p>';
+                if (totalDisplay) totalDisplay.textContent = 'R$ 0,00';
+            } else {
+                let html = '';
+                let subtotal = 0;
+                cart.forEach((item, idx) => {
+                    subtotal += item.price * item.qty;
+                    html += `
+                        <div class="cart-item">
+                            <img src="${item.img}" class="cart-item-img">
+                            <div class="cart-item-details">
+                                <div class="cart-item-name">Bateria Moura ${item.variant}</div>
+                                <div class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
+                                <div class="qty-control">
+                                    <button class="qty-btn" onclick="changeQty(${idx}, -1)">-</button>
+                                    <span style="font-weight:700; font-size:0.9rem;">${item.qty}</span>
+                                    <button class="qty-btn" onclick="changeQty(${idx}, 1)">+</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            `).join("");
+                    `;
+                });
+                cartItemsContainer.innerHTML = html;
+                if (totalDisplay) totalDisplay.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+            }
         }
-        window.changeQty = (index, delta) => {
-            cart[index].qty += delta;
-            if (cart[index].qty <= 0) cart.splice(index, 1);
+        window.changeQty = (idx, delta) => {
+            cart[idx].qty += delta;
+            if (cart[idx].qty < 1) cart.splice(idx, 1);
             updateCart();
         };
-        function openCartView() {
-            cartModal.classList.add('active');
+        function openCart() { 
+            cartModal.classList.add('active'); 
+            document.body.style.overflow = 'hidden';
+            cartMainContent.scrollTop = 0;
+            orderSummaryContent.scrollTop = 0;
             resetToCartView();
         }
         function resetToCartView() {
@@ -1215,25 +1260,45 @@
             cartFooterMain.style.display = 'block';
             cartFooterSummary.style.display = 'none';
         }
-        cartTrigger.addEventListener('click', openCartView);
-        closeCart.addEventListener('click', () => cartModal.classList.remove('active'));
-        // CEP API
+        document.getElementById('cart-trigger').addEventListener('click', openCart);
+        document.getElementById('close-cart').addEventListener('click', () => {
+            cartModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        // CEP Lookup
         cepInput.addEventListener('input', (e) => {
-            let value = e.target.value.replace(/\D/g, "");
-            if (value.length > 5) value = value.slice(0, 5) + "-" + value.slice(5, 8);
-            e.target.value = value;
-            if (value.length === 9) {
-                fetch(`https://viacep.com.br/ws/${value.replace("-", "")}/json/`)
-                    .then(r => r.json())
-                    .then(data => {
-                        if (!data.erro) {
-                            addressData = data;
-                            addressText.textContent = `${data.logradouro}, ${data.bairro} - ${data.localidade}/${data.uf}`;
-                            addressBox.style.display = 'block';
-                        }
-                    });
+            let val = e.target.value.replace(/\D/g, '');
+            if (val.length > 5) val = val.slice(0, 5) + '-' + val.slice(5, 8);
+            e.target.value = val;
+            if (val.length === 9) {
+                e.target.blur();
+                lookupCEP(val.replace('-', ''));
+            } else {
+                addressDisplay.style.display = 'none';
+                checkoutFields.style.display = 'none';
             }
         });
+        async function lookupCEP(cep) {
+            addressDisplay.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Buscando endereço...';
+            addressDisplay.style.display = 'block';
+            try {
+                const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+                const data = await res.json();
+                if (data.erro) {
+                    addressDisplay.innerHTML = '<span style="color:var(--danger);">CEP não encontrado.</span>';
+                    checkoutFields.style.display = 'none';
+                } else {
+                    addressData = data;
+                    addressDisplay.innerHTML = `
+                        <strong>${data.logradouro}</strong><br>
+                        ${data.bairro} - ${data.localidade}/${data.uf}
+                    `;
+                    checkoutFields.style.display = 'block';
+                }
+            } catch (err) {
+                addressDisplay.innerHTML = '<span style="color:var(--danger);">Erro ao buscar CEP.</span>';
+            }
+        }
         // Shipping Selection
         shippingCards.forEach(card => {
             card.addEventListener('click', () => {
@@ -1255,53 +1320,37 @@
             if (!addrNumber) return alert('Informe o número da residência.');
             if (!selectedShipping) return alert('Selecione uma opção de envio.');
             let scheduleText = '';
-            let scheduleIcon = 'fa-truck';
             if (selectedShipping === 'scheduled') {
                 const day = document.getElementById('schedule-day').value;
                 const time = document.getElementById('schedule-time').value;
                 if (!day || !time) return alert('Selecione o dia e horário para o agendamento.');
                 scheduleText = `Agendado para: ${day.split('-').reverse().join('/')} às ${time}`;
-                scheduleIcon = 'fa-calendar-check';
             } else {
                 scheduleText = 'Entrega em 30-40 Minutos';
-                scheduleIcon = 'fa-bolt';
             }
             // Build Summary HTML
             let subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
             let itemsHtml = cart.map(item => `
                 <div class="summary-item-card">
-                    <img src="${item.img}" class="summary-item-img">
+                    <img src="${item.img}" class="summary-item-img" style="background: white; padding: 6px; border-radius: 8px;">
                     <div style="flex:1;">
-                        <div style="font-weight:700; font-size:0.95rem; color:var(--text-dark); margin-bottom:2px;">Bateria Moura ${item.variant}</div>
-                        <div style="font-size:0.8rem; color:var(--text-light);">${item.qty} unidade${item.qty > 1 ? 's' : ''}</div>
+                        <div style="font-weight:800; font-size:0.9rem; color:var(--text-dark); margin-bottom:4px;">Bateria Moura ${item.variant}</div>
+                        <div style="font-size:0.75rem; color:var(--text-light); line-height:1.4;">${item.qty}x R$ ${item.price.toFixed(2).replace(".", ",")}</div>
                     </div>
-                    <div style="font-weight:800; color:var(--text-dark); font-size:0.95rem;">R$ ${(item.price * item.qty).toFixed(2).replace(".", ",")}</div>
+                    <div style="font-weight:900; color:var(--primary); font-size:0.95rem; text-align:right;">R$ ${(item.price * item.qty).toFixed(2).replace(".", ",")}</div>
                 </div>
             `).join("");
             summaryDetails.innerHTML = `
                 <div class="summary-section-title">Produtos</div>
-                <div style="margin-bottom:24px;">
+                <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
                     ${itemsHtml}
                 </div>
                 <div class="summary-section-title">Entrega</div>
                 <div class="summary-info-box">
-                    <div style="display:flex; gap:12px; align-items:flex-start;">
-                        <div style="width:36px; height:36px; border-radius:10px; background:var(--primary-light); color:var(--primary); display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <div style="font-weight:700; color:var(--text-dark); font-size:0.9rem;">${addressData.logradouro}, ${addrNumber}</div>
-                            <div style="color:var(--text-light); font-size:0.8rem; margin-top:2px;">${addressData.bairro} • ${addressData.localidade}, ${addressData.uf}</div>
-                        </div>
-                    </div>
-                    <div style="margin-top:16px; padding-top:16px; border-top:1px solid #f1f5f9; display:flex; gap:12px; align-items:center;">
-                        <div style="width:36px; height:36px; border-radius:10px; background:#f0fdf4; color:#16a34a; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                            <i class="fas ${scheduleIcon}"></i>
-                        </div>
-                        <div>
-                            <div style="font-weight:700; color:#16a34a; font-size:0.9rem;">${scheduleText}</div>
-                            <div style="color:var(--text-light); font-size:0.8rem; margin-top:2px;">Frete e Instalação Grátis</div>
-                        </div>
+                    <div style="font-weight:800; color:var(--text-dark); margin-bottom:4px;">${addressData.logradouro}, ${addrNumber}</div>
+                    <div>${addressData.bairro} - ${addressData.localidade}/${addressData.uf}</div>
+                    <div style="margin-top:8px; color:var(--primary); font-weight:700;">
+                        <i class="fas fa-truck"></i> ${scheduleText}
                     </div>
                 </div>
                 <div class="summary-totals-block">
@@ -1311,15 +1360,12 @@
                     </div>
                     <div class="summary-info-row">
                         <span class="summary-info-label">Frete e Instalação</span>
-                        <span class="summary-info-value">R$ 0,00</span>
+                        <span class="summary-info-value" style="color:var(--success);">GRÁTIS</span>
                     </div>
-                    <div class="summary-info-row" style="margin-top:15px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.2);">
-                        <span style="font-weight:800; font-size:1.2rem;">Total do Pedido</span>
-                        <span style="font-weight:900; font-size:1.4rem;">R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
+                    <div class="summary-info-row" style="border-top:1px dashed #cbd5e1; margin-top:10px; padding-top:10px;">
+                        <span style="font-weight:900; font-size:1.1rem;">Total</span>
+                        <span style="font-weight:900; font-size:1.1rem; color:var(--primary);">R$ ${subtotal.toFixed(2).replace('.', ',')}</span>
                     </div>
-                </div>
-                <div style="margin-top:20px; display:flex; align-items:center; gap:8px; justify-content:center; color:var(--text-light); font-size:0.75rem;">
-                    <i class="fas fa-shield-alt"></i> Pagamento 100% Seguro
                 </div>
             `;
             cartMainContent.style.display = 'none';
