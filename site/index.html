@@ -591,31 +591,81 @@
             transform: rotate(180deg);
         }
 
-        /* Footer */
         .footer {
-            background-color: var(--primary-dark);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-        .footer-text {
-            font-size: 0.75rem;
-            line-height: 1.6;
-            opacity: 0.8;
-            margin-bottom: 15px;
-        }
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            font-size: 1.2rem;
-        }
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 60px 20px 20px;
+    font-family: sans-serif;
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-column h3 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    color: #ffb400; /* Cor de destaque */
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.footer-column ul li a:hover {
+    color: #ffffff;
+}
+
+.footer-description {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 15px 0;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    font-size: 1.2rem;
+}
+
+.social-links a {
+    color: #ffffff;
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    color: #ffb400;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.footer-bottom p {
+    margin: 5px 0;
+}
         /* Utilities */
         .mt-20 { margin-top: 20px; }
         .mb-10 { margin-bottom: 10px; }
