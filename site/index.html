@@ -621,11 +621,12 @@
             width: 100%;
             max-width: 480px;
             background: white;
-            height: 100%;
+            height: 100dvh;
             display: flex;
             flex-direction: column;
             animation: slideIn 0.3s ease-out;
             margin: 0 auto;
+            overflow: hidden;
         }
 
         @keyframes slideIn {
@@ -1094,7 +1095,7 @@
             </div>
 
             <!-- View 1: Cart Items -->
-            <div id="cart-main-content" style="flex:1; display:flex; flex-direction:column; overflow:hidden;">
+            <div id="cart-main-content" style="flex:1; display:flex; flex-direction:column; overflow-y:auto;">
                 <div class="cart-content" id="cart-items-container">
                     <!-- Items via JS -->
                 </div>
@@ -1102,7 +1103,7 @@
                 <div style="padding: 20px; border-top: 1px solid var(--border-color);">
                     <div class="form-group">
                         <label class="form-label">CEP para Entrega</label>
-                        <input type="text" class="form-input" id="cep-input" placeholder="00000-000" maxlength="9">
+                        <input type="text" class="form-input" id="cep-input" placeholder="00000-000" maxlength="9" inputmode="numeric">
                         <div class="address-box" id="address-display"></div>
                     </div>
 
@@ -1110,7 +1111,7 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label class="form-label">Número</label>
-                                <input type="text" class="form-input" id="addr-number" placeholder="Ex: 123">
+                                <input type="text" class="form-input" id="addr-number" placeholder="Ex: 123" inputmode="numeric">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Complemento</label>
@@ -1381,6 +1382,9 @@
 
         function openCart() { 
             cartModal.classList.add('active'); 
+            document.body.style.overflow = 'hidden';
+            cartMainContent.scrollTop = 0;
+            orderSummaryContent.scrollTop = 0;
             resetToCartView();
         }
 
@@ -1392,7 +1396,10 @@
         }
 
         document.getElementById('cart-trigger').addEventListener('click', openCart);
-        document.getElementById('close-cart').addEventListener('click', () => cartModal.classList.remove('active'));
+        document.getElementById('close-cart').addEventListener('click', () => {
+            cartModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
 
         // CEP Lookup
         cepInput.addEventListener('input', (e) => {
