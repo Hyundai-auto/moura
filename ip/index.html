@@ -2,79 +2,63 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Localizador por IP</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f2f5;
-            margin: 0;
-        }
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        /* Design Premium e Minimalista */
+        #banner-localidade {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            padding: 12px 20px;
+            font-family: 'Segoe UI', Roboto, sans-serif;
             text-align: center;
-            max-width: 400px;
-            width: 90%;
+            color: #343a40;
+            display: none; /* Inicia oculto para evitar 'pulo' de layout */
+            animation: fadeIn 0.5s ease-in;
         }
-        h2 { color: #1a73e8; margin-top: 0; }
-        p { color: #5f6368; line-height: 1.6; }
-        .data { font-weight: bold; color: #202124; }
-        #loading { font-style: italic; color: #888; }
-        .hidden { display: none; }
+
+        #banner-localidade strong {
+            color: #0046be; /* Azul institucional/autoridade */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2>Sua Localização</h2>
-    <div id="loading">Consultando endereço IP...</div>
-    
-    <div id="result" class="hidden">
-        <p><strong>IP:</strong> <span id="ip" class="data"></span></p>
-        <p><strong>Cidade:</strong> <span id="city" class="data"></span></p>
-        <p><strong>Estado/Região:</strong> <span id="region" class="data"></span></p>
-        <p><strong>País:</strong> <span id="country" class="data"></span></p>
-        <p><strong>Provedor:</strong> <span id="org" class="data"></span></p>
+    <div id="banner-localidade">
+        <span id="texto-local">📍 Verificando ofertas para sua região...</span>
     </div>
-</div>
 
-<script>
-    async function fetchLocation() {
-        try {
-            // Chamada para a API ipapi (retorna JSON por padrão)
-            const response = await fetch('https://ipapi.co/json/');
-            
-            if (!response.ok) throw new Error('Falha na consulta');
+    <script>
+        async function obterLocalidade() {
+            const banner = document.getElementById('banner-localidade');
+            const texto = document.getElementById('texto-local');
 
-            const data = await response.json();
+            try {
+                // API estável e rápida
+                const response = await fetch('https://ipapi.co/json/');
+                
+                if (!response.ok) throw new Error();
 
-            // Preenchendo os campos
-            document.getElementById('ip').textContent = data.ip;
-            document.getElementById('city').textContent = data.city;
-            document.getElementById('region').textContent = data.region;
-            document.getElementById('country').textContent = data.country_name;
-            document.getElementById('org').textContent = data.org;
+                const data = await response.json();
 
-            // Interface
-            document.getElementById('loading').classList.add('hidden');
-            document.getElementById('result').classList.remove('hidden');
-
-        } catch (error) {
-            document.getElementById('loading').textContent = 'Erro ao carregar dados. Verifique seu bloqueador de anúncios.';
-            console.error('Erro:', error);
+                if (data.city) {
+                    banner.style.display = 'block';
+                    texto.innerHTML = `Identificamos ofertas exclusivas com <strong>Frete Prioritário</strong> para <strong>${data.city}, ${data.region_code}</strong>`;
+                }
+            } catch (error) {
+                // Fallback: se a API falhar, exibe uma mensagem genérica de autoridade
+                banner.style.display = 'block';
+                texto.innerHTML = `📍 Aproveite nossas ofertas exclusivas para sua região com <strong>Envio Imediato</strong>.`;
+                console.error("Erro ao identificar localidade de forma silenciosa.");
+            }
         }
-    }
 
-    // Inicia a busca ao carregar a página
-    window.onload = fetchLocation;
-</script>
+        // Executa assim que o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', obterLocalidade);
+    </script>
 
 </body>
 </html>
