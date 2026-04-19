@@ -1183,7 +1183,7 @@
     </div>
         <div>
         <i class="fas fa-shipping-fast"></i>
-        <span>Entrega em até 30-40 minutos</span>
+        <span>Entrega em até 30 minutos</span>
     </div>
 </div>
             </div>
@@ -1812,7 +1812,7 @@
                 if (!day || !time) return alert('Selecione o dia e horário para o agendamento.');
                 scheduleText = `Agendado para: ${day.split('-').reverse().join('/')} às ${time}`;
             } else {
-                scheduleText = 'Entrega em 30-40 Minutos';
+                scheduleText = 'Entrega em 30 Minutos';
             }
             // Build Summary HTML
             let subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
