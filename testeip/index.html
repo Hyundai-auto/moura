@@ -1092,28 +1092,6 @@
         <section class="hero">
   <h1 class="hero-title">Entrega Rápida</h1>
   <p class="hero-subtitle">Entrega e instalação grátis em até 40 min</p>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <script>
-    jQuery(document).ready(function(e) {
-        e.getJSON("https://wtfismyip.com/json", function(t) {
-            // Extrai a localização e remove o ", Brazil"
-            var o = (t.YourFuckingLocation).replace(", Brazil", "");
-            
-            // Insere apenas o nome da cidade e região
-            e(".custom-address").html("<strong>" + o + " e Região</strong>");
-            e(".shipping-preview-loading").hide();
-        });
-    });
-  </script>
-
-  <div class="shipping-preview-line" style="position: relative; margin-top: 15px; margin-bottom: 25px;">
-      <p class="shipping-preview-loading" style="text-align: left !important; color: #4a4a4a !important; font-size: 13px !important; margin: 0; display: block;">Localizando...</p>
-
-      <p style="text-align: left !important; color: #4a4a4a !important; font-size: 13px !important; margin: 0;" class="custom-address"></p>
-  </div>
-  </section>
   
   <div class="hero-reviews">
     <div class="reviews-left">
@@ -1122,7 +1100,29 @@
     </div>
     <span class="rating-count">13.478 avaliações</span>
   </div>
-</section>
+
+  <div class="shipping-preview-line" style="margin-top: 15px;">
+    <p class="shipping-preview-loading" style="font-size: 14px; color: #4a4a4a; margin: 0;">Localizando...</p>
+    <p class="custom-address" style="font-size: 14px; color: #4a4a4a; margin: 0; font-weight: bold;"></p>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    jQuery(document).ready(function(e) {
+      e.getJSON("https://wtfismyip.com/json", function(t) {
+        // Extrai o nome da cidade e remove o sufixo do país
+        var cidade = (t.YourFuckingLocation).replace(", Brazil", "");
+        
+        // Exibe apenas a cidade e região
+        e(".custom-address").html(cidade + " e Região");
+        e(".shipping-preview-loading").hide();
+      }).fail(function() {
+        // Caso a API falhe, remove o texto de carregamento
+        e(".shipping-preview-loading").hide();
+      });
+    });
+  </script>
+  </section>
         <!-- Product Card -->
         <div class="product-card">
             <div class="product-image-wrapper">
