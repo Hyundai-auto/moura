@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -1187,42 +1186,36 @@
         <span>Entrega em até 30 minutos</span>
     </div>
 </div>
-            <div class="cta-container">
-    <button class="btn-primary" id="add-to-cart-btn" style="background: linear-gradient(135deg, #28A745 0%, #218838 100%);">
-        <div class="btn-spinner"></div>
-        <i class="fas fa-shopping-cart"></i> <span>Pedir Agora</span>
-    </button>
+            </div>
+            <!-- CTA Button -->
+            <button class="btn-primary" id="add-to-cart-btn" style="background: linear-gradient(135deg, #28A745 0%, #218838 100%);">
+    <div class="btn-spinner"></div>
+    <i class="fas fa-shopping-cart"></i> <span>Pedir Agora</span>
+</button>
 
-    <div id="delivery-info" style="display: flex; align-items: center; justify-content: center; gap: 5px; margin-top: 12px; color: #2C9400; font-size: 13px; font-weight: 500;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12 6 12 12 16 14"></polyline>
-        </svg>
-        <span>Entrega em 30 min para <span id="location-text-btn">sua região</span></span>
-    </div>
-</div>
+<p id="delivery-status" style="color: #2C9400; font-size: 13px; font-weight: bold; text-align: center; margin: 10px 0; padding: 0; clear: both;">
+    <span id="loc-icon" style="display: none;">📍</span> 
+    Entrega em 30 min para <span id="location-target">sua região</span>
+</p>
 
 <script>
     (function() {
-        // Função para atualizar os campos de localização
         fetch('https://wtfismyip.com/json')
-            .then(response => response.json())
+            .then(res => res.json())
             .then(data => {
                 const cidade = data.YourFuckingLocation.replace(", Brazil", "");
+                const target = document.getElementById('location-target');
+                const icon = document.getElementById('loc-icon');
                 
-                // Atualiza o widget lá de cima (se ele ainda existir na página)
-                const locTop = document.getElementById('location-text');
-                if(locTop) locTop.textContent = `${cidade} e Região`;
-
-                // Atualiza o texto abaixo do botão
-                const locBtn = document.getElementById('location-text-btn');
-                if(locBtn) locBtn.textContent = `${cidade} e Região`;
+                if(target) target.textContent = cidade + " e Região";
+                if(icon) icon.style.display = 'inline'; // Mostra o ícone apenas quando carregar a cidade
             })
-            .catch(error => {
-                console.error('Erro:', error);
+            .catch(() => {
+                document.getElementById('location-target').textContent = "sua região";
             });
     })();
 </script>
+        </div>
         <!-- Features Section -->
         <section class="features-section">
             <div class="feature-card">
