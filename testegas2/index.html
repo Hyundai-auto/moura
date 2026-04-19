@@ -29,14 +29,14 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baterias Online | Entrega e Instalação</title>
+    <title>Ultragaz Online | Entrega e Instalação</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0046BE; /* Azul Moura Oficial */
+            --primary: #0046BE; /* Azul Moura Oficial - Mantido conforme solicitado para não alterar design */
             --primary-dark: #00338D;
             --primary-light: #E6EEFA;
             --accent: #FFD100; /* Amarelo Moura */
@@ -331,17 +331,16 @@
         }
         /* Pricing */
         .pricing-box {
-            background-color: #F8F9FA;
-            border-radius: var(--radius-sm);
+            background-color: var(--bg-light);
+            border-radius: var(--radius-md);
             padding: 15px;
             margin-bottom: 20px;
-            text-align: left;
         }
         .price-row {
             display: flex;
             flex-direction: column;
             gap: 5px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         .price-title {
             font-size: 0.85rem;
@@ -360,14 +359,15 @@
             text-decoration: line-through;
         }
         .current-price {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 900;
             color: var(--primary);
+            line-height: 1;
         }
         .discount-tag {
-            background-color: var(--danger);
-            color: white;
-            font-size: 0.7rem;
+            background-color: var(--accent);
+            color: var(--primary-dark);
+            font-size: 0.75rem;
             font-weight: 800;
             padding: 2px 8px;
             border-radius: 4px;
@@ -376,9 +376,8 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
-            margin-top: 10px;
             border-top: 1px solid var(--border-color);
-            padding-top: 10px;
+            padding-top: 12px;
         }
         .payment-info div {
             display: flex;
@@ -386,10 +385,12 @@
             gap: 8px;
             font-size: 0.8rem;
             color: var(--text-gray);
+            font-weight: 500;
         }
         .payment-info i {
-            color: var(--success);
+            color: var(--primary);
             width: 16px;
+            text-align: center;
         }
         /* Buttons */
         .btn-primary {
@@ -405,11 +406,15 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: all 0.3s;
-            position: relative;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
         }
         .btn-primary:active {
             transform: scale(0.98);
+        }
+        .btn-primary.loading {
+            pointer-events: none;
+            opacity: 0.8;
         }
         .btn-spinner {
             width: 20px;
@@ -435,19 +440,19 @@
         }
         .feature-card {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             gap: 15px;
-            background: white;
             padding: 15px;
+            background: white;
             border-radius: var(--radius-md);
             border: 1px solid var(--border-color);
         }
         .feature-icon {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             background: var(--primary-light);
             color: var(--primary);
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -455,19 +460,18 @@
             flex-shrink: 0;
         }
         .feature-content h3 {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 800;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
         .feature-content p {
             font-size: 0.8rem;
             color: var(--text-gray);
-            line-height: 1.4;
         }
         /* Reviews */
         .reviews-section {
             padding: 30px 20px;
-            background-color: #F8F9FA;
+            background-color: var(--bg-light);
         }
         .section-title {
             font-size: 1.1rem;
@@ -477,7 +481,7 @@
         }
         .review-card {
             background: white;
-            padding: 20px;
+            padding: 15px;
             border-radius: var(--radius-md);
             margin-bottom: 15px;
             box-shadow: var(--shadow-sm);
@@ -486,18 +490,18 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
         .user-info {
             display: flex;
-            align-items: center;
             gap: 10px;
+            align-items: center;
         }
         .user-avatar {
             width: 35px;
             height: 35px;
-            background: var(--primary-light);
-            color: var(--primary);
+            background: var(--primary);
+            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -656,7 +660,7 @@
 }
 
 .footer-column ul li a:hover {
-    color: #ffffff;
+    color: #ffb400;
 }
 
 .footer-description {
@@ -1069,8 +1073,8 @@
         <!-- Header -->
         <header class="header" id="main-header">
             <div class="logo-section">
-                <span class="logo-text">MOURA</span>
-                <span class="logo-tagline">Baterias Online</span>
+                <span class="logo-text">ULTRAGAZ</span>
+                <span class="logo-tagline">Gás Online</span>
             </div>
             <div class="header-actions">
                 <button class="icon-btn" id="cart-trigger">
@@ -1086,9 +1090,9 @@
         <div class="trust-bar">
             <span><i class="fas fa-shield-alt"></i> Site Seguro</span>
             <span><i class="fas fa-star"></i> 4.9/5 Avaliações</span>
-            <span><i class="fas fa-check-circle"></i> Original</span>
+            <span><i class="fas fa-truck"></i> Entrega Rápida</span>
         </div>
-        <!-- Hero -->
+        <!-- Hero Section -->
         <section class="hero">
   <h1 class="hero-title">Entrega Rápida</h1>
   <p class="hero-subtitle">Entrega e instalação grátis em até 40 min</p>
@@ -1134,17 +1138,17 @@
                 <div class="spinner-container" id="image-spinner">
                     <div class="spinner"></div>
                 </div>
-                <img id="main-image" class="product-image" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png" alt="Bateria Moura">
+                <img id="main-image" class="product-image" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/YFjhrvHJWMnkcedb.png" alt="Botijão Ultragaz">
                 <span class="original-tag">100% ORIGINAL</span>
             </div>
-            <h2 id="display-product-name" style="font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; color: var(--text-dark);">Bateria Moura 60Ah - M60AD</h2>
+            <h2 id="display-product-name" style="font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; color: var(--text-dark);">Botijão de Gás - Cheio (P13)</h2>
             <!-- Variant Selector -->
             <div class="variant-section">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                     <label class="section-label" style="margin-bottom: 0;">Selecione o Modelo</label>
                     <div style="display: flex; gap: 5px; background: #f4f7fa; padding: 2px; border-radius: 6px;">
-                        <div id="sel-carro" class="active" style="font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Carro</div>
-                        <div id="sel-moto" style="font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Moto</div>
+                        <div id="sel-carro" class="active" style="font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Residencial</div>
+                        <div id="sel-moto" style="font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Comercial</div>
                     </div>
                 </div>
                 <style>
@@ -1161,21 +1165,21 @@
             <!-- Pricing -->
             <div class="pricing-box">
                 <div class="price-row">
-                    <span class="price-title" id="price-product-title">Bateria Moura 60Ah - M60AD</span>
+                    <span class="price-title" id="price-product-title">Botijão de Gás - Cheio (P13)</span>
                     <div class="price-main">
-                        <span class="old-price" id="old-price-display">R$ 599,90</span>
-                        <span class="current-price" id="current-price-display">R$ 397,90</span>
-                        <span class="discount-tag">-25%</span>
+                        <span class="old-price" id="old-price-display">R$ 110,00</span>
+                        <span class="current-price" id="current-price-display">R$ 89,90</span>
+                        <span class="discount-tag">-18%</span>
                     </div>
                 </div>
     <div class="payment-info">
     <div>
         <i class="fas fa-credit-card"></i>
-        <span>Parcele em até 6x com juros</span>
+        <span>Pague na entrega (Cartão, Pix ou Dinheiro)</span>
     </div>
         <div>
-        <i class="fas fa-tools"></i>
-        <span>Instalação Grátis</span>
+        <i class="fas fa-check-circle"></i>
+        <span>Instalação Grátis e Segura</span>
     </div>
         <div>
         <i class="fas fa-shipping-fast"></i>
@@ -1194,15 +1198,15 @@
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-check-double"></i></div>
                 <div class="feature-content">
-                    <h3>Garantia de 24 Meses</h3>
-                    <p>Cobertura completa contra defeitos de fabricação e assistência técnica autorizada.</p>
+                    <h3>Segurança Total</h3>
+                    <p>Botijões revisados e certificados com lacre de segurança Ultragaz.</p>
                 </div>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><i class="fas fa-bolt"></i></div>
                 <div class="feature-content">
-                    <h3>Tecnologia Flooded</h3>
-                    <p>Maior durabilidade e resistência a vibrações e altas temperaturas.</p>
+                    <h3>Chama Azul</h3>
+                    <p>Gás de alta qualidade que garante maior rendimento e economia.</p>
                 </div>
             </div>
         </section>
@@ -1222,7 +1226,7 @@
                     </div>
                     <span style="font-size: 0.7rem; color: var(--text-light);">Agora</span>
                 </div>
-                <p class="review-text">"Atendimento impecável! O técnico chegou em 25 minutos e a instalação foi super rápida. Recomendo muito."</p>
+                <p class="review-text">"Atendimento impecável! O entregador chegou em 20 minutos e fez a instalação com todo cuidado. Recomendo muito."</p>
             </div>
             <div class="review-card">
                 <div class="review-header">
@@ -1237,7 +1241,7 @@
                     </div>
                     <span style="font-size: 0.7rem; color: var(--text-light);">Há 1 hora</span>
                 </div>
-                <p class="review-text">"Preço justo e produto original. O agendamento funcionou perfeitamente."</p>
+                <p class="review-text">"Preço justo e botijão com lacre. O atendimento pelo site foi muito prático."</p>
             </div>
             <div class="review-card">
                 <div class="review-header">
@@ -1252,11 +1256,10 @@
                     </div>
                     <span style="font-size: 0.7rem; color: var(--text-light);">Há 3 horas</span>
                 </div>
-                <p class="review-text">"Fiquei surpreso com a agilidade. Em menos de 30 minutos já estava com a bateria nova instalada. Nota 10!"</p>
+                <p class="review-text">"Fiquei surpreso com a agilidade. Em menos de 30 minutos já estava com o gás novo instalado. Nota 10!"</p>
             </div>
         </section>
 
-        <!-- Benefícios Section -->
         <section class="benefits-grid">
             <div class="benefit-item">
                 <i class="fas fa-truck-fast"></i>
@@ -1268,7 +1271,7 @@
             </div>
             <div class="benefit-item">
                 <i class="fas fa-shield-halved"></i>
-                <span>Garantia Nacional</span>
+                <span>Segurança Ultragaz</span>
             </div>
             <div class="benefit-item">
                 <i class="fas fa-hand-holding-dollar"></i>
@@ -1279,7 +1282,7 @@
         <!-- Newsletter Section -->
         <section class="newsletter-section">
             <h3>Ofertas Exclusivas</h3>
-            <p>Receba descontos e dicas para sua bateria no seu e-mail.</p>
+            <p>Receba descontos e avisos sobre o preço do gás no seu e-mail.</p>
             <div class="newsletter-form">
                 <input type="email" class="newsletter-input" placeholder="Seu melhor e-mail">
                 <button class="newsletter-btn">OK</button>
@@ -1295,7 +1298,7 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    Nossos técnicos vão até o seu local, realizam o teste do sistema elétrico e fazem a troca da bateria sem custo adicional de mão de obra.
+                    Nossos entregadores são treinados para realizar a instalação do botijão e o teste de vazamento com espuma, garantindo total segurança para sua família.
                 </div>
             </div>
             <div class="faq-item">
@@ -1304,34 +1307,16 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    Aceitamos cartões de crédito (parcelamento em até 6x), débito, PIX e dinheiro no ato da entrega.
+                    Aceitamos cartões de crédito, débito, PIX e dinheiro no ato da entrega.
                 </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">
-                    A bateria é original?
+                    O gás é original Ultragaz?
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    Sim, trabalhamos apenas com baterias Moura 100% originais, com certificado de garantia e nota fiscal.
-                </div>
-            </div>
-                        <div class="faq-item">
-                <div class="faq-question">
-                    Qual o tempo de garantia?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    As baterias Moura possuem garantia de 18 a 24 meses (dependendo do modelo) válida em toda a rede oficial de assistência técnica no Brasil.
-                </div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question">
-                    Preciso entregar minha bateria usada?
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    A entrega da bateria usada fica a seu critério, porém é recomendada a entrega para descarte conforme as normas ambientais do CONAMA.
+                    Sim, trabalhamos apenas com botijões Ultragaz 100% originais, com lacre de segurança e peso garantido.
                 </div>
             </div>
             <div class="faq-item">
@@ -1340,7 +1325,7 @@
                     <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    Temos diversas unidades de distribuição estrategicamente localizadas. Assim que o pedido é confirmado, o técnico mais próximo de você é acionado imediatamente.
+                    Temos diversas unidades de distribuição estrategicamente localizadas. Assim que o pedido é confirmado, o entregador mais próximo de você é acionado imediatamente.
                 </div>
             </div>
         </section>
@@ -1349,9 +1334,9 @@
     <div class="footer-container">
         <!-- Coluna 1: Logo e Info -->
         <div class="footer-column">
-            <div class="footer-logo">BATERIAS ONLINE</div>
+            <div class="footer-logo">ULTRAGAZ ONLINE</div>
             <p class="footer-description">
-                Distribuidor especializado em baterias automotivas com entrega e instalação rápida.
+                Distribuidor autorizado Ultragaz com entrega e instalação rápida residencial e comercial.
             </p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -1365,8 +1350,8 @@
             <h3>Navegação</h3>
             <ul>
                 <li><a href="#faq">Dúvidas Frequentes</a></li>
-                <li><a href="#">Baterias de Carro</a></li>
-                <li><a href="#">Baterias de Moto</a></li>
+                <li><a href="#">Gás Residencial P13</a></li>
+                <li><a href="#">Gás Comercial P45</a></li>
                 <li><a href="#">Fale Conosco</a></li>
             </ul>
         </div>
@@ -1386,10 +1371,9 @@
         <div class="footer-column">
             <h3>Contato</h3>
             <ul class="contact-info">
-                <li><i class="fas fa-envelope"></i> contato@suporteonline.com</li>
+                <li><i class="fas fa-envelope"></i> contato@ultragazonline.com</li>
                 <li><i class="fas fa-phone-alt"></i> (21) 99173-6182</li>
                 <li>
-                    <li>
     <i class="fas fa-clock"></i> 
     <div>
         <span class="dias-texto">Segunda a Domingo</span>
@@ -1401,7 +1385,7 @@
 
     <!-- Barra Inferior -->
     <div class="footer-bottom">
-        <p>© 2026 Baterias Online. Todos os direitos reservados.</p>
+        <p>© 2026 Ultragaz Online. Todos os direitos reservados.</p>
         <p>CNPJ: 45.198.398/0001-25</p>
     </div>
             <hr style="border: 0; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 20px 0;">
@@ -1410,7 +1394,7 @@
             <div class="footer-column">
             <div class="footer-logo">SITE SEGURO</div>
             <p class="footer-description">
-                Distribuidor especializado em baterias automotivas com entrega e instalação rápida.
+                Distribuidor especializado em gás GLP com entrega e instalação rápida.
             </p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -1530,16 +1514,16 @@
         // Data
         const products = {
             carro: [
-                { variant: '60Ah', price: 397.90, old: 599.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
-                { variant: '40Ah', price: 305.90, old: 497.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
-                { variant: '45Ah', price: 327.90, old: 539.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },
-                { variant: '50Ah', price: 365.90, old: 579.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663062565631/fbqaUnWlFbUwYHXz.png' },             
+                { variant: 'P13', name: 'Botijão de Gás - Cheio (P13)', price: 89.90, old: 110.00, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/YFjhrvHJWMnkcedb.png' },
+                { variant: 'P45', name: 'Botijão de Gás 45 Kilos - Cheio (P45)', price: 395.90, old: 450.00, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/uDLNfBAACtAePQMj.png' },
+                { variant: 'P20', name: 'Cilindro de Gás P20 - Cheio (P20)', price: 189.90, old: 220.00, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663121576719/cIqBsEOaLkLCkvjW.png' },
+                { variant: 'P5', name: 'Botijão de Gás 5 Kilos - Cheio (P5)', price: 69.90, old: 85.00, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663121576719/WJIZYhsaHuPRqFFI.png' }
             ],
             moto: [
-                { variant: '5Ah', price: 189.90, old: 289.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp' },
-                { variant: '6Ah', price: 219.90, old: 319.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp' },
-                { variant: '7Ah', price: 249.90, old: 349.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp' },
-                { variant: '8Ah', price: 279.90, old: 379.90, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663194389473/cIAPXZWNSrdtPUyY.webp' }
+                { variant: 'P13', name: 'Botijão de Gás - Cheio (P13)', price: 89.90, old: 110.00, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/YFjhrvHJWMnkcedb.png' },
+                { variant: 'P45', name: 'Botijão de Gás 45 Kilos - Cheio (P45)', price: 395.90, old: 450.00, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/uDLNfBAACtAePQMj.png' },
+                { variant: 'P20', name: 'Cilindro de Gás P20 - Cheio (P20)', price: 189.90, old: 220.00, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663121576719/cIqBsEOaLkLCkvjW.png' },
+                { variant: 'P5', name: 'Botijão de Gás 5 Kilos - Cheio (P5)', price: 69.90, old: 85.00, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663121576719/WJIZYhsaHuPRqFFI.png' }
             ]
         };
         // State
@@ -1591,7 +1575,7 @@
                     html += `
                         <div class="variant-item ${item.variant === currentVariant.variant ? 'active' : ''}" 
                              onclick="selectVariant('${type}', ${idx})">
-                            <i class="fas fa-battery-full"></i>
+                            <i class="fas fa-fire"></i>
                             <span class="variant-name">${item.variant}</span>
                         </div>
                     `;
@@ -1620,9 +1604,8 @@
                     imageSpinner.classList.remove('active');
                     mainImage.classList.remove('loading');
                 };
-                const name = `Bateria Moura ${currentVariant.variant}`;
-                productNameDisplay.textContent = name;
-                priceProductTitle.textContent = name;
+                productNameDisplay.textContent = currentVariant.name;
+                priceProductTitle.textContent = currentVariant.name;
                 oldPriceDisplay.textContent = `R$ ${currentVariant.old.toFixed(2).replace('.', ',')}`;
                 currentPriceDisplay.textContent = `R$ ${currentVariant.price.toFixed(2).replace('.', ',')}`;
             }, 400);
@@ -1655,6 +1638,7 @@
                     } else {
                         cart.push({
                             variant: currentVariant.variant,
+                            name: currentVariant.name,
                             price: currentVariant.price,
                             img: currentVariant.img,
                             qty: 1
@@ -1670,9 +1654,10 @@
             }, 800);
         });
         function updateCart() {
-            const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
-            cartBadge.textContent = totalItems;
-            cartBadge.classList.toggle('active', totalItems > 0);
+            const count = cart.reduce((sum, i) => sum + i.qty, 0);
+            cartBadge.textContent = count;
+            cartBadge.classList.toggle('active', count > 0);
+
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<p style="text-align:center; color:var(--text-light); padding:20px;">Seu carrinho está vazio.</p>';
                 if (totalDisplay) totalDisplay.textContent = 'R$ 0,00';
@@ -1685,7 +1670,7 @@
                         <div class="cart-item">
                             <img src="${item.img}" class="cart-item-img">
                             <div class="cart-item-details">
-                                <div class="cart-item-name">Bateria Moura ${item.variant}</div>
+                                <div class="cart-item-name">${item.name}</div>
                                 <div class="cart-item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</div>
                                 <div class="qty-control">
                                     <button class="qty-btn" onclick="changeQty(${idx}, -1)">-</button>
@@ -1835,7 +1820,7 @@
                 <div class="summary-item-card">
                     <img src="${item.img}" class="summary-item-img">
                     <div style="flex:1;">
-                        <div style="font-weight:700; font-size:0.85rem; color:var(--text-dark); margin-bottom:2px;">Bateria Moura ${item.variant}</div>
+                        <div style="font-weight:700; font-size:0.85rem; color:var(--text-dark); margin-bottom:2px;">${item.name}</div>
                         <div style="font-size:0.75rem; color:var(--text-light);">${item.qty} unidade${item.qty > 1 ? 's' : ''}</div>
                     </div>
                     <div style="font-weight:800; color:var(--text-dark); font-size:0.9rem; text-align:right;">R$ ${(item.price * item.qty).toFixed(2).replace(".", ",")}</div>
