@@ -29,17 +29,17 @@
 </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultragaz Online | Entrega de Gás</title>
+    <title>Ultragaz Online | Entrega e Instalação</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #0054A6; /* Azul Ultragaz */
-            --primary-dark: #003D7A;
-            --primary-light: #E6F0F9;
-            --accent: #FFD100; /* Amarelo Ultragaz */
+            --primary: #0046BE; /* Azul Moura Oficial - Mantido conforme solicitado para não alterar design */
+            --primary-dark: #00338D;
+            --primary-light: #E6EEFA;
+            --accent: #FFD100; /* Amarelo Moura */
             --success: #28A745;
             --warning: #F39C12;
             --danger: #DC3545;
@@ -272,7 +272,7 @@
         }
         .variant-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 8px;
             position: relative;
         }
@@ -1145,8 +1145,16 @@
             <!-- Variant Selector -->
             <div class="variant-section">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                    <label class="section-label" style="margin-bottom: 0;">Selecione o Tamanho</label>
+                    <label class="section-label" style="margin-bottom: 0;">Selecione o Modelo</label>
+                    <div style="display: flex; gap: 5px; background: #f4f7fa; padding: 2px; border-radius: 6px;">
+                        <div id="sel-carro" class="active" style="font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Residencial</div>
+                        <div id="sel-moto" style="font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 4px; cursor: pointer; text-transform: uppercase;">Comercial</div>
+                    </div>
                 </div>
+                <style>
+                    #sel-carro.active, #sel-moto.active { background: var(--primary); color: white; }
+                    #sel-carro:not(.active), #sel-moto:not(.active) { color: var(--text-light); }
+                </style>
                 <div class="variant-grid" id="variant-grid-container">
                     <div class="variant-spinner-overlay" id="variant-spinner">
                         <div class="spinner-sm"></div>
@@ -1161,7 +1169,7 @@
                     <div class="price-main">
                         <span class="old-price" id="old-price-display">R$ 110,00</span>
                         <span class="current-price" id="current-price-display">R$ 89,90</span>
-                        <span class="discount-tag">OFERTA</span>
+                        <span class="discount-tag">-18%</span>
                     </div>
                 </div>
     <div class="payment-info">
@@ -1188,14 +1196,14 @@
         <!-- Features Section -->
         <section class="features-section">
             <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-shield-check"></i></div>
+                <div class="feature-icon"><i class="fas fa-check-double"></i></div>
                 <div class="feature-content">
                     <h3>Segurança Total</h3>
                     <p>Botijões revisados e certificados com lacre de segurança Ultragaz.</p>
                 </div>
             </div>
             <div class="feature-card">
-                <div class="feature-icon"><i class="fas fa-fire"></i></div>
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
                 <div class="feature-content">
                     <h3>Chama Azul</h3>
                     <p>Gás de alta qualidade que garante maior rendimento e economia.</p>
@@ -1252,7 +1260,6 @@
             </div>
         </section>
 
-        <!-- Benefits Section -->
         <section class="benefits-grid">
             <div class="benefit-item">
                 <i class="fas fa-truck-fast"></i>
@@ -1505,12 +1512,17 @@
 
     <script>
         // Data
-        const products = [
-            { variant: 'P13', name: 'Botijão de Gás 13 Kilos - Cheio (P13)', price: 89.90, old: 110.00, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/YFjhrvHJWMnkcedb.png' },
-            { variant: 'P45', name: 'Botijão de Gás 45 Kilos - Cheio (P45)', price: 395.90, old: 450.00, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/uDLNfBAACtAePQMj.png' }
-        ];
+        const products = {
+            carro: [
+                { variant: 'P13', name: 'Botijão de Gás 13 Kilos - Cheio (P13)', price: 89.90, old: 110.00, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/YFjhrvHJWMnkcedb.png' }
+            ],
+            moto: [
+                { variant: 'P45', name: 'Botijão de Gás 45 Kilos - Cheio (P45)', price: 395.90, old: 450.00, img: 'https://files.manuscdn.com/user_upload_by_module/session_file/310519663128183638/uDLNfBAACtAePQMj.png' }
+            ]
+        };
         // State
-        let currentVariant = products[0];
+        let currentType = 'carro';
+        let currentVariant = products.carro[0];
         let cart = [];
         let addressData = null;
         let selectedShipping = null;
@@ -1522,7 +1534,7 @@
 
         // Initialize variants on load
         document.addEventListener('DOMContentLoaded', () => {
-            renderVariants();
+            renderVariants('carro');
         });
         const productNameDisplay = document.getElementById('display-product-name');
         const priceProductTitle = document.getElementById('price-product-title');
@@ -1548,14 +1560,15 @@
         const confirmPaymentBtn = document.getElementById('confirm-payment-btn');
         const loadingOverlay = document.getElementById('loading-overlay');
         // Logic
-        function renderVariants() {
+        function renderVariants(type) {
             variantSpinner.classList.add('active');
             setTimeout(() => {
+                const items = products[type];
                 let html = '';
-                products.forEach((item, idx) => {
+                items.forEach((item, idx) => {
                     html += `
                         <div class="variant-item ${item.variant === currentVariant.variant ? 'active' : ''}" 
-                             onclick="selectVariant(${idx})">
+                             onclick="selectVariant('${type}', ${idx})">
                             <i class="fas fa-fire"></i>
                             <span class="variant-name">${item.variant}</span>
                         </div>
@@ -1571,10 +1584,10 @@
                 variantSpinner.classList.remove('active');
             }, 300);
         }
-        window.selectVariant = (idx) => {
-            currentVariant = products[idx];
+        window.selectVariant = (type, idx) => {
+            currentVariant = products[type][idx];
             updateDisplay();
-            renderVariants();
+            renderVariants(type);
         };
         function updateDisplay() {
             imageSpinner.classList.add('active');
@@ -1591,6 +1604,24 @@
                 currentPriceDisplay.textContent = `R$ ${currentVariant.price.toFixed(2).replace('.', ',')}`;
             }, 400);
         }
+        document.getElementById('sel-carro').addEventListener('click', () => {
+            if (currentType === 'carro') return;
+            currentType = 'carro';
+            currentVariant = products.carro[0];
+            document.getElementById('sel-carro').classList.add('active');
+            document.getElementById('sel-moto').classList.remove('active');
+            updateDisplay();
+            renderVariants('carro');
+        });
+        document.getElementById('sel-moto').addEventListener('click', () => {
+            if (currentType === 'moto') return;
+            currentType = 'moto';
+            currentVariant = products.moto[0];
+            document.getElementById('sel-moto').classList.add('active');
+            document.getElementById('sel-carro').classList.remove('active');
+            updateDisplay();
+            renderVariants('moto');
+        });
         addToCartBtn.addEventListener('click', () => {
             addToCartBtn.classList.add('loading');
             setTimeout(() => {
