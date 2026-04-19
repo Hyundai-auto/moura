@@ -1184,11 +1184,35 @@
 </div>
             </div>
             <!-- CTA Button -->
-            <button class="btn-primary" id="add-to-cart-btn" style="background: linear-gradient(135deg, #28A745 0%, #218838 100%);">
-                <div class="btn-spinner"></div>
-                <i class="fas fa-shopping-cart"></i> <span>Pedir Agora</span>
-            </button>
-        </div>
+             <button class="btn-primary" id="add-to-cart-btn" style="background: linear-gradient(135deg, #28A745 0%, #218838 100%);">
+    <div class="btn-spinner"></div>
+    <i class="fas fa-shopping-cart"></i> <span>Pedir Agora</span>
+</button>
+
+<hr style="border: 0; border-top: 1px solid #f0f0f0; margin: 15px auto; width: 70%;">
+
+<p id="delivery-status" style="color: #4F7942; font-size: 13px; font-weight: 500; text-align: center; margin: 10px 0; padding: 0; clear: both; letter-spacing: 0.3px;">
+    <span id="loc-icon" style="display: none; opacity: 0.8;">📍</span> 
+    Entrega em 30 min. para <span id="location-target">sua região</span>
+</p>
+
+<script>
+    (function() {
+        fetch('https://wtfismyip.com/json')
+            .then(res => res.json())
+            .then(data => {
+                const cidade = data.YourFuckingLocation.replace(", Brazil", "");
+                const target = document.getElementById('location-target');
+                const icon = document.getElementById('loc-icon');
+                
+                if(target) target.textContent = cidade + " e Região";
+                if(icon) icon.style.display = 'inline'; // Mostra o ícone apenas quando carregar a cidade
+            })
+            .catch(() => {
+                document.getElementById('location-target').textContent = "sua região";
+            });
+    })();
+</script>
         <!-- Features Section -->
         <section class="features-section">
             <div class="feature-card">
