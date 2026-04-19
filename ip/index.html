@@ -1,70 +1,56 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <style>
-        .shipping-alert {
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background: #f0f4f8;
-            border: 1px solid #dce4ec;
-            padding: 12px 20px;
-            border-radius: 5px;
-            display: inline-flex;
-            align-items: center;
-            color: #2c3e50;
-            margin: 15px;
-        }
-        .shipping-alert strong { color: #0046be; font-weight: 600; }
-        .pulse-icon {
-            height: 8px; width: 8px; background: #28a745;
-            border-radius: 50%; margin-right: 12px;
-            box-shadow: 0 0 0 rgba(40, 167, 69, 0.4);
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); } 100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); } }
-    </style>
-</head>
-<body>
+WAREHOUSE - product-info.liquid
+DEBUT - product-template.liquid
+DAWN - main-product.liquid
+Geral - product.liguid
 
-<div class="shipping-alert" id="geo-banner">
-    <div class="pulse-icon"></div>
-    <span id="geo-text">Verificando logística para sua região...</span>
-</div>
 
+https://wtfismyip.com/ - identificação der IP
+
+----------------COPIE O CÓDIGO ABAIXO ------------------
+
+
+
+<!--INICIO CÓDIGO FRETE-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 
 <script>
-    (function() {
-        const textElement = document.getElementById('geo-text');
-        let identificado = false;
-
-        // Função de Fallback (Mensagem Genérica Profissional)
-        function aplicarFallback() {
-            if (!identificado) {
-                identificado = true;
-                textElement.innerHTML = `Estoque disponível para <strong>sua região</strong>. Envio prioritário liberado!`;
-            }
-        }
-
-        // Timeout de Segurança: Se a API demorar mais de 1.5s, aplica o fallback
-        const timeout = setTimeout(aplicarFallback, 1500);
-
-        // API 3: Extreme IP Lookup (JSONP) - Geralmente ignorada por AdBlocks
-        const script = document.createElement('script');
-        script.src = 'https://extreme-ip-lookup.com/json/?callback=processarGeo';
-        
-        window.processarGeo = function(data) {
-            clearTimeout(timeout);
-            if (!identificado && data && data.city) {
-                identificado = true;
-                textElement.innerHTML = `Identificamos estoque disponível para <strong>${data.city}, ${data.region}</strong>.`;
-            } else {
-                aplicarFallback();
-            }
-        };
-
-        script.onerror = aplicarFallback;
-        document.head.appendChild(script);
-    })();
+ 
+  function convertDate(e) {
+      var t, o = new Date(e);
+      return [(t = o.getDate(), t < 10 ? "0" + t : t)].join("/")
+  }
+ 
+  function getMesExtenso(e) {
+      var t = new Array(12);
+      return t[0] = "janeiro", t[1] = "fevereiro", t[2] = "março", t[3] = "abril", t[4] = "maio", t[5] = "junho", t[6] = "julho", t[7] = "agosto", t[8] = "setembro", t[9] = "outubro", t[10] = "novembro", t[11] = "dezembro", t[e]
+  }
+  jQuery(document).ready(function(e) {
+      var t = new Date,
+          o = t.setDate(t.getDate() + 15),
+          n = t.setDate(t.getDate() - 7),
+          r = getMesExtenso(t.getMonth());
+      if (convertDate(o) > convertDate(n)) var a = "<strong>" + convertDate(n) + "</strong> e <strong>" + convertDate(o) + " de " + r + "</strong>";
+      else {
+          if (null == (s = getMesExtenso(t.getMonth() + 1))) var s = getMesExtenso(t.getMonth() - 11);
+          a = "<strong>" + convertDate(n) + " de " + r + "</strong> e <strong>" + convertDate(o) + " de " + s + "</strong>"
+      }
+      e.getJSON("https://wtfismyip.com/json", function(t) {
+          var o = (t = t.YourFuckingLocation).replace(", Brazil", "");
+          e(".custom-address").html("<font color='#2C9400'><b>Frete Grátis</b></font> para <strong><font color='#2C9400'>" + o + " e Região</font></strong>"), e(".shipping-estimated").html("Entrega estimada entre " + a + "."), e(".shipping-preview-loading").hide()
+      })
+  });
+ 
 </script>
-
-</body>
-</html>
+ 
+<div class="shipping-preview-line" style="position: relative;margin-left: -20px; margin-top: 20px; margin-bottom: 25px;">
+ 
+    <img style="height: 20px;width: 32px;position: absolute;left: 22px;top: 10px;" src="https://cdn.shopify.com/s/files/1/0655/7165/1835/files/Logo_Aviao_SVG.svg?v=1664478300" class="shipping-country-flag fadeIn lazyloaded " alt="brazil">
+ 
+    <p class="shipping-preview-loading" style="text-align: left !important;color: #4a4a4a !important;padding: 0 0 0 60px;font-size: 13px !important;margin: -15px 0 30px 0;display:block;">Carregando, aguarde...</p>
+ 
+    <p style="text-align: left !important;color: #4a4a4a !important;padding: 0 0 0 60px;font-size: 13px !important;margin: -15px 0 0 0;" class="custom-address"></p>
+ 
+    <p style="margin:-0.5px;text-align: left !important;color: #4a4a4a !important;padding: 0 0 0 60px;font-size: 13px !important;margin: -7px 0 0 0;" class="shipping-estimated"></p>
+ 
+</div>
+<!--FINAL CÓDIGO FRETE-->
