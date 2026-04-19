@@ -1093,7 +1093,7 @@
   <h1 class="hero-title">Entrega Rápida</h1>
   <p class="hero-subtitle">Entrega e instalação grátis em até 40 min</p>
 
-  <div id="location-widget" style="display: flex; align-items: center; justify-content: start; gap: 6px; margin-top: 10px; margin-bottom: 5px; color: #0056b3; font-size: 14px; font-weight: bold;">
+  <div id="location-widget" style="display: flex; align-items: center; justify-content: start; gap: 6px; margin-top: 10px; margin-bottom: 5px; color: #2C9400; font-size: 14px; font-weight: bold;">
     
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: -2px;">
       <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
@@ -1110,14 +1110,13 @@
       fetch('https://wtfismyip.com/json')
         .then(response => response.json())
         .then(data => {
-          // Extrai a cidade e remove o país se houver
+          // Extrai a cidade e remove o país
           const cidade = data.YourFuckingLocation.replace(", Brazil", "");
-          // Atualiza o texto
           locationText.textContent = `${cidade} e Região`;
         })
         .catch(error => {
           console.error('Erro ao buscar localização:', error);
-          locationText.textContent = "Disponível para sua região"; // Texto fallback amigável
+          locationText.textContent = "Disponível na sua região";
         });
     })();
   </script>
