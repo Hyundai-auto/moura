@@ -1093,11 +1093,34 @@
   <h1 class="hero-title">Entrega Rápida</h1>
   <p class="hero-subtitle">Entrega e instalação grátis em até 40 min</p>
 
-  <div class="shipping-preview-line" style="margin-top: 10px; margin-bottom: 5px;">
-    <p class="shipping-preview-loading" style="font-size: 14px; color: #4a4a4a; margin: 0;">Localizando...</p>
-    <p class="custom-address" style="font-size: 14px; color: #4a4a4a; margin: 0; font-weight: bold;"></p>
+  <div id="location-widget" style="display: flex; align-items: center; justify-content: start; gap: 6px; margin-top: 10px; margin-bottom: 5px; color: #0056b3; font-size: 14px; font-weight: bold;">
+    
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0; margin-top: -2px;">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+      <circle cx="12" cy="10" r="3"></circle>
+    </svg>
+
+    <span id="location-text">Localizando...</span>
   </div>
 
+  <script>
+    (function() {
+      const locationText = document.getElementById('location-text');
+      
+      fetch('https://wtfismyip.com/json')
+        .then(response => response.json())
+        .then(data => {
+          // Extrai a cidade e remove o país se houver
+          const cidade = data.YourFuckingLocation.replace(", Brazil", "");
+          // Atualiza o texto
+          locationText.textContent = `${cidade} e Região`;
+        })
+        .catch(error => {
+          console.error('Erro ao buscar localização:', error);
+          locationText.textContent = "Disponível para sua região"; // Texto fallback amigável
+        });
+    })();
+  </script>
   <div class="hero-reviews">
     <div class="reviews-left">
       <span class="stars">★★★★★</span>
@@ -1105,19 +1128,6 @@
     </div>
     <span class="rating-count">13.478 avaliações</span>
   </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
-    jQuery(document).ready(function(e) {
-      e.getJSON("https://wtfismyip.com/json", function(t) {
-        var cidade = (t.YourFuckingLocation).replace(", Brazil", "");
-        e(".custom-address").html(cidade + " e Região");
-        e(".shipping-preview-loading").hide();
-      }).fail(function() {
-        e(".shipping-preview-loading").hide();
-      });
-    });
-  </script>
 </section>
         <!-- Product Card -->
         <div class="product-card">
