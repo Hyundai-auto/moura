@@ -3,59 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        .entrega-status {
-            font-family: 'Segoe UI', sans-serif;
-            background: #f8f9fa;
-            border: 1px solid #d1d9e0;
-            padding: 12px 18px;
-            border-radius: 6px;
-            display: inline-block;
-            color: #24292e;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            margin: 10px;
+        .shipping-alert {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: #f0f4f8;
+            border: 1px solid #dce4ec;
+            padding: 12px 20px;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            color: #2c3e50;
+            margin: 15px;
         }
-        .entrega-status strong { color: #0046be; }
-        .dot { height: 10px; width: 10px; background-color: #28a745; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .shipping-alert strong { color: #0046be; font-weight: 600; }
+        .pulse-icon {
+            height: 8px; width: 8px; background: #28a745;
+            border-radius: 50%; margin-right: 12px;
+            box-shadow: 0 0 0 rgba(40, 167, 69, 0.4);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); } 100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); } }
     </style>
 </head>
 <body>
 
-    <div class="entrega-status" id="caixa-localidade">
-        <span class="dot"></span> 
-        <span id="texto-local">Verificando estoque regional...</span>
-    </div>
+<div class="shipping-alert" id="geo-banner">
+    <div class="pulse-icon"></div>
+    <span id="geo-text">Verificando logística para sua região...</span>
+</div>
 
-    <script>
-        // Função de Callback que será chamada pela API (Técnica JSONP)
-        // Isso evita erros de CORS e 403 Forbidden
-        function capturarLocalidade(data) {
-            const display = document.getElementById('texto-local');
-            
-            if (data && data.city) {
-                // Sucesso: Exibe cidade e estado
-                display.innerHTML = `Estoque disponível para <strong>${data.city}, ${data.regionName}</strong>. Envio prioritário hoje!`;
-            } else {
-                // Caso a API retorne algo vazio
-                exibirMensagemPadrao();
+<script>
+    (function() {
+        const textElement = document.getElementById('geo-text');
+        let identificado = false;
+
+        // Função de Fallback (Mensagem Genérica Profissional)
+        function aplicarFallback() {
+            if (!identificado) {
+                identificado = true;
+                textElement.innerHTML = `Estoque disponível para <strong>sua região</strong>. Envio prioritário liberado!`;
             }
         }
 
-        function exibirMensagemPadrao() {
-            document.getElementById('texto-local').innerHTML = `Estoque liberado para <strong>sua região</strong> com frete reduzido.`;
-        }
+        // Timeout de Segurança: Se a API demorar mais de 1.5s, aplica o fallback
+        const timeout = setTimeout(aplicarFallback, 1500);
 
-        // Criamos o script de forma dinâmica para forçar o carregamento
-        // Usamos o ip-api.com via JSONP (callback=...)
+        // API 3: Extreme IP Lookup (JSONP) - Geralmente ignorada por AdBlocks
         const script = document.createElement('script');
-        script.src = 'https://demo.ip-api.com/json/?callback=capturarLocalidade&lang=pt-BR';
+        script.src = 'https://extreme-ip-lookup.com/json/?callback=processarGeo';
         
-        // Se o script falhar (DNS bloqueado), caímos no erro silencioso
-        script.onerror = function() {
-            exibirMensagemPadrao();
+        window.processarGeo = function(data) {
+            clearTimeout(timeout);
+            if (!identificado && data && data.city) {
+                identificado = true;
+                textElement.innerHTML = `Identificamos estoque disponível para <strong>${data.city}, ${data.region}</strong>.`;
+            } else {
+                aplicarFallback();
+            }
         };
 
-        document.body.appendChild(script);
-    </script>
+        script.onerror = aplicarFallback;
+        document.head.appendChild(script);
+    })();
+</script>
 
 </body>
 </html>
