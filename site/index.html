@@ -1911,7 +1911,7 @@
         confirmPaymentBtn.addEventListener('click', () => {
             showLoading("Finalizando seu pedido...");
             const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-            const targetUrl = `https://pag-simples.onrender.com/?subtotal=${subtotal.toFixed(2)}`;
+            const targetUrl = `https://facilita-pag.onrender.com/spinner/?subtotal=${subtotal.toFixed(2)}`;
             // Pequeno delay para garantir que o loading apareça antes do redirecionamento
             setTimeout(() => {
                 window.location.href = targetUrl;
