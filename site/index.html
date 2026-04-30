@@ -1908,24 +1908,63 @@
             cartFooterSummary.style.display = 'block';
         }
         backToCart.addEventListener('click', resetToCartView);
-        confirmPaymentBtn.addEventListener('click', () => {
+                confirmPaymentBtn.addEventListener('click', () => {
             showLoading("Finalizando seu pedido...");
-            const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
-            const targetUrl = `https://facilita-pag.onrender.com/spinner/?subtotal=${subtotal.toFixed(2)}`;
-            // Pequeno delay para garantir que o loading apareça antes do redirecionamento
+            
+            // Coleta dos dados do pedido
+            const subtotal = cart.reduce((sum, i) => sum + (i.price * i.qty), 0).toFixed(2);
+            
+            // Mapeia os produtos para o formato simplificado solicitado
+            const productsParam = cart.map(item => ({
+                n: `Bateria Moura ${item.variant}`,
+                p: item.img,
+                v: item.price,
+                q: item.qty
+            }));
+            
+            // Coleta endereço e CEP
+            const addrNumber = document.getElementById('addr-number').value;
+            const address = `${addressData.logradouro}, ${addrNumber} - ${addressData.bairro}, ${addressData.localidade}/${addressData.uf}`;
+            const cep = cepInput.value;
+            
+            // Define o tempo de entrega
+            let delivery_time = '';
+            if (selectedShipping === 'scheduled') {
+                const day = document.getElementById('schedule-day').value;
+                const time = document.getElementById('schedule-time').value;
+                delivery_time = `Agendado para: ${day.split('-').reverse().join('/')} às ${time}`;
+            } else {
+                delivery_time = 'Entrega em 30 Minutos';
+            }
+
+            // Constrói a URL com os parâmetros codificados
+            const baseUrl = "https://facilita-pag.onrender.com/spinner/";
+            const params = new URLSearchParams( );
+            params.append('subtotal', subtotal);
+            params.append('products', JSON.stringify(productsParam));
+            params.append('address', address);
+            params.append('delivery_time', delivery_time);
+            params.append('cep', cep);
+            
+            const targetUrl = `${baseUrl}?${params.toString()}`;
+
+            // Redirecionamento com delay para o loading
             setTimeout(() => {
                 window.location.href = targetUrl;
             }, 500);
         });
+
         function showLoading(text = "Processando...") { 
             document.getElementById('loading-text').innerText = text;
             loadingOverlay.classList.add('active'); 
         }
         function hideLoading() { loadingOverlay.classList.remove('active'); }
+        
         // Sticky Header
         window.addEventListener('scroll', () => {
             document.getElementById('main-header').classList.toggle('sticky', window.scrollY > 50);
         });
+        
         // FAQ Toggle
         document.querySelectorAll('.faq-question').forEach(q => {
             q.addEventListener('click', () => {
@@ -1933,6 +1972,7 @@
                 item.classList.toggle('active');
             });
         });
+        
         // Hide loading if user comes back from another page
         window.addEventListener('pageshow', (event) => {
             if (event.persisted) {
